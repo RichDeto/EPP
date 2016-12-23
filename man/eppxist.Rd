@@ -1,15 +1,11 @@
 \name{eppxist}
 \alias{eppxist}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{
-        Function to evaluate proximity coverage of a program and estimate to cover the rest population.
-}
+\title{Evaluation of proximity coverage by a program and estimate new services to attend the uncover population.}
 \description{
         Assign the population in a number of iterations, according to the distance/s of radium and capacity of each center. The output of the function is a DataFrame of  uncover population, and other DataFrame of centers with a summary of cover population.
 }
-\usage{
-        eppxist(pob, centers, n, a, [m = n + 1, b = a * 2, crs = CRS("+init=epsg:32721")])
-}
+\usage{eppxist(pob, centers, n, a, [m = n + 1, b = a * 2, crs = CRS("+init=epsg:32721")])}
 %- maybe also 'usage' for other objects documented here.
 \arguments{
         \item{pob}{
@@ -55,9 +51,8 @@
         R Development Core Team (2015), R: A language and environment for statistical computing. R Foundation forStatistical Computing, Vienna, Austria.ISBN 3-900051-07-0, URL http://www.R-project.org/
         Turner, R. (2015), Delaunay Triangulation and Dirichlet (Voronoi) Tessellation. URL https://cran.r-project.org/web/packages/deldir/deldir.pdf
 }
-\author{
+\author{Detomasi, Richard
         Botto, Germán 
-        Detomasi, Richard
         Mathieu, Gabriela
 }
 \note{
