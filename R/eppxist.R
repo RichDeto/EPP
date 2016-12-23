@@ -1,124 +1,96 @@
-# Hello, world!
-#
-# This is an example function named 'hello'
-# which prints 'Hello, world!'.
-#
-# You can learn more about package authoring with RStudio at:
-#
-#   http://r-pkgs.had.co.nz/
-#
-# Some useful keyboard shortcuts for package authoring:
-#
-#   Build and Reload Package:  'Ctrl + Shift + B'
-#   Check Package:             'Ctrl + Shift + E'
-#   Test Package:              'Ctrl + Shift + T'
-
-eppxist <- function(pob,centers,n,m,a,b) {
-        require(sp)
-
+eppxist <- function(pob,centers, n = 3, m = n + 1, a = 1000, b = a * 2, crs = c('CRS("+init=epsg:32721")')) {
+        require(sp);require(foreach);require(maptools);require(rgeos);require(rgdal);require(deldir);require(flexclust);library(plyr)
+        # Voronoi script modify of "http://carsonfarmer.com/2009/09/voronoi-polygons-with-r/"
+        voronoipolygons <- function(x, crs = c('CRS("+init=epsg:32721")')) {
+                require(deldir)
+                require(sp)
+                if (.hasSlot(x, 'coords')) {
+                        crds <- x@coords  
+                } else crds <- x
+                z <- deldir(crds[,1], crds[,2],rw = c(x@bbox[1,1] + (x@bbox[1,1] * 0.05),
+                                                      x@bbox[1,2] + (x@bbox[1,2] * 0.05),
+                                                      x@bbox[2,1] + (x@bbox[2,1] * 0.05),
+                                                      x@bbox[2,2] + (x@bbox[2,2] * 0.05)))#c(366582,858252,6127919,6671739))
+                w <- tile.list(z)
+                polys <- vector(mode = 'list', length = length(w))
+                for (i in seq(along = polys)) {
+                        pcrds <- cbind(w[[i]]$x, w[[i]]$y)
+                        pcrds <- rbind(pcrds, pcrds[1,])
+                        polys[[i]] <- Polygons(list(Polygon(pcrds)), ID = as.character(i))
+                }
+                SP <- SpatialPolygons(polys,proj4string = crs)
+        }
         cupos_centers <- as.list(NA)
         asignados <- as.list(NA)
-        j <- 1 # iteracion inicial
-
-        #n <- 3 # iteraciones totales
-        #m <- iteraci?n a partir de la que se usa el segundo umbral de distancia
-        #a <- distancia umbral para las primeras iteraciones (n > m)
-        #b <- distancia umbral para las iteraciones a partir de m (n <= m)
-        # ITERACIONES
+        j <- 1
         while (n >= j) {
-                ## CREACION DEL OBJETO ESPACIAL CON LOS NI?OS
-                pob_s <- SpatialPoints(pob[,1:2],proj4string = CRS("+init=epsg:32721"))
-                ## ENLACE ESPACIAL DE NI?OS CON LOS VORONOIS INICIALES Y C?LCULO DE NI?OS CUBIERTOS POR LA OFERTA ACTUAL
-                centers_s <- SpatialPoints(centers[,1:2],CRS("+init=epsg:32721"))
-                VP_centers1 <- voronoipolygons(centers_s)
-                #ENLACE ESPACIAL
-                centers$poligono <- over(VP_centers1,centers_s,returnList = FALSE)
-                # el resultado es igual al row.names de centros! lo dejo para tener la misma variable para el merge
+                pob_s <- SpatialPoints(pob[,1:2],proj4string = crs)## transform pob to spatial object
+                centers_s <- SpatialPoints(centers[,1:2],crs)## transform centers to spatial object
+                VP_centers1 <- voronoipolygons(centers_s)## generate voronoipoligons of centers
+                centers$poligono <- over(VP_centers1,centers_s,returnList = FALSE)## assign centers info to voronoipoligons
                 ab <- as.data.frame(over(pob_s,VP_centers1))
                 names(ab) <- "poligono"
                 pob <- cbind(pob,ab)
                 pob <- merge(pob,centers,by = "poligono")
                 remove(ab)
-                # C?LCULO DE DISTANCIAS ENTRE LOS NI?OS Y LOS CENTROS
-                pob$dist_exist <- sqrt(
-                        ((pob$x.x - pob$x.y) ^ 2) +
-                                ((pob$y.x - pob$y.y) ^ 2))
-                #DICOT?MICA DE DISTANCIA (MENOR O IGUAL A 1000 M)
-                d <- ifelse(m > j,a,b) #criterio de distancia dependiente de la iteraci?n
+                
+                pob$dist_exist <- sqrt(((pob$x.x - pob$x.y) ^ 2) + ((pob$y.x - pob$y.y) ^ 2))## distance calc
+                d <- ifelse(m > j,a,b)## evaluation distance criteria
                 pob$en1000_exist <- ifelse(pob$dist_exist >= d,0,1)
-                #CONTEO DE NI?OS POR CADA CENTRO DENTRO DEL UMBRAL DE DISTANCIA
-                ninos_sipi <- list(tapply(X = pob$en1000_exist,
-                                          INDEX = list(pob$sipi),
-                                          FUN = sum)) # conteo de ni?os asignados a cada centro educativo
+                ninos_sipi <- list(tapply(X = pob$en1000_exist,INDEX = list(pob$sipi),FUN = sum))## pob count by center
                 ninos_conteo <- as.data.frame(c(ninos_sipi))
                 names(ninos_conteo) <- c("ninos_ex")
                 ninos_conteo$sipi <- row.names(ninos_conteo)
-                pob <- merge(pob, ninos_conteo,
-                                by.x = "sipi", by.y = "sipi", all.x = TRUE, all.y = TRUE)
-                # carga del dato de cantidad de ni?os por centro en la base de ni?os
-                pob <- pob[order(pob$sipi, pob$dist_exist),]
-                # se ordena la base por centro de pertenencia y por distancia al mismo
+                pob <- merge(pob, ninos_conteo,by.x = "sipi", by.y = "sipi", all.x = TRUE, all.y = TRUE)
+                pob <- pob[order(pob$sipi, pob$dist_exist),]## order by center & distance
                 remove(ninos_conteo)
-                # C?LCULO DE NI?OS CUBIERTOS
-                lista_sipi <- as.data.frame(sort(unique(pob$sipi))) # lista de los centros que tienen ni?os asignados
+                lista_sipi <- as.data.frame(sort(unique(pob$sipi))) # list centers with assign pob
                 names(lista_sipi) <- c("sipi")
                 lista_sipi$nsipi <- row.names(lista_sipi)
                 pob <- merge(pob,lista_sipi,by = "sipi")
                 lista_1 <- vector("list", nrow(lista_sipi))
                 for (i in 1:nrow(lista_sipi)) {
                         lista_1[[i]] <- rank(subset(pob,pob$nsipi == i)[,"dist_exist"],ties.method = "random")
-                } # crea una lista de rangos (por distancia) para cada ni?o dentro de su centro de pertenencia
-                pob$orden_dist <- unlist(lista_1) # asigna el rango a la base de ni?os
+                } ## rank pob by center and distance
+                pob$orden_dist <- unlist(lista_1) ## assign rank to pob
                 remove(lista_1)
-                pob$a_reasig1 <- ifelse(pob$en1000_exist == 1,
-                                           ifelse(pob$orden_dist <= pob$mat,0,1),1)
-                # aquellos cuyo rango es mayor que la cantidad de cupos disponibles debe ser reasignado en otro paso
-
-                ## C?LCULO DE CUPOS UTILIZADOS
+                pob$a_reasig1 <- ifelse(pob$en1000_exist == 1,ifelse(pob$orden_dist <= pob$mat,0,1),1) # pob uncover to reassign
                 cubiertos <- subset(pob, pob$a_reasig1 == 0, c(x.x,y.x,afam,sipi),drop = TRUE)
                 cubiertos <- droplevels(cubiertos)
-                cubiertos$ronda <- as.factor(j) # indica la ronda en la que se asigno al centro correspondiente
+                cubiertos$iteration <- as.factor(j)## index iteration
                 cubiertos$uno <- 1
                 centers1 <- as.data.frame(tapply(X = cubiertos$uno,INDEX = list(cubiertos$sipi), FUN = sum))
                 names(centers1) <- "cupos"
                 centers1$sipi <- row.names(centers1)
-                cupos_centers[[j]] <- centers1 #CUPOS DE CADA CENTRO CUBIERTOS EN CADA PASO
+                cupos_centers[[j]] <- centers1 ##pob assign to each center in iteration
                 centers1 <- merge(centers,centers1,by = "sipi",all.x = TRUE)
                 centers1$cupos <- ifelse(is.na(centers1$cupos),0,centers1$cupos)
-                centers1$mat <- centers1$mat - centers1$cupos #esto corresponde al saldo no cubierto
-                centers1 <- subset(centers1,centers1$mat > 0,drop = TRUE) # se continua con los centros que a?n tienen saldo
+                centers1$mat <- centers1$mat - centers1$cupos ## capacity still avaible 
+                centers1 <- subset(centers1,centers1$mat > 0,drop = TRUE) ## centers with capacity to next iteration
                 centers <- subset(centers1,select = c(x,y,sipi,mat),drop = TRUE)
                 centers <- droplevels(centers)
                 remove(centers1)
-                ## NI?OS NO CUBIERTOS
                 pob$x <- pob$x.x
                 pob$y <- pob$y.x
                 pob <- subset(pob,pob$a_reasig1 == 1,select = c(x,y,afam),drop = TRUE)
-                ## LISTA DE NI?OS YA CUBIERTOS, UN OBJETO DE LA LISTA POR CADA PASO
                 asignados[[j]] <- cubiertos
                 remove(cubiertos)
-                j <- j + 1 #cuenta la iteraci?n
+                j <- j + 1 #next iteration
         }
         cupos_perdidos <- centers
         no_cubiertos <- pob
-
-        ###Desenlistado de los menores cubiertos
-        asignados_existentes <- as.data.frame(NULL)
+        asignados_existentes <- as.data.frame(NULL)### Unlist pob uncover
         for (i in 1:length(asignados)) {
                 asignados_existentes <- rbind(asignados_existentes,as.data.frame(asignados[[i]]))
         }
         asignados_existentes <- subset(asignados_existentes,select = c(x.x,y.x,afam,sipi,ronda))
-
-        ###Desenlistado de los Centros
-        cupos_cubiertos1 <- as.data.frame(NULL)
+        cupos_cubiertos1 <- as.data.frame(NULL) ### Unlist centers
         for (i in 1:length(cupos_centers)) {
                 cupos_cubiertos1 <- rbind(cupos_cubiertos1,as.data.frame(cupos_centers[[i]]))
         }
         cupos_cubiertos <- as.data.frame(tapply(X = cupos_cubiertos1$cupos,INDEX = list(cupos_cubiertos1$sipi), FUN = sum))
         names(cupos_cubiertos) <- "cupos"
         cupos_cubiertos$sipi <- row.names(cupos_cubiertos)
-
-        #limpiar el ambiente
-        remove(i,j,n,m,a,b,d,lista_sipi,centers,centers_s,VP_centers1,
-               pob_s,ninos_sipi,pob,asignados,cupos_centers,cupos_cubiertos1)
+        eppxist.output <- list("unused_capacity" = cupos_perdidos, "pob_uncover" = no_cubiertos , "pob_assign" = asignados_existentes, "centers_cover" = cupos_cubiertos)
+        return(eppxist.output)
 }
