@@ -9,8 +9,8 @@ eppproy <- function(pob, m = 5, l = 4, o = 3, g1 = 50, g2 = g1 * 0.5, d1 = 1000,
                 } else crds <- x
                 z <- deldir(crds[,1], crds[,2],rw = c(x@bbox[1,1] - (x@bbox[1,1] * 0.05),
                                                       x@bbox[1,2] + (x@bbox[1,2] * 0.05),
-                                                      x@bbox[2,1] + (x@bbox[2,1] * 0.05),
-                                                      x@bbox[2,2] - (x@bbox[2,2] * 0.05)))#c(366582,858252,6127919,6671739))
+                                                      x@bbox[2,1] - (x@bbox[2,1] * 0.05),
+                                                      x@bbox[2,2] + (x@bbox[2,2] * 0.05)))#c(366582,858252,6127919,6671739))
                 w <- tile.list(z)
                 polys <- vector(mode = 'list', length = length(w))
                 for (i in seq(along = polys)) {
