@@ -46,9 +46,9 @@ eppproy(pob, m = 5, l = 4, o = 3, g1 = 50, g2 = g1 * 0.5, d1 = 1000, d2 = d1 * 2
 }
 \value{
 Return a LIST with:
- \item{comp1 }{Description of 'comp1'}
- \item{comp2 }{Description of 'comp2'}
-%% ...
+ \item{new_centers }{Centers to cover the population}
+ \item{new_assign }{Population with the center assigned}
+ %% ...
 }
 \references{
 Bivand, R., Keitt, T., Rowlingson, B., Pebesma, E., Sumner, M., Hijmans, R. y Rouault, E. (2015), Bindings for the Geospatial Data Abstraction Library. URL https://cran.r-project.org/web/packages/rgdal/rgdal.pdf
