@@ -35,24 +35,24 @@
         %%  ~~ If necessary, more details than the description above ~~
 }
 \value{
-        %%  ~Describe the value returned
-        %%  If it is a LIST, use
-        %%  \item{comp1 }{Description of 'comp1'}
-        %%  \item{comp2 }{Description of 'comp2'}
-        %% ...
+     Return a LIST with:
+       \item{unused_capacity }{DataFrame with the centers and its unused capacity}
+       \item{pob_uncover }{DataFrame with the population still out of coverage}
+       \item{pob_assign }{DataFrame with the population assign and the corresponding center}
+       \item{centers_cover }{DataFrame with the center and the info of population covered}
 }
 \references{
         Bivand, R., Keitt, T., Rowlingson, B., Pebesma, E., Sumner, M., Hijmans, R. y Rouault, E. (2015), Bindings for the Geospatial Data Abstraction Library. URL https://cran.r-project.org/web/packages/rgdal/rgdal.pdf
         Botto, G. y Detomasi, R. (2015), Bases metodológicas para la planificación espacial de servicios de educación inicial en Uruguay. Jornadas Argentinas de Geo-tecnologías: Trabajos completos. Universidad Nacional de Luján - Sociedad de Especialistas Latinoamericanos en Percepción Remota - Universidad Nacional de San Luis, pp. 121-128.http://dinem.mides.gub.uy/innovaportal/file/61794/1/tecnologias-de-la-informacion-para-nuevas-formas-de-gestion-del-territorio.-2015.pdf
-        Farmer, carson (2009) Voronoi polygons with R. URL http://carsonfarmer.com/2009/09/voronoi-polygons-with-r/ 
         Detomasi, R., Botto, G. y Hahn, M. (2015) CAIF: Análisis de demanda. Do-cumento de trabajo, Mayo 2015. Departamento de Geografía. Dirección Nacional de Evaluación y Monitoreo. Ministerio de Desarrollo Social. http://dinem.mides.gub.uy/innovaportal/file/61792/1/caif.-analisis-de-demanda.-2015.pdf 
+        Farmer, carson (2009) Voronoi polygons with R. URL http://carsonfarmer.com/2009/09/voronoi-polygons-with-r/ 
         Leisch, F. y Dimitriadou, E. (2013), Flexible ClusterAlgorithms. URL https://cran.r-project.org/web/packages/flexclust/flexclust.pdf
         Pebesma, E., Bivand, R., Rowlingson, B., Gomez-Rubio, V., Hijmans, R., Sumner, M., MacQueen, D. et al. (2015), Classes and Methods for Spatial Data. URL https://cran.r-project.org/web/packages/sp/sp.pdf
         R Development Core Team (2015), R: A language and environment for statistical computing. R Foundation forStatistical Computing, Vienna, Austria.ISBN 3-900051-07-0, URL http://www.R-project.org/
         Turner, R. (2015), Delaunay Triangulation and Dirichlet (Voronoi) Tessellation. URL https://cran.r-project.org/web/packages/deldir/deldir.pdf
 }
 \author{Detomasi, Richard
-        Botto, Germán 
+        Botto, German 
         Mathieu, Gabriela
 }
 \note{
@@ -76,6 +76,7 @@
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{ spatial }
+\keyword{ Voronoi polygons}
+\keyword{ Buffers}        
 
