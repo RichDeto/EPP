@@ -44,10 +44,9 @@ eppproy(pob, m = 5, l = 4, o = 3, g1 = 50, g2 = g1 * 0.5, d1 = 1000, d2 = d1 * 2
 %%  ~~ If necessary, more details than the description above ~~
 }
 \value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
+Return a LIST with:
+ \item{comp1 }{Description of 'comp1'}
+ \item{comp2 }{Description of 'comp2'}
 %% ...
 }
 \references{
