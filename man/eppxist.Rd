@@ -3,28 +3,28 @@
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{Evaluation of proximity coverage by a program and estimate new services to attend the uncover population.}
 \description{
-        Assign the population in a number of iterations, according to the distance/s of radium and capacity of each center. The output of the function is a DataFrame of  uncover population, and other DataFrame of centers with a summary of cover population.
+        Assigns the elements from pob to the centers by n iterations, according to the capacity and distance/s of radium of each center. The output contains four DataFrames:that list the capacity of each center that remains unused (unused_capacity); the uncovered population (pop_uncovered); the population assigned to the existent centers (pop_assigned); and the center's used capacity (centers_covered). The assignation of points to centers is based in proximity and and optimality criteria (maximum distance and center's capacity). Two radiums for the centers may be used. The Voronoi polygons creation is modified from Farmer - see REFERENCES.
 }
 \usage{eppxist(pob, centers, n, a, [m = n + 1, b = a * 2, crs = CRS("+init=epsg:32721")])}
 %- maybe also 'usage' for other objects documented here.
 \arguments{
         \item{pob}{
-                Population to attend (dataframe with three variables: x, y, and weight)
+                Population to attend (dataframe with three variables: x, y, and weight). Each element represents the position and identity of a population's member. x and y represents plain coordinates in the selected Coordinate Reference System. 
         }
         \item{centers}{
-                Existing centers of the program (dataframe with four variables: x, y, id, capacity)
+                Existing centers of the program (dataframe with four variables: x, y, id, capacity). Each element represents the position, identity and capacity of a center. x and y represents plain coordinates in the selected Coordinate Reference System.
         }
         \item{n}{
                 Total number of iterations
         }
         \item{a}{
-                Firsts iterations distance of radium in meters (n > m)
+                Radius in meters that each center covers in the firsts m-1 iterations
         }
         \item{[m]}{
-                Number of iteration in wich change the distance of radium. Default = n + 1 
+                Number of iteration in wich change the distance of radium. If m>n only the first distance is usede. Default = n + 1 
         }
         \item{[b]}{
-                Rest of iterations distance of radium in meters (n <= m). Default = a * 2
+                Radius in meters that each center covers, starting at the m iteration. Default = a * 2
         }
         \item{[crs]}{
                 Coordinate Reference Systems (CRS). Default = CRS("+init=epsg:32721")
@@ -37,9 +37,9 @@
 \value{
      Return a LIST with:
        \item{unused_capacity }{DataFrame with the centers and its unused capacity}
-       \item{pob_uncover }{DataFrame with the population still out of coverage}
-       \item{pob_assign }{DataFrame with the population assign and the corresponding center}
-       \item{centers_cover }{DataFrame with the center and the info of population covered}
+       \item{pop_uncovered }{DataFrame with the population still out of coverage}
+       \item{pop_assigned }{DataFrame with the population assigned and the corresponding center}
+       \item{centers_covered }{DataFrame with the centers and the info of population covered}
 }
 \references{
         Bivand, R., Keitt, T., Rowlingson, B., Pebesma, E., Sumner, M., Hijmans, R. y Rouault, E. (2015), Bindings for the Geospatial Data Abstraction Library. URL https://cran.r-project.org/web/packages/rgdal/rgdal.pdf
