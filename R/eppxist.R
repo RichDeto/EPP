@@ -91,6 +91,6 @@ eppxist <- function(pob,centers, n = 3, m = n + 1, a = 1000, b = a * 2, crs = c(
         cupos_cubiertos <- as.data.frame(tapply(X = cupos_cubiertos1$cupos,INDEX = list(cupos_cubiertos1$sipi), FUN = sum))
         names(cupos_cubiertos) <- "cupos"
         cupos_cubiertos$sipi <- row.names(cupos_cubiertos)
-        eppxist.output <- list("unused_capacity" = cupos_perdidos, "pob_uncover" = no_cubiertos , "pob_assign" = asignados_existentes, "centers_cover" = cupos_cubiertos)
+        eppxist.output <- list("unused_capacity" = cupos_perdidos, "pop_uncovered" = no_cubiertos , "pop_assigned" = asignados_existentes, "centers_covered" = cupos_cubiertos)
         return(eppxist.output)
 }
