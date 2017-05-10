@@ -1,7 +1,7 @@
 eppxist <- function(pob,centers, n = 3, m = n + 1, a = 1000, b = a * 2, crs = c('CRS("+init=epsg:32721")')) {
-        require(sp);require(foreach);require(maptools);require(rgeos);require(rgdal);require(deldir);require(flexclust);library(plyr)
+        require(sp);require(foreach);require(maptools);require(rgeos);require(rgdal);require(deldir);require(flexclust);require(plyr)
         # Voronoi script modify of "http://carsonfarmer.com/2009/09/voronoi-polygons-with-r/"
-        voronoipolygons <- function(x, crs = c('CRS("+init=epsg:32721")')) {
+        voronoipolygons <- function(x, crs) {
                 require(deldir)
                 require(sp)
                 if (.hasSlot(x, 'coords')) {
@@ -10,7 +10,7 @@ eppxist <- function(pob,centers, n = 3, m = n + 1, a = 1000, b = a * 2, crs = c(
                 z <- deldir(crds[,1], crds[,2],rw = c(x@bbox[1,1] - (x@bbox[1,1] * 0.05),
                                                       x@bbox[1,2] + (x@bbox[1,2] * 0.05),
                                                       x@bbox[2,1] - (x@bbox[2,1] * 0.05),
-                                                      x@bbox[2,2] + (x@bbox[2,2] * 0.05)))#c(366582,858252,6127919,6671739))
+                                                      x@bbox[2,2] + (x@bbox[2,2] * 0.05)))
                 w <- tile.list(z)
                 polys <- vector(mode = 'list', length = length(w))
                 for (i in seq(along = polys)) {
@@ -26,7 +26,7 @@ eppxist <- function(pob,centers, n = 3, m = n + 1, a = 1000, b = a * 2, crs = c(
         while (n >= j) {
                 pob_s <- SpatialPoints(pob[,1:2],proj4string = crs)## transform pob to spatial object
                 centers_s <- SpatialPoints(centers[,1:2],crs)## transform centers to spatial object
-                VP_centers1 <- voronoipolygons(centers_s)## generate voronoipoligons of centers
+                VP_centers1 <- voronoipolygons(centers_s, crs)## generate voronoipoligons of centers
                 centers$poligono <- over(VP_centers1,centers_s,returnList = FALSE)## assign centers info to voronoipoligons
                 ab <- as.data.frame(over(pob_s,VP_centers1))
                 names(ab) <- "poligono"
@@ -79,7 +79,7 @@ eppxist <- function(pob,centers, n = 3, m = n + 1, a = 1000, b = a * 2, crs = c(
         }
         cupos_perdidos <- centers
         no_cubiertos <- pob
-        asignados_existentes <- as.data.frame(NULL)### Unlist pob uncover
+        asignados_existentes <- as.data.frame(NULL)### Unlist pop uncover
         for (i in 1:length(asignados)) {
                 asignados_existentes <- rbind(asignados_existentes,as.data.frame(asignados[[i]]))
         }
@@ -89,7 +89,7 @@ eppxist <- function(pob,centers, n = 3, m = n + 1, a = 1000, b = a * 2, crs = c(
                 cupos_cubiertos1 <- rbind(cupos_cubiertos1,as.data.frame(cupos_centers[[i]]))
         }
         cupos_cubiertos <- as.data.frame(tapply(X = cupos_cubiertos1$cupos,INDEX = list(cupos_cubiertos1$sipi), FUN = sum))
-        names(cupos_cubiertos) <- "cupos"
+        names(cupos_cubiertos) <- "capacity"
         cupos_cubiertos$sipi <- row.names(cupos_cubiertos)
         eppxist.output <- list("unused_capacity" = cupos_perdidos, "pop_uncovered" = no_cubiertos , "pop_assigned" = asignados_existentes, "centers_covered" = cupos_cubiertos)
         return(eppxist.output)
