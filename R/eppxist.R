@@ -78,7 +78,7 @@ eppxist <- function(pob,centers, n = 3, m = n + 1, a = 1000, b = a * 2, crs = CR
                 j <- j + 1 #next iteration
         }
         cupos_perdidos <- centers[,1:4]; cupos_perdidos$capacity <- as.vector(cupos_perdidos$capacity)
-        no_cubiertos <- pob[,c(1,3:5)];names(no_cubiertos) = c("id","x","y","weight")
+        no_cubiertos <- pob[,3:5];names(no_cubiertos) = c("x","y","weight")
         asignados_existentes <- as.data.frame(NULL)### Unlist pop cover
         for (i in 1:length(asignados)) {
                 asignados_existentes <- rbind(asignados_existentes,as.data.frame(asignados[[i]]))
