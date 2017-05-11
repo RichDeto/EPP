@@ -36,10 +36,10 @@
 }
 \value{
      Return a LIST with:
-       \item{unused_capacity }{DataFrame with the centers and its unused capacity}
-       \item{pop_uncovered }{DataFrame with the population still out of coverage}
-       \item{pop_assigned }{DataFrame with the population assigned and the corresponding center}
-       \item{centers_covered }{DataFrame with the centers and the info of population covered}
+       \item{unused_capacity }{DataFrame of the centers and its unused capacity; with "x" and "y" of the center, the "id", and the unused "capacity".}
+       \item{pop_uncovered }{DataFrame of the population still out of coverage; with its "x", "y" and "weigth".}
+       \item{pop_assigned }{DataFrame with the population assigned and the corresponding center; with its "x", "y","weigth", "id" of the centerand the "iteration" of assing.}
+       \item{centers_covered }{DataFrame with the centers and the info of population covered; with the "id" and "coverage"}
 }
 \references{
         Bivand, R., Keitt, T., Rowlingson, B., Pebesma, E., Sumner, M., Hijmans, R. y Rouault, E. (2015), Bindings for the Geospatial Data Abstraction Library. URL https://cran.r-project.org/web/packages/rgdal/rgdal.pdf
@@ -77,9 +77,9 @@
                              id = 1:10,
                              capacity = sample(5:10,10,replace = T)))
 
-        pob <- data.frame(x = sample(560000:585000,50),
-                          y = sample(6136000:6160000,50),
-                          weight = runif(50, min=0, max=1))
+        pob <- data.frame(x = sample(560000:585000,500),
+                          y = sample(6136000:6160000,500),
+                          weight = runif(500, min=0, max=1))
 
            
         ## The function is currently defined as
