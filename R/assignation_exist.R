@@ -8,7 +8,6 @@ assignation_exist <- function(pop, centers, d, crs) {
   names(ab) <- "poligono"
   pop <- cbind(pop,ab)
   pop <- merge(pop,centers,by = "poligono")
-  remove(ab)
   pop$dist_exist <- sqrt(((pop$x.x - pop$x.y) ^ 2) + ((pop$y.x - pop$y.y) ^ 2))## distance calculation between population and centers
   pop$en1000_exist <- ifelse(pop$dist_exist >= d,0,1) ## selects population inside the distance range
   ninos_id <- list(tapply(X = pop$en1000_exist,INDEX = list(pop$id),FUN = sum))## population count by center
@@ -17,7 +16,6 @@ assignation_exist <- function(pop, centers, d, crs) {
   ninos_conteo$id <- row.names(ninos_conteo)
   pop <- merge(pop, ninos_conteo,by = "id", all.x = TRUE, all.y = TRUE)
   pop <- pop[order(pop$id, pop$dist_exist),]## order by center & distance
-  remove(ninos_conteo)
   lista_id <- as.data.frame(sort(unique(pop$id))) # list centers with assigned population
   names(lista_id) <- c("id")
   lista_id$nid <- row.names(lista_id)
@@ -27,7 +25,6 @@ assignation_exist <- function(pop, centers, d, crs) {
     lista_1[[i]] <- rank(subset(pop,pop$nid == i)[,"dist_exist"],ties.method = "random")
   } ## rank pop by center and distance
   pop$orden_dist <- unlist(lista_1) ## assigns rank to pop
-  remove(lista_1)
   pop$reasig <- ifelse(pop$en1000_exist == 1,ifelse(pop$orden_dist <= pop$capacity,0,1),1) # population still uncovered, to reassign
   pop$x <- pop$x.x
   pop$y <- pop$y.x
