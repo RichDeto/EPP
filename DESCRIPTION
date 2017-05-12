@@ -1,4 +1,4 @@
-Package: EvalProxProg
+Package: EPP
 Type: Package
 Title: Evaluate proximity coverage of a program and estimate to cover the rest population.
 Version: 0.1.0
