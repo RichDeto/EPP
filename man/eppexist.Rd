@@ -1,9 +1,9 @@
-\name{eppxist}
-\alias{eppxist}
+\name{eppexist}
+\alias{eppexist}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{Evaluation of proximity coverage by a program and estimate new services to attend the uncover population.}
 \description{
-        Assigns the elements from pob to the centers by n iterations, according to the capacity and distance/s of radium of each center. The output contains four DataFrames:that list the capacity of each center that remains unused (unused_capacity); the uncovered population (pop_uncovered); the population assigned to the existent centers (pop_assigned); and the center's used capacity (centers_covered). The assignation of points to centers is based in proximity and and optimality criteria (maximum distance and center's capacity). Two radiums for the centers may be used. The Voronoi polygons creation is modified from Farmer - see REFERENCES.
+        Assigns the elements from pob to the centers by n+m iterations, according to the capacity and distance/s of radium of each center. The output is a list that contains four data.frames: pop have the unassigned population, centers has the centers that still have capacity available, used_capacity have the center's occupped capacity and assigned has the population assigned to the centers. The assignation of points to centers is based in proximity and and optimality criteria (maximum distance and center's capacity). 
 }
 \usage{eppxist(pob, centers, n, a, [m = n + 1, b = a * 2, crs = CRS("+init=epsg:32721")])}
 %- maybe also 'usage' for other objects documented here.
