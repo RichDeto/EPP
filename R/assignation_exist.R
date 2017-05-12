@@ -32,5 +32,5 @@ assignation_exist <- function(pop, centers, d, crs) {
   cov <- droplevels(cov)
   pop <- subset(pop,pop$reasig == 1,select = c(x,y,weight),drop = TRUE) ## population still uncovered
   pop <- droplevels(pop)
-  assignation_exist.output <- list(pop, cov)
+  assignation_exist.output <- list("pop_uncov" = pop, "pop_cov" = cov)
 }  
