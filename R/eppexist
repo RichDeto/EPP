@@ -7,7 +7,6 @@ eppexist <- function(pop,centers, n = 3, m = 0, d1 = 1000, d2 = d1 * 2, crs) {
     iteration <- assignation_exist(pop, centers, dist[i], crs) ## assigns the population to the centers
     pop <- iteration[[1]]
     cov <- iteration[[2]]
-    #centers <- iteration[[3]]
     if (nrow(cov) > 0){
       cov$it <- i 
       cov$dist <- dist[i]
