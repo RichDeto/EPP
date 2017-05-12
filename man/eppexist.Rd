@@ -75,15 +75,14 @@
         centers<- data.frame(x = sample(560000:585000,10),
                              y = sample(6136000:6160000,10),
                              id = 1:10,
-                             capacity = sample(5:10,10,replace = T)))
+                             capacity = sample(5:10,10,replace = T))
 
-        pob <- data.frame(x = sample(560000:585000,500),
+        pop <- data.frame(x = sample(560000:585000,500),
                           y = sample(6136000:6160000,500),
                           weight = runif(500, min=0, max=1))
-
            
         ## The function is currently defined as
-        eppxist (pob,centers, crs = CRS("+init=epsg:32721"))
+        eppxist (pop, centers, crs = CRS("+init=epsg:32721"))
         {
         }
 }
