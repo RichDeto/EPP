@@ -24,5 +24,6 @@ eppexist <- function(pop,centers, n = 3, m = 0, d1 = 1000, d2 = d1 * 2, crs) {
     }
     remove(cov)
   }
-  eppexist.output <- list("pop_uncovered" = pop, "pop_assigned" = do.call("rbind", assigned), "unused_capaciy" = centers, "used_capacity" = as.data.frame(used_capacity[length(used_capacity)]) )
+  eppexist.output <- list("pop_uncover" = pop,"pop_assigned" = do.call("rbind", assigned)[,1:6], "remaining_capacity" = centers, 
+                          "used_capacity" = as.data.frame(used_capacity[length(used_capacity)]))
 } 
