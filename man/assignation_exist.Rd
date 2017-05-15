@@ -54,12 +54,16 @@ R Development Core Team (2015), R: A language and environment for statistical co
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
+centers<- data.frame(x = sample(560000:585000,10),
+                     y = sample(6136000:6160000,10),
+                     id = 1:10,
+                     capacity = sample(5:10,10,replace = T))
+pop <- data.frame(x = sample(560000:585000,500),
+                  y = sample(6136000:6160000,500),
+                  weight = runif(500, min=0, max=1))
 
 ## The function is currently defined as
-function (x) 
+assignation_exist(pop, centers, d = 1000, crs = CRS("+init=epsg:32721"))
 {
   }
 }
