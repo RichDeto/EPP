@@ -5,7 +5,7 @@
 \description{
         Assigns the elements from pob to the centers by n+m iterations, according to the capacity and distance/s of radium of each center. The output is a list that contains four data.frames: pop have the unassigned population, centers has the centers that still have capacity available, used_capacity have the center's occupped capacity and assigned has the population assigned to the centers. The assignation of points to centers is based in proximity and and optimality criteria (maximum distance and center's capacity). 
 }
-\usage{eppxist(pob, centers, n, a, [m = n + 1, b = a * 2, crs = CRS("+init=epsg:32721")])}
+\usage{eppxist(pob, centers, n = 3, m = 0, d1 = 1000, d2 = a * 2, crs = CRS("+init=epsg:32721")])}
 %- maybe also 'usage' for other objects documented here.
 \arguments{
         \item{pob}{
@@ -15,19 +15,19 @@
                 Existing centers of the program (dataframe with four variables: x, y, id, capacity). Each element represents the position, identity and capacity of a center. x and y represents plain coordinates in the selected Coordinate Reference System.
         }
         \item{n}{
-                Total number of iterations
-        }
-        \item{a}{
-                Radius in meters that each center covers in the firsts m-1 iterations
+                Total number of iterations with the distance "d1". Default n = 3
         }
         \item{[m]}{
-                Number of iteration in wich change the distance of radium. If m>n only the first distance is usede. Default = n + 1 
+                Number of iteration in wich change the distance of radium. If m>n only the first distance is usede. Default m = 0 
         }
-        \item{[b]}{
-                Radius in meters that each center covers, starting at the m iteration. Default = a * 2
+        \item{d1}{
+                Radius in meters that each center covers in the firsts "n" iterations. Default d1 = 1000
+        }
+        \item{[d2]}{
+                Radius in meters that each center covers, the last "m" iterations. Default = d1 * 2
         }
         \item{[crs]}{
-                Coordinate Reference Systems (CRS). Default = CRS("+init=epsg:32721")
+                Coordinate Reference Systems (CRS).
         }
 }
 
@@ -36,10 +36,10 @@
 }
 \value{
      Return a LIST with:
-       \item{unused_capacity }{DataFrame of the centers and its unused capacity; with "x" and "y" of the center, the "id", and the unused "capacity".}
-       \item{pop_uncovered }{DataFrame of the population still out of coverage; with its "x", "y" and "weigth".}
+       \item{pop_uncover }{DataFrame of the population still out of coverage; with its "x", "y" and "weigth".}
        \item{pop_assigned }{DataFrame with the population assigned and the corresponding center; with its "x", "y","weigth", "id" of the centerand the "iteration" of assing.}
-       \item{centers_covered }{DataFrame with the centers and the info of population covered; with the "id" and "coverage"}
+       \item{remaining_capacity }{DataFrame of the centers and its unused capacity; with "x" and "y" of the center, the "id", and the unused "capacity".}       
+       \item{used_capacity }{List of DataFrames with the centers and the info of population covered in each itaration. Each DataFrames have the name of the iteration, and contains the "id", "x" and "y" of the center; and the remaining "capacity" and "used_cap" after the iteration.}
 }
 \references{
         Bivand, R., Keitt, T., Rowlingson, B., Pebesma, E., Sumner, M., Hijmans, R. y Rouault, E. (2015), Bindings for the Geospatial Data Abstraction Library. URL https://cran.r-project.org/web/packages/rgdal/rgdal.pdf
@@ -82,7 +82,7 @@
                           weight = runif(500, min=0, max=1))
            
         ## The function is currently defined as
-        eppxist (pop, centers, crs = CRS("+init=epsg:32721"))
+        eppexist (pop, centers, crs = CRS("+init=epsg:32721"))
         {
         }
 }
