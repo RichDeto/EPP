@@ -16,7 +16,7 @@ ass_exist <- function (clustered){
     asigned_clusters[asigned_clusters$id == i,]$p_dist <-
       mean(asigned_clusters[asigned_clusters$id == i,]$dist)
   }
-  ass_exist.output <- list(centros_clusters = subset(asigned_clusters,duplicated(asigned_clusters$id) == F,
+  ass_exist.output <- list(centres_clusters = subset(asigned_clusters,duplicated(asigned_clusters$id) == F,
                                                      select = c(id,x,y,weight,medianx,mediany,p_dist,cubre,round)), 
                            asigned_clusters = subset(asigned_clusters,select = c(id,x,y,weight,medianx,mediany,dist,round)))
 }
