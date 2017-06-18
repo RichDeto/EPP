@@ -1,5 +1,4 @@
 assignation_exist <- function(pop, centers, d, crs) {
-  require(sp)
   pob_s <- SpatialPoints(pop[,1:2],proj4string = crs)## transform pop to spatial object
   centers_s <- SpatialPoints(centers[,1:2],crs)## transform centers to spatial object
   VP_centers1 <- voronoipolygons(centers_s, crs)## generate voronoipoligons of centers
