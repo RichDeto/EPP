@@ -6,7 +6,7 @@ Date: 2017-06-18
 Author: Detomasi, Richard / Botto, German / Mathieu, Gabriela
 Maintainer: Detomasi, Richard <rdetomasi@mides.gub.uy>
 Description: Evaluate proximity coverage of a program and estimate to cover the rest population.
-Imports: deldir, sp, rgeos, maptools, rgdal, flexclust, shapfiles, dplyr
+Imports: deldir, sp, rgeos, maptools, rgdal, flexclust, shapefiles, dplyr
 License: GPL-2
 Encoding: UTF-8
 LazyData: TRUE
