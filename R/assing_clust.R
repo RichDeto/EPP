@@ -18,5 +18,5 @@ assing_clust <- function (clustered){
   }
   assing_clust.output <- list(centres_clusters = subset(asigned_clusters,duplicated(asigned_clusters$id) == F,
                                                      select = c(id,x,y,weight,medianx,mediany,p_dist,cubre,round)), 
-                           asigned_clusters = subset(asigned_clusters,select = c(id,x,y,weight,medianx,mediany,dist,round)))
+                           assigned_clusters = subset(asigned_clusters,select = c(id,x,y,weight,medianx,mediany,dist,round)))
 }
