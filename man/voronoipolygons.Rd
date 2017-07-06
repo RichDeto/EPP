@@ -8,28 +8,22 @@ Function to generate Voronoi polygons.
 Generate Voroni Polygons, according to a distance/s of radium. The output of the function is a List with the SpatialPolygonDataFrame with the id of the initial DataFrame
 }
 \usage{
-voronoi_polygons(x, id = 'id', w_buff = 1000, crs = CRS("+init=epsg:32721"))
+voronoipolygons <- function(x, crs)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-         \item{x}{
+        \item{x}{
                 DataFrame with unless three variables: x, y, and id)
         }
-        \item{id}{
-                Variable name (Character) to identify cases. Default = 'id'
-        }
-        \item{w_buff}{
-                Buffer distance of radium in meters. Default = 1000
-        }
         \item{[crs]}{
-                Coordinate Reference Systems (CRS). Default = CRS("+init=epsg:32721")
+                Coordinate Reference Systems (CRS).
         }
 }
 \details{
 %%  ~~ If necessary, more details than the description above ~~
 }
 \value{
-Return a SpatialPolygonDataFrame with the sames variables of the initial DataFrame
+Return a SpatialPolygon of the Voronoi polygons of the initial DataFrame
 }
 \references{
 Bivand, R., Keitt, T., Rowlingson, B., Pebesma, E., Sumner, M., Hijmans, R. y Rouault, E. (2015), Bindings for the Geospatial Data Abstraction Library. URL https://cran.r-project.org/web/packages/rgdal/rgdal.pdf
@@ -59,9 +53,8 @@ Turner, R. (2015), Delaunay Triangulation and Dirichlet (Voronoi) Tessellation. 
 ##--	or do  help(data=index)  for the standard data sets.
 
 ## The function is currently defined as
-voronoi_polygons(x, id = 'id', w_buff = 1000, crs = CRS("+init=epsg:32721")) 
+voronoi_polygons(x, crs = CRS("+init=epsg:32721")) 
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{ Buffers }% use one of  RShowDoc("KEYWORDS")
 \keyword{ Voronoi Polygons }
