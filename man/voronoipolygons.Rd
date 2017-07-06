@@ -48,12 +48,12 @@ Turner, R. (2015), Delaunay Triangulation and Dirichlet (Voronoi) Tessellation. 
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
+centers<- data.frame(x = sample(560000:585000,10),
+                             y = sample(6136000:6160000,10),
+                             id = 1:10)
 
 ## The function is currently defined as
-voronoi_polygons(x, crs = CRS("+init=epsg:32721")) 
+voronoi_polygons(centers, crs = CRS("+init=epsg:32721")) 
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
