@@ -54,12 +54,12 @@ Turner, R. (2015), Delaunay Triangulation and Dirichlet (Voronoi) Tessellation. 
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
+centers<- data.frame(x = sample(560000:585000,10),
+                             y = sample(6136000:6160000,10),
+                             id = 1:10)
 
 ## The function is currently defined as
-buff_voronoi(x, id = 'id', w_buff = 1000, crs = CRS("+init=epsg:32721")) 
+buff_voronoi(centers, id = 'id', w_buff = 1000, crs = CRS("+init=epsg:32721")) 
 {
   }
 }
