@@ -42,7 +42,6 @@ R Development Core Team (2015), R: A language and environment for statistical co
 }
 \author{Detomasi, Richard
         Botto, German 
-        Mathieu, Gabriela
 }
 \note{
 %%  ~~further notes~~
