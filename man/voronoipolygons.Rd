@@ -5,7 +5,7 @@
 Function to generate Voronoi polygons.
 }
 \description{
-Assign the population in a number of iterations, according to the distance/s of radium and capacity´s of a program projected centers. The output of the function is a List with the SpatialPointsDataFrame of cover population with its filiation, and other SpatialPointsDataFrame of centers with a summary of cover population.
+Generate Voroni Polygons, according to a distance/s of radium. The output of the function is a List with the SpatialPolygonDataFrame with the id of the initial DataFrame
 }
 \usage{
 voronoi_polygons(x, id = 'id', w_buff = 1000, crs = CRS("+init=epsg:32721"))
@@ -41,7 +41,8 @@ Pebesma, E., Bivand, R., Rowlingson, B., Gomez-Rubio, V., Hijmans, R., Sumner, M
 R Development Core Team (2015), R: A language and environment for statistical computing. R Foundation forStatistical Computing, Vienna, Austria.ISBN 3-900051-07-0, URL http://www.R-project.org/
 Turner, R. (2015), Delaunay Triangulation and Dirichlet (Voronoi) Tessellation. URL https://cran.r-project.org/web/packages/deldir/deldir.pdf
 }
-\author{Detomasi, Richard & Farmer, Carson
+\author{Detomasi, Richard 
+        Botto, German 
 }
 \note{
 %%  ~~further notes~~
@@ -58,9 +59,7 @@ Turner, R. (2015), Delaunay Triangulation and Dirichlet (Voronoi) Tessellation. 
 ##--	or do  help(data=index)  for the standard data sets.
 
 ## The function is currently defined as
-function (x) 
-{
-  }
+voronoi_polygons(x, id = 'id', w_buff = 1000, crs = CRS("+init=epsg:32721")) 
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
