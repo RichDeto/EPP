@@ -1,6 +1,6 @@
 Package: EPP
 Type: Package
-Title: Evaluate proximity coverage of a program and estimate to cover the rest population.
+Title: Evaluation of proximity programs
 Version: 0.1.0
 Date: 2017-06-18
 Author: Detomasi, Richard / Botto, German / Mathieu, Gabriela
