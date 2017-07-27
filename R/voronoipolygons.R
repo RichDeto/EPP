@@ -11,8 +11,8 @@ voronoipolygons <- function(x, crs) {
   polys <- vector(mode = 'list', length = length(w))
   for (i in seq(along = polys)) {
     pcrds <- cbind(w[[i]]$x, w[[i]]$y)
-    pcrds <- rbind(pcrds, pcrds[1,])
+    pcrds <- rbind(pcrds, pcrds[1, ])
     polys[[i]] <- Polygons(list(Polygon(pcrds)), ID = as.character(i))
   }
-  SP <- SpatialPolygons(polys,proj4string = crs)
+  SP <- SpatialPolygons(polys, proj4string = crs)
 }
