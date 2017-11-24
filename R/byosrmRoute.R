@@ -8,7 +8,7 @@ byosrmRoute <- function(src_dst, crs) {
         r <- as.list(NA)
         for (i in 1:nrow(pop1)){
                 r[[i]] <- osrmRoute(src = pop1[i,], dst = centers1[i,], overview = "full", sp = T)
-                src_dst[i,"dist"] <- r[[i]]@data$distance
+                src_dst[i,"dist"] <- r[[i]]@data$distance * 1000
                 src_dst[i,"time"] <- r[[i]]@data$duration
         }
 }
