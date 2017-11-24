@@ -20,7 +20,7 @@ assignation_exist(pop, centers, d, crs)
                 Centers of services (dataframe with four variables: x, y, id, and capacity) x and y are plain coordinates in the defined CRS
         }
         \item{d}{
-                Maximum distance at wich the center may provide service 
+                Maximum distance at wich the center may provide service in meters
         }
         \item{[crs]}{
                 Coordinate Reference Systems (CRS). Default = CRS("+init=epsg:32721")
