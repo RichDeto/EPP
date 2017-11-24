@@ -25,7 +25,7 @@ byosrmRoute(src_dst, crs)
 }
 \value{
 Return a DataFrame with:
- \item{src_dst}{The input DataFrame with 2 new variables "distance" in Kms and "duration" in minutes}
+ \item{src_dst}{The input DataFrame with 2 new variables "distance" in meters and "duration" in minutes}
 %% ...
 }
 \references{
