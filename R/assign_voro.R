@@ -7,5 +7,5 @@ assign_voro <- function(pop, centers, crs) {
         names(ab) <- "poligono"
         pop <- cbind(pop, ab)
         pop <- merge(pop, centers, by = "poligono")
-        pop <- rename(pop[ ,!colnames(pop)=="poligono"], c(x.x="x_pop",y.x="y_pop",x.y="x_center",y.y="y_center"))
-} 
+        pop <- plyr::rename(pop[ ,!colnames(pop)=="poligono"], c(x.x="x_pop", y.x="y_pop", x.y="x_center", y.y="y_center"))
+}
