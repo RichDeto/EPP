@@ -9,7 +9,7 @@ Function to assign population to centers of services
 Function to assign population to centers of services, based in proximity, maximum radius and nominal capactiy of the centers. The capacity and maximum radius are defined a priori based on policies' objectives
 }
 \usage{
-assignation_exist(pop, centers, d, crs)
+assignation_exist(pop, centers, d, crs, route = F)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -25,9 +25,13 @@ assignation_exist(pop, centers, d, crs)
         \item{[crs]}{
                 Coordinate Reference Systems (CRS). Default = CRS("+init=epsg:32721")
         }
+         \item{[route]}{
+                If FALSE the distance is calculated by pithagorean formula, if TRUE the distance is calculated by "osrmRoute" function of "osrm" Package.
+                Default = FALSE
+        }
 }
 \details{
-%%  ~~ If necessary, more details than the description above ~~
+The TRUE option in the route parameter, have a dialy limit of calculation per OSM API, be careful.
 }
 \value{
 Return a LIST with:
@@ -37,7 +41,7 @@ Return a LIST with:
 }
 \references{
 Botto, G. y Detomasi, R. (2015), Bases metodológicas para la planificación espacial de servicios de educación inicial en Uruguay. Jornadas Argentinas de Geo-tecnologías: Trabajos completos. Universidad Nacional de Luján - Sociedad de Especialistas Latinoamericanos en Percepción Remota - Universidad Nacional de San Luis, pp. 121-128.http://dinem.mides.gub.uy/innovaportal/file/61794/1/tecnologias-de-la-informacion-para-nuevas-formas-de-gestion-del-territorio.-2015.pdf
-Detomasi, R., Botto, G. y Hahn, M. (2015) CAIF: Análisis de demanda. Do-cumento de trabajo, Mayo 2015. Departamento de Geografía. Dirección Nacional de Evaluación y Monitoreo. Ministerio de Desarrollo Social. http://dinem.mides.gub.uy/innovaportal/file/61792/1/caif.-analisis-de-demanda.-2015.pdf 
+Detomasi, R., Botto, G. y Hahn, M. (2015) CAIF: Análisis de demanda. Documento de trabajo, Mayo 2015. Departamento de Geografía. Dirección Nacional de Evaluación y Monitoreo. Ministerio de Desarrollo Social. http://dinem.mides.gub.uy/innovaportal/file/61792/1/caif.-analisis-de-demanda.-2015.pdf 
 R Development Core Team (2015), R: A language and environment for statistical computing. R Foundation forStatistical Computing, Vienna, Austria.ISBN 3-900051-07-0, URL http://www.R-project.org/
 }
 \author{Detomasi, Richard
@@ -62,7 +66,7 @@ pop <- data.frame(x = sample(560000:585000,500),
                   weight = runif(500, min=0, max=1))
 
 ## The function is currently defined as
-assignation_exist(pop, centers, d = 1000, crs = CRS("+init=epsg:32721"))
+assignation_exist(pop, centers, d = 1000, crs = CRS("+init=epsg:32721"), route = FALSE)
 {
   }
 }
