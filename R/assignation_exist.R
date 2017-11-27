@@ -1,9 +1,9 @@
 assignation_exist1 <- function (pop, centers, d, crs, route = F){
         pop <- assign_voro(pop, centers, crs)
-        if (route = F){
+        if (route == F){
             pop$dist_exist <- sqrt(((pop$x_pop - pop$x_center)^2) + ((pop$y_pop - pop$y_center)^2))    
         } 
-        if (route = T){
+        if (route == T){
             src_dst <- pop[, c("x_pop", "y_pop", "x_center", "y_center")]
             src_dst <- byosrmRoute(src_dst, crs) 
             pop$dist_exist <- src_dst$dist
