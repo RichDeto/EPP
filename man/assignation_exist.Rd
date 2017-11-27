@@ -22,8 +22,8 @@ assignation_exist(pop, centers, d, crs, route = F)
         \item{d}{
                 Maximum distance at wich the center may provide service in meters
         }
-        \item{[crs]}{
-                Coordinate Reference Systems (CRS). Default = CRS("+init=epsg:32721")
+        \item{crs}{
+                Coordinate Reference Systems (CRS).
         }
          \item{[route]}{
                 If FALSE the distance is calculated by pithagorean formula, if TRUE the distance is calculated by "osrmRoute" function of "osrm" Package.
