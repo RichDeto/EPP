@@ -11,4 +11,5 @@ byosrmRoute <- function(src_dst, crs){
                 src_dst[i, "dist"] <- r[[i]]@data$distance * 1000
                 src_dst[i, "time"] <- r[[i]]@data$duration
         }
+        src_dst
 }
