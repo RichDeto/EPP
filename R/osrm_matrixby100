@@ -1,5 +1,6 @@
 osrm_matrixby100 <- function(df){ #df tres columnas (id, lat, long)
   l <- ceiling(nrow(df)/100)
+  lk <- NA
   for (j in 1:l + 1){
     if (j == 1) lk[j] <- 1
     if (j != 1) lk[j] <- round((nrow(df) / l) * (j - 1)) 
