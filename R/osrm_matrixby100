@@ -1,19 +1,38 @@
-osrm_matrixby100 <- function(df){ #df tres columnas (id, lat, long)
-  l <- ceiling(nrow(df)/100)
+osrm_matrixby100 <- function(src, dst, crs, wid = T){
+  src_s <- SpatialPoints( ifelse(wit == T, src[, 2:3], src[, 1:2]), proj4string = crs)
+  dst_s <- SpatialPoints( ifelse(wit == T, dst[, 2:3], dst[, 1:2]), proj4string = crs)
+  src_s <- spTransform(src_s, CRS("+init=epsg:4326"))
+  dst_s <- spTransform(dst_s, CRS("+init=epsg:4326"))
+  if (wid == T){
+    src <- as.data.frame(cbind(src[,1], src_s@coords))
+    dst <- as.data.frame(cbind(dst[,1], dst_s@coords))
+  }
+  if (wid == F){
+    src <- as.data.frame(cbind(1:nrow(src), src_s@coords))
+    dst <- as.data.frame(cbind(1:nrow(dst), dst_s@coords))
+  }
+  l <- ceiling(nrow(src)/100)
   lk <- NA
   for (j in 1:(l + 1)){
     if (j == 1) lk[j] <- 1
-    if (j != 1) lk[j] <- round((nrow(df) / l) * (j - 1)) 
+    if (j != 1) lk[j] <- round((nrow(src) / l) * (j - 1)) 
   }
-  matriz <- matrix(nrow = nrow(df), ncol = nrow(df))
+  m <- ceiling(nrow(dst)/100)
+  lg <- NA
+  for (i in 1:(m + 1)){
+    if (i == 1) lg[i] <- 1
+    if (i != 1) lg[i] <- round((nrow(dst) / m) * (i - 1)) 
+  }
+  matriz <- matrix(nrow = nrow(src), ncol = nrow(dst))
   for(k in 1:(l + 1)){
-    for(g in 1:(l + 1)){
-      if (k == g & k <= l) {matriz[lk[k]:lk[k + 1], lk[g]:lk[g + 1]] <- osrmTable(loc = df[lk[k]:lk[k + 1],])$durations}
-      if (k != g & k <= l & g <= l) {matriz[lk[k]:lk[k + 1], lk[g]:lk[g + 1]] <- osrmTable(src = df[lk[k]:lk[k + 1],], dst = df[(lk[g]):(lk[g + 1]),])$durations}
-      if (k != g & k > l) {matriz[lk[k - 1]:lk[k], lk[g]:lk[g + 1]] <- osrmTable(src = df[lk[k - 1]:lk[k],], dst = df[(lk[g]):(lk[g + 1]),])$durations}
-      if (k != g & g > l) {matriz[lk[k]:lk[k + 1], lk[g - 1]:lk[g]] <- osrmTable(src = df[lk[k]:lk[k + 1],], dst = df[(lk[g - 1]):(lk[g]),])$durations}
-      if (k > l & g > l) {matriz[lk[k - 1]:lk[k], lk[g - 1]:lk[g]] <- osrmTable(loc = df[lk[k - 1]:lk[k],])$durations}
-    }
+    tryCatch({
+      for(g in 1:(m + 1)){
+        if (k <= l & g <= m) {matriz[lk[k]:lk[k + 1], lg[g]:lg[g + 1]] <- osrmTable(src = df[lk[k]:lk[k + 1],], dst = df[(lg[g]):(lg[g + 1]),])$durations}
+        if (k != g & k > l) {matriz[lk[k - 1]:lk[k], lg[g]:lg[g + 1]] <- osrmTable(src = df[lk[k - 1]:lk[k],], dst = df[(lg[g]):(lg[g + 1]),])$durations}
+        if (k != g & g > m) {matriz[lk[k]:lk[k + 1], lg[g - 1]:lg[g]] <- osrmTable(src = df[lk[k]:lk[k + 1],], dst = df[(lg[g - 1]):(lg[g]),])$durations}
+        if (k > l & g > m) {matriz[lk[k - 1]:lk[k], lg[g - 1]:lg[g]] <- osrmTable(src = df[lk[k - 1]:lk[k]], dst = df[(lg[g - 1]):(lg[g]),])$durations}
+      }
+    }, error = function(e){cat("ERROR :",conditionMessage(e), "\n")})
   }
   matriz
 }
