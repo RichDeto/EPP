@@ -27,10 +27,10 @@ osrm_matrixby100 <- function(src, dst, crs, wid = T){
   for (k in 1:(l + 1)) {
     tryCatch({
       for (g in 1:(m + 1)) {
-        if (k <= l & g <= m) {matriz[lk[k]:lk[k + 1], lg[g]:lg[g + 1]] <- osrmTable(src = df[lk[k]:lk[k + 1],], dst = df[(lg[g]):(lg[g + 1]),])$durations}
-        if (k != g & k > l) {matriz[lk[k - 1]:lk[k], lg[g]:lg[g + 1]] <- osrmTable(src = df[lk[k - 1]:lk[k],], dst = df[(lg[g]):(lg[g + 1]),])$durations}
-        if (k != g & g > m) {matriz[lk[k]:lk[k + 1], lg[g - 1]:lg[g]] <- osrmTable(src = df[lk[k]:lk[k + 1],], dst = df[(lg[g - 1]):(lg[g]),])$durations}
-        if (k > l & g > m) {matriz[lk[k - 1]:lk[k], lg[g - 1]:lg[g]] <- osrmTable(src = df[lk[k - 1]:lk[k]], dst = df[(lg[g - 1]):(lg[g]),])$durations}
+        if (k <= l & g <= m) {matriz[lk[k]:lk[k + 1], lg[g]:lg[g + 1]] <- osrmTable(src = src[lk[k]:lk[k + 1],], dst = dst[(lg[g]):(lg[g + 1]),])$durations}
+        if (k != g & k > l) {matriz[lk[k - 1]:lk[k], lg[g]:lg[g + 1]] <- osrmTable(src = src[lk[k - 1]:lk[k],], dst = dst[(lg[g]):(lg[g + 1]),])$durations}
+        if (k != g & g > m) {matriz[lk[k]:lk[k + 1], lg[g - 1]:lg[g]] <- osrmTable(src = src[lk[k]:lk[k + 1],], dst = dst[(lg[g - 1]):(lg[g]),])$durations}
+        if (k > l & g > m) {matriz[lk[k - 1]:lk[k], lg[g - 1]:lg[g]] <- osrmTable(src = src[lk[k - 1]:lk[k]], dst = dst[(lg[g - 1]):(lg[g]),])$durations}
       }
     }, error = function(e) {cat("ERROR :",conditionMessage(e), "\n")})
   }
