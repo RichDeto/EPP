@@ -13,8 +13,17 @@ osrm_matrixby100(df)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-         \item{df}{
-                Dataframe with three variables: id, lat and long. lat and long are plain coordinates in the CRS("+init=epsg:4326"))
+         \item{src}{
+                Dataframe with three variables: id, and a pair of coordinates, or only the pair of coordinates with the "wid" parameter setted FALSE
+        }
+         \item{dst}{
+                Dataframe with three variables: and a pair of coordinates, or only the pair of coordinates with the "wid" parameter setted FALSE
+        }
+         \item{crs}{
+                Specific coordinates sistem to transform to the CRS("+init=epsg:4326") needed by osrm library
+        }
+         \item{wid}{
+                If TRUE keeping the "id" of the first column, if FALSE generate an "id" using the nrow function.
         }
 }
 \details{
@@ -40,7 +49,7 @@ Detomasi, Richard
 }
 \examples{
 ## The function is currently defined as
-osrm_matrixby100(df)
+osrm_matrixby100(src, dst, crs, wid = T)
 {
   }
 }
