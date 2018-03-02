@@ -6,7 +6,7 @@ Date: 2017-06-18
 Author: Detomasi, Richard / Botto, German 
 Maintainer: Detomasi, Richard <rdetomasi@mides.gub.uy>
 Description: A toolbox for coverage evaluation of proximity programs.
-Imports: deldir, sp, rgeos, maptools, rgdal, flexclust, shapefiles, dplyr, plyr, osrm
+Imports: deldir (== 0.0-18), sp, rgeos, maptools, rgdal, flexclust, shapefiles, dplyr, plyr, osrm
 License: GPL-2
 Encoding: UTF-8
 LazyData: TRUE
