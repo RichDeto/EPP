@@ -1,4 +1,4 @@
-deldir <- function(x,y,dpl=NULL,rw=NULL,eps=1e-9,sort=TRUE,
+deldir_epp <- function(x,y,dpl=NULL,rw=NULL,eps=1e-9,sort=TRUE,
                    plotit=FALSE,digits=6,z=NULL, zdum=NULL,...) {
 # Function deldir # v 0.0-18
 #
