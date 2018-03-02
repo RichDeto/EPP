@@ -1,4 +1,4 @@
-assignation_exist1 <- function (pop, centers, d, crs, route = F){
+assignation_exist <- function (pop, centers, d, crs, route = F){
         pop <- assign_voro(pop, centers, crs)
         if (route == F){
             pop$dist_exist <- sqrt(((pop$x_pop - pop$x_center)^2) + ((pop$y_pop - pop$y_center)^2))    
