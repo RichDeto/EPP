@@ -3,7 +3,7 @@ voronoipolygons <- function(x, crs) {
   if (.hasSlot(x, 'coords')) {
     crds <- x@coords  
   } else crds <- x
-  z <- deldir(crds[,1], crds[,2],rw = c(x@bbox[1,1] - (x@bbox[1,1] * 0.05),
+  z <- deldir_epp(crds[,1], crds[,2],rw = c(x@bbox[1,1] - (x@bbox[1,1] * 0.05),
                                         x@bbox[1,2] + (x@bbox[1,2] * 0.05),
                                         x@bbox[2,1] - (x@bbox[2,1] * 0.05),
                                         x@bbox[2,2] + (x@bbox[2,2] * 0.05)))
