@@ -3,7 +3,7 @@ buff_voronoi <- function(x, id = 'id', w_buff = 1000, crs = CRS("+init=epsg:3272
         if (.hasSlot(SPP, 'coords')) {
                 crds <- SPP@coords  
         } else crds <- SPP
-        z <- deldir_epp(crds[ ,1], crds[ ,2], rw = c(SPP@bbox[1,1] - (SPP@bbox[1,1] * 0.05),
+        z <- deldir(crds[ ,1], crds[ ,2], rw = c(SPP@bbox[1,1] - (SPP@bbox[1,1] * 0.05),
                                               SPP@bbox[1,2] + (SPP@bbox[1,2] * 0.05),
                                               SPP@bbox[2,1] - (SPP@bbox[2,1] * 0.05),
                                               SPP@bbox[2,2] + (SPP@bbox[2,2] * 0.05)))
