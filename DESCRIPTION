@@ -3,7 +3,7 @@ Type: Package
 Title: Evaluation of proximity programs
 Version: 0.2.0
 Date: 2017-06-18
-Author: {Detomasi}, Richard and {Botto}, German 
+Author: Richard {Detomasi} and Germán {Botto}  
 Maintainer: Detomasi, Richard <rdetomasi@mides.gub.uy>
 Description: A toolbox for coverage evaluation of proximity programs.
 Imports: deldir, sp, rgeos, maptools, rgdal, flexclust, shapefiles, dplyr, plyr, osrm
