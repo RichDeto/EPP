@@ -1,7 +1,7 @@
-voronoipolygons <- function(x, crs) { 
+voronoipolygons <- function(x, crs) {
   # Voronoi script modify of "http://carsonfarmer.com/2009/09/voronoi-polygons-with-r/"
   if (.hasSlot(x, 'coords')) {
-    crds <- x@coords  
+    crds <- x@coords
   } else crds <- x
   z <- deldir(crds[,1], crds[,2],rw = c(x@bbox[1,1] - (x@bbox[1,1] * 0.05),
                                         x@bbox[1,2] + (x@bbox[1,2] * 0.05),
