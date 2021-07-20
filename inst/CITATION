@@ -1,0 +1,19 @@
+citHeader("To cite EPP in publications use:")
+
+year <- sub("-.*", "", meta$Date)
+note <- sprintf("R package version %s", meta$Version)
+
+bibentry(bibtype = "Manual",
+         title = "{EPP}: Evaluation of Proximity Programs",
+         author = c(person("Richard", "Detomasi")),
+         year = year,
+         note = note,
+	 url = "https://github.com/RichDeto/EPP")
+
+ textVersion = paste0("Detomasi, Richard, (", year, ").",
+  " EPP: Evaluation of Proximity Programs. ",
+  note, ".",
+  " https://github.com/RichDeto/EPP")
+
+
+

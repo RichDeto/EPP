@@ -1,12 +1,24 @@
 Package: EPP
 Type: Package
 Title: Evaluation of proximity programs
-Version: 0.2.0
-Date: 2017-06-18
-Author: Richard {Detomasi} and Germán {Botto}  
+Version: 0.3.0
+Date: 2021-07-14
+Authors@R: c( person(given = "Richard", 
+	      family = "Detomasi", 
+	      email = "richard.detomasi@gmail.com",
+	      role = c("aut", "cre"), 
+	      comment = c(ORCID = "0000-0002-6725-0261")),
+	      person(given = "German", 
+	      family = "Botto", 
+	      role = c("aut")))
+Author: Detomasi, Richard / Botto, German 
 Maintainer: Detomasi, Richard <rdetomasi@mides.gub.uy>
 Description: A toolbox for coverage evaluation of proximity programs.
-Imports: deldir, sp, rgeos, maptools, rgdal, flexclust, shapefiles, dplyr, plyr, osrm
-License: GPL-2
+Depends: R (>= 3.5.0)
+Imports: sp, rgeos, maptools, flexclust, plyr, osrm, deldir, methods, rgdal
+Suggests: knitr, testthat, devtools, roxygen2, markdown
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: TRUE
+RoxygenNote: 7.1.1
+Config/testthat/edition: 3

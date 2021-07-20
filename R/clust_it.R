@@ -1,11 +1,29 @@
-clust_it <- function(pop, m = 5, l = 4, o = 3, g1 = 50, g2 = g1 * 0.5, d1 = 1000, d2 = d1 * 2){
+#' Function for iterative clusterization
+#' @description The function clusterizes population to create service's centers. Iterates EPP::clust_pop for the remaining population in each step. It allows to define two distances of service and two group sizes for several rounds of iteration.
+#'
+#' @param pop Population to attend (dataframe with three variables: x, y, and weight). x and y are plain coordinates in the defined CRS
+#' @param m Number of iteration rounds. Default 5
+#' @param l Number of iteration rounds with the first group size (g1). Default 4
+#' @param g1 Size of the groups for the first l iterations. Default 50
+#' @param g2 Size of the groups for the last m-l iterations. Default g1 * 0.5
+#' @param d1 Distance range of service for the first iterations Default 1000
+#' @param d2 Second distance range of service. Default double of d1
+#'
+#' @return Return a LIST with:
+#' \item{Clustered}{Population assigned to created centers by clusterization}
+#' \item{pop}{Remaining non-assigned population}
+#' @export
+#' @examples
+#' clust_it(pop_epp)
+
+clust_it <- function(pop, m = 5, l = 4, g1 = 50, g2 = g1 * 0.5, d1 = 1000, d2 = d1 * 2){
   clusterizados <- as.list(NA)
   j <- 1 #iteration index
   n <- 1 #pob remainder
-  while (j <= m & n >=  1 & ceiling(nrow(pop) / (ifelse(j <= l, g1 ,g2) * 0.75)) >= 2){ 
+  while (j <= m & n >=  1 & ceiling(nrow(pop) / (ifelse(j <= l, g1 ,g2) * 0.75)) >= 2) { 
     pop <- clust_pop(pop, ceiling(nrow(pop) / (ifelse(j <= l, g1, g2) * 0.75))) 
     list_1 <- vector("list")
-    for (i in sort(unique(pop$cluster))){
+    for (i in sort(unique(pop$cluster))) {
       list_1[[i]] <- rank(subset(pop, pop$cluster == i)[ ,"dist"], ties.method = "random")
     } # provides a list of ranks for each cluster, based on distance to the median center
     orden_dist <- as.data.frame(NULL)
@@ -15,7 +33,8 @@ clust_it <- function(pop, m = 5, l = 4, o = 3, g1 = 50, g2 = g1 * 0.5, d1 = 1000
     colnames(orden_dist) <- "orden_dist"
     pop <- cbind(pop[order(pop$cluster, pop$dist), ], orden_dist) # assigns the rank to the population
     remove(i, list_1)
-    max_n_cl <- as.data.frame(as.vector(tapply(pop$orden_dist[pop$dist <= ifelse(j <= l, d1, d2)], pop$cluster[pop$dist <= ifelse(j <= l, d1, d2)], max)))
+    max_n_cl <- as.data.frame(as.vector(tapply(pop$orden_dist[pop$dist <= ifelse(j <= l, d1, d2)], 
+                                               pop$cluster[pop$dist <= ifelse(j <= l, d1, d2)], max)))
     max_n_cl$cluster <- as.factor(row.names(max_n_cl))
     names(max_n_cl) <- c("max_n_cl","cluster")
     max_n_cl$max_n_cl <- ifelse(is.na(max_n_cl$max_n_cl), 1, max_n_cl$max_n_cl)

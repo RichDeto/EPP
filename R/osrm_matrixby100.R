@@ -1,3 +1,19 @@
+#' Generate a distance matrix for dataframes of more than 100 rows, using osrm functions by nrow(dataframe)/100 of rows, avoiding the record limit of the original osrm function
+#' @description Generate a distance matrix for dataframes of more than 100 rows, using osrm functions by nrow(dataframe)/100 of rows. Its use the osrmRoute and osrmTable functions of osrm library, that build and send an OSRM API query to get the travel geometry between two points. 
+#' This function interfaces the route OSRM service. The principal contribution to this function it´s to consider avoiding the record limit of the original osrm function.
+#' 
+#' @param src Dataframe with three variables: id, and a pair of coordinates, or only the pair of coordinates with the "wid" parameter setted FALSE
+#' @param dst Dataframe with three variables: and a pair of coordinates, or only the pair of coordinates with the "wid" parameter setted FALSE
+#' @param crs Specific coordinates sistem to transform to the CRS("+init=epsg:4326") needed by osrm library.
+#' @param wid If TRUE keeping the "id" of the first column, if FALSE generate an "id" using the nrow function.
+#'
+#' @return Return a DataFrame with:
+#' \item{matriz}{The distance matrix of all the rows of tha dataframe}
+#' @export
+#' @import osrm
+#' @references Timothée Giraud, Robin Cura and Matthieu Viry 2017 osrm: Interface Between R and the OpenStreetMap-Based Routing Service OSRM. https://CRAN.R-project.org/package=osrm
+#' @keywords spatial osrm
+
 osrm_matrixby100 <- function(src, dst, crs, wid = T){ 
   src_s <- SpatialPoints(if (wid == TRUE) {as.data.frame(src[, 2:3])} else {as.data.frame(src[, 1:2])}, proj4string = crs)
   dst_s <- SpatialPoints(if (wid == TRUE) {as.data.frame(dst[, 2:3])} else {as.data.frame(dst[, 1:2])}, proj4string = crs)
