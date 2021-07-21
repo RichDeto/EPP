@@ -1,0 +1,55 @@
+---
+title: "Template Title"
+author: "Your Name"
+date: "`r format(Sys.time(), '%d de %B, %Y')`"
+output: output_format
+bibliography: skeleton.bib
+link-citations: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+require(EPP)
+centers <- centers_epp # Inlcude here your centers data
+pop <- pop_epp # Inlcude here your population data
+var_of_weight <- "ICC" # Name of the variable used as weight.
+# Include here others parameters of your case
+# n <- 3 # Total number of iterations with the distance "d1".
+# m <- 0 # Number of iteration in wich change the distance of radium. If m>n only the first distance is usede.
+# d1 <- 1000 # Radius in meters that each center covers in the firsts "n" iterations.
+# d2 <- 2000 # Radius in meters that each center covers, the last "m" iterations. Default = d1 * 2
+crs <- sp::CRS("+init=epsg:32721") # Coordinate Reference Systems (CRS).
+```
+
+## Inputs
+
+This report present the coverage evaluation of `r nrow(centers)` centers, and the coverage of `r nrow(pop)` individuals with a `r mean(pop$weight)` mean of `r var_of_weight`.
+
+## Outputs
+
+```{r}
+exist <- eppexist(pop = pop, centers = centers, crs = crs)
+```
+
+The population how may be out of coverage are `r nrow(exist$pop_uncover)` with a `r mean(exist$pop_uncover$weight)` mean of `r var_of_weight`.
+
+The population assigned to the corresponding center are `r nrow(exist$pop_assigned)` with a `r mean(exist$pop_assigned$weight)` mean of `r var_of_weight`.
+
+```{r}
+ggplot(exist$pop_assigned, aes(x = id, y = weight, color = iteration)) + 
+    geom_point(size=6)
+```
+
+From the point of the centers, let's look at the unused capacity after processing, to evaluate which centers need to be analyzed for excess supply of quotas.
+
+```{r}
+ggplot(exist$remaining_capacity, aes(x = id, y = capacity)) + 
+    geom_point(size=6)
+```
+
+# Bibliography
+
+```{r bib, include=FALSE}
+# create a bib file for the R packages used in this document
+knitr::write_bib(c('base', 'rmarkdown', 'EPP'), file = 'skeleton.bib')
+```

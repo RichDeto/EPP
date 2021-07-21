@@ -1,0 +1,59 @@
+---
+title: "Titulo del reporte"
+author: "Tu nombre"
+date: "`r format(Sys.time(), '%d de %B, %Y')`"
+output: output_format
+bibliography: skeleton.bib
+link-citations: yes
+header-includes:
+- \usepackage[utf8]{inputenc}
+- \usepackage[spanish]{babel}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+require(EPP); library(ggplot2)
+centers <- centers_epp # Inlcuye aqui tu data.frame con información de los centros de atención.
+pop <- pop_epp # Inlcuye aqui tu data.frame con información de la población a cubrir.
+var_of_weight <- "ICC" # Nombre de la variable usada como "weight".
+# Incluye aquí otros parametros que ajusten a tu caso
+# n <- 3 # Numero total de iteraciones con la distancia "d1".
+# m <- 0 # Numero total de iteraciones considerando dos distancias de radio de acción de los centros.
+# d1 <- 1000 # Radio en metros que cada centro cubre en las primeras "n" iteraciones.
+# d2 <- 2000 # Radio en metros que cada centro cubre en las últimas "m" - "n" iteracions.
+crs <- sp::CRS("+init=epsg:32721") # Sistema de Coordenadas de Referencia (CRS).
+```
+
+## Inputs
+
+Este reporte presenta la evaluación de cobertura de `r nrow(centers)` centros, y la cobertura por proximidad de `r nrow(pop)` individuos que presentan una media de `r var_of_weight` equivalente a `r mean(pop$weight)`.
+
+## Outputs
+
+```{r}
+exist <- eppexist(pop = pop, centers = centers, crs = crs)
+```
+
+La población que no pudo ser cubierta corresponde a `r nrow(exist$pop_uncover)` casos, con una media de `r var_of_weight` equivalente a `r mean(exist$pop_uncover$weight)`.
+
+Por su parte la población asignada a sus correspondientes centros fue de `r nrow(exist$pop_assigned)` casos, con una media de
+`r var_of_weight` equivalente a `r mean(exist$pop_assigned$weight)`.
+
+```{r}
+ggplot(exist$pop_assigned, aes(x = id, y = weight, color = iteration)) + 
+    geom_point(size=6)
+```
+
+Desde el punto de los centros, veamos la capacidad no utilizada después del procesamiento, para evaluar que centros hay que analizar por exceso de oferta de cupos.
+
+```{r}
+ggplot(exist$remaining_capacity, aes(x = id, y = capacity)) + 
+    geom_point(size=6)
+```
+
+# Bibliography
+
+```{r bib, include=FALSE}
+# crea un archivo bib con todos los paquetes usados en este documento
+knitr::write_bib(c('base', 'rmarkdown', 'EPP'), file = 'skeleton.bib')
+```
