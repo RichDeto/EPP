@@ -54,14 +54,14 @@
 
 voro_polygon <- function(x, bounding.polygon = NULL, range.expand = 0.1) {
         if (!inherits(x, "SpatialPoints")) {
-                stop("Must pass a SpatialPoints* object to voronoi.polygons.")
+                stop("Must pass a SpatialPoints* object to voro_polygons.")
         }
         crds = coordinates(x)
         if ( is.null(bounding.polygon) ) {
                 if ( length(range.expand) == 1) {
                         range.expand <- rep(range.expand,2)
                 } else if (length(range.expand) > 2 ) {
-                        warning("Only first two elements of range.expand used in voronoi.polygons")
+                        warning("Only first two elements of range.expand used in voro_polygons")
                         range.expand <- range.expand[1:2]
                 }
                 dxy <- diff(c(t(sp::bbox(x))))[c(1,3)]

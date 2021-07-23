@@ -15,7 +15,7 @@ Author: Detomasi, Richard / Botto, German
 Maintainer: Detomasi, Richard <rdetomasi@mides.gub.uy>
 Description: A toolbox for coverage evaluation of proximity programs.
 Depends: R (>= 3.5.0)
-Imports: sp, rgeos, maptools, flexclust, plyr, osrm, deldir, methods, rgdal
+Imports: sp, rgeos, maptools, flexclust, plyr, osrm, deldir, methods, rgdal, dplyr
 Suggests: knitr, testthat, devtools, roxygen2, markdown
 License: MIT + file LICENSE
 Encoding: UTF-8

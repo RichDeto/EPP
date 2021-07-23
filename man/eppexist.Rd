@@ -24,7 +24,7 @@ eppexist(pop, centers, n = 3, m = 0, d1 = 1000, d2 = d1 * 2, crs)
 \value{
 Return a LIST with:
 \item{pop_uncover }{DataFrame of the population still out of coverage; with its "x", "y" and "weigth".}
-\item{pop_assigned }{DataFrame with the population assigned and the corresponding center; with its "x", "y","weigth", "id" of the centerand the "iteration" of assing.}
+\item{pop_assigned }{DataFrame with the population assigned and the corresponding center; with its "x", "y","weight", "id" of the centerand the "iteration" of assing.}
 \item{remaining_capacity }{DataFrame of the centers and its unused capacity; with "x" and "y" of the center, the "id", and the unused "capacity".}       
 \item{used_capacity }{List of DataFrames with the centers and the info of population covered in each itaration. Each DataFrames have the name of the iteration, and contains the "id", "x" and "y" of the center; and the remaining "capacity" and "used_cap" after the iteration.}
 }
