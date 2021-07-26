@@ -13,7 +13,7 @@ group_over(x)
 A data.frame without geographic duplcates, aggregating ids and capacity
 }
 \description{
-group_over
+grouping of id and capacity of centers who overlapping geometries
 }
 \examples{
 group_over(rbind(centers_epp, centers_epp[ 1:3,]))

@@ -22,7 +22,7 @@
 #' @examples 
 #' proy <- eppproy(pop_epp)
 
-eppproy <- function(pop, m = 5, l = 4, g1 = 50, g2 = g1 * 0.5, d1 = 1000, d2 = d1 * 2, crs = CRS("+init=epsg:32721")) {
+eppproy <- function(pop, m = 5, l = 4, g1 = 5, g2 = g1 * 0.5, d1 = 1000, d2 = d1 * 2, crs = CRS("+init=epsg:32721")) {
   assigned <- assign_clust(clust_it(pop, m = m, l = l, g1 = g1, g2 = g2, d1 = d1, d2 = d2)[[1]])
   eppproy.output <- list(centros_clusters_s <- SpatialPointsDataFrame(SpatialPoints(assigned[[1]][ ,2:3], crs), 
                                                                        assigned[[1]], match.ID = TRUE), 

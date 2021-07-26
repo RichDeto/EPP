@@ -4,7 +4,7 @@
 \alias{eppexist}
 \title{Evaluation of proximity coverage by a program and estimate new services to attend the uncover population.}
 \usage{
-eppexist(pop, centers, n = 3, m = 0, d1 = 1000, d2 = d1 * 2, crs)
+eppexist(pop, centers, n = 3, m = 0, d1 = 1000, d2 = d1 * 2, crs, route = F)
 }
 \arguments{
 \item{pop}{Population to attend (dataframe with three variables: x, y, and weight). Each element represents the position and identity of a population's member. x and y represents plain coordinates in the selected Coordinate Reference System.}
@@ -20,6 +20,8 @@ eppexist(pop, centers, n = 3, m = 0, d1 = 1000, d2 = d1 * 2, crs)
 \item{d2}{Radius in meters that each center covers, the last "m" iterations. Default = d1 * 2}
 
 \item{crs}{Coordinate Reference Systems (CRS).}
+
+\item{route}{logical if FALSE the distance is calculated by pithagorean formula, if TRUE the distance is calculated by "osrmRoute" function of "osrm" Package. Default = FALSE}
 }
 \value{
 Return a LIST with:
@@ -32,7 +34,9 @@ Return a LIST with:
 Assigns the elements from pob to the centers by n+m iterations, according to the capacity and distance/s of radium of each center. The output is a list that contains four data.frames: pop have the unassigned population, centers has the centers that still have capacity available, used_capacity have the center's occupped capacity and assigned has the population assigned to the centers. The assignation of points to centers is based in proximity and and optimality criteria (maximum distance and center's capacity).
 }
 \examples{
-exist <- eppexist(pop_epp, centers_epp, crs = sp::CRS("+init=epsg:32721"))
+exist <- eppexist(pop = pop_epp, 
+                  centers = centers_epp, 
+                  crs = sp::CRS("+init=epsg:32721"))
 }
 \references{
 Bivand, R., Keitt, T., Rowlingson, B., Pebesma, E., Sumner, M., Hijmans, R. y Rouault, E. (2015), Bindings for the Geospatial Data Abstraction Library. URL https://cran.r-project.org/web/packages/rgdal/rgdal.pdf

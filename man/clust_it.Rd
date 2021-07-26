@@ -4,7 +4,7 @@
 \alias{clust_it}
 \title{Function for iterative clusterization}
 \usage{
-clust_it(pop, m = 5, l = 4, g1 = 50, g2 = g1 * 0.5, d1 = 1000, d2 = d1 * 2)
+clust_it(pop, m = 5, l = 4, g1 = 5, g2 = g1 * 0.5, d1 = 1000, d2 = d1 * 2)
 }
 \arguments{
 \item{pop}{Population to attend (dataframe with three variables: x, y, and weight). x and y are plain coordinates in the defined CRS}
@@ -30,5 +30,5 @@ Return a LIST with:
 The function clusterizes population to create service's centers. Iterates EPP::clust_pop for the remaining population in each step. It allows to define two distances of service and two group sizes for several rounds of iteration.
 }
 \examples{
-clust_it(pop_epp)
+clu <- clust_it(pop = pop_epp)
 }

@@ -16,7 +16,7 @@
 #' @examples
 #' assignation_exist(pop_epp, centers_epp, d = 1000, crs = sp::CRS("+init=epsg:32721"), route = FALSE)
 
-assignation_exist <- function(pop, centers, d, crs, route = F) {
+assignation_exist <- function(pop, centers, d, crs, route = FALSE) {
         pop <- assign_voro(pop, centers, crs)
         if (route == F) {
             pop$dist_exist <- sqrt(((pop$x_pop - pop$x_center)^2) + ((pop$y_pop - pop$y_center)^2))    

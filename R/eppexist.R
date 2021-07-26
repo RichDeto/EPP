@@ -8,6 +8,7 @@
 #' @param d1 Radius in meters that each center covers in the firsts "n" iterations. Default d1 = 1000
 #' @param d2 Radius in meters that each center covers, the last "m" iterations. Default = d1 * 2
 #' @param crs Coordinate Reference Systems (CRS).
+#' @param route logical if FALSE the distance is calculated by pithagorean formula, if TRUE the distance is calculated by "osrmRoute" function of "osrm" Package. Default = FALSE
 #'
 #' @return Return a LIST with:
 #' \item{pop_uncover }{DataFrame of the population still out of coverage; with its "x", "y" and "weigth".}
@@ -25,15 +26,17 @@
 #' Turner, R. (2015), Delaunay Triangulation and Dirichlet (Voronoi) Tessellation. URL https://cran.r-project.org/web/packages/deldir/deldir.pdf
 #' 
 #' @examples
-#' exist <- eppexist(pop_epp, centers_epp, crs = sp::CRS("+init=epsg:32721"))
+#' exist <- eppexist(pop = pop_epp, 
+#'                   centers = centers_epp, 
+#'                   crs = sp::CRS("+init=epsg:32721"))
  
-eppexist <- function(pop,centers, n = 3, m = 0, d1 = 1000, d2 = d1 * 2, crs) {
+eppexist <- function(pop, centers, n = 3, m = 0, d1 = 1000, d2 = d1 * 2, crs, route = F) {
   assigned <- as.list(NA)
   used_capacity <- as.list(NA) 
   dist <- c(rep.int(d1, n), rep.int(d2, m)) ## compiles a vector of distances
   for (i in 1:length(dist)) {
     if (nrow(pop) > 0 & nrow(centers) > 0) {
-      iteration <- assignation_exist(pop, centers, dist[i], crs) ## assigns the population to the centers
+      iteration <- assignation_exist(pop, centers, dist[i], crs, route) ## assigns the population to the centers
       pop <- iteration[[1]]
       cov <- iteration[[2]]
       if (nrow(cov) > 0) {

@@ -4,7 +4,7 @@
 \alias{assignation_exist}
 \title{Function to assign population to centers of services}
 \usage{
-assignation_exist(pop, centers, d, crs, route = F)
+assignation_exist(pop, centers, d, crs, route = FALSE)
 }
 \arguments{
 \item{pop}{Population to attend (dataframe with three variables: x, y, and weight). x and y are plain coordinates in the defined CRS}
