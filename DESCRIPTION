@@ -1,6 +1,6 @@
 Package: EPP
 Type: Package
-Title: Evaluation of proximity programs
+Title: Evaluation of Proximity Programs
 Version: 0.3.2
 Date: 2021-07-14
 Authors@R: c( person(given = "Richard", 
@@ -12,10 +12,10 @@ Authors@R: c( person(given = "Richard",
 	      family = "Botto", 
 	      role = c("aut"),
 	      comment = c(ORCID = "0000-0002-4055-9277")))
-Maintainer: Detomasi, Richard <rdetomasi@mides.gub.uy>
+Maintainer: Richard Detomasi <richard.detomasi@gmail.com>
 Description: A toolbox for coverage evaluation of proximity programs.
 Depends: R (>= 3.5.0)
-Imports: sp, rgeos, maptools, flexclust, plyr, osrm, deldir, methods, rgdal, dplyr
+Imports: sp, rgeos, maptools, flexclust, plyr, osrm, deldir, methods, dplyr
 Suggests: knitr, testthat, devtools, roxygen2, markdown
 License: MIT + file LICENSE
 Encoding: UTF-8
