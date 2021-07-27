@@ -2,6 +2,7 @@
 
 <!-- badges: start -->
   [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5138170.svg)](https://doi.org/10.5281/zenodo.5138170)
+  [![R build status](https://github.com/RichDeto/geouy/workflows/R-CMD-check/badge.svg)](https://github.com/RichDeto/geouy/actions)
   [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 <!-- badges: end -->
 
@@ -59,8 +60,14 @@ The syntax of all `{EPP}` functions are focused on executing two main processes,
 
 ## References
 
-Botto, G. y Detomasi, R. (2015), Bases metodológicas para la planificación espacial de servicios de educación inicial en Uruguay. Jornadas Argentinas de Geo-tecnologías: Trabajos completos. Universidad Nacional de Luján - Sociedad de Especialistas Latinoamericanos en Percepción Remota - Universidad Nacional de San Luis, pp. 121-128.http://dinem.mides.gub.uy/innovaportal/file/61794/1/tecnologias-de-la-informacion-para-nuevas-formas-de-gestion-del-territorio.-2015.pdf
+Detomasi, R. 2018. "Abordaje espacial de políticas públicas: cuidados y primera infancia”. En: [Las políticas públicas dirigidas a la infancia en Uruguay](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=2&cad=rja&uact=8&ved=2ahUKEwiu_uH64vHjAhXsJ7kGHRHOCo4QFjABegQIABAC&url=https%3A%2F%2Frepositorio.cepal.org%2Fbitstream%2Fhandle%2F11362%2F44155%2F1%2FS1800463_es.pdf&usg=AOvVaw3EPJkSZSWIDsQ-dpwcHuUO). Coords. Verónica Amarante  y Juan Pablo Labat. Ed. CEPAL - UNICEF, Santiago de Chile.
 
-Detomasi, R., Botto, G. y Hahn, M. (2015) CAIF: Análisis de demanda. Documento de trabajo, Mayo 2015. Departamento de Geografía. Dirección Nacional de Evaluación y Monitoreo. Ministerio de Desarrollo Social. http://dinem.mides.gub.uy/innovaportal/file/61792/1/caif.-analisis-de-demanda.-2015.pdf 
+Detomasi, R., G. Mathieu y G. Botto 2018. ["EPP v.0.2: Evaluation of Proximity Programs with OSRM routing"](http://47jaiio.sadio.org.ar/sites/default/files/LatinR_10.pdf). LatinR - Conferencia Latinoamericana sobre Uso de R en Investigación + Desarrollo. 3 al 7 de Setiembre. 
 
-R Development Core Team (2015), R: A language and environment for statistical computing. R Foundation forStatistical Computing, Vienna, Austria.ISBN 3-900051-07-0, URL http://www.R-project.org/
+Detomasi, R. y G. Botto. 2017. ["Evaluación espacial de servicios de educación inicial: la densificación de la oferta para tres años en la Administración Nacional de Educación Pública (ANEP)"](http://www.geofocus.org/index.php/geofocus/article/view/508). GeoFocus (ISSN 1578-5157).
+
+Botto, G. y Detomasi, R. 2015. ["Bases metodológicas para la planificación espacial de servicios de educación inicial en Uruguay"](http://dinem.mides.gub.uy/innovaportal/file/61794/1/tecnologias-de-la-informacion-para-nuevas-formas-de-gestion-del-territorio.-2015.pdf) Jornadas Argentinas de Geo-tecnologías: Trabajos completos. Universidad Nacional de Luján - Sociedad de Especialistas Latinoamericanos en Percepción Remota - Universidad Nacional de San Luis, pp. 121-128.
+
+Detomasi, R., Botto, G. y Hahn, M. 2015. ["CAIF: Análisis de demanda"](http://dinem.mides.gub.uy/innovaportal/file/61792/1/caif.-analisis-de-demanda.-2015.pdf) Documento de trabajo, Mayo 2015. Departamento de Geografía. Dirección Nacional de Evaluación y Monitoreo. Ministerio de Desarrollo Social.  
+
+R Development Core Team 2015. ["R: A language and environment for statistical computing"](http://www.R-project.org/) R Foundation forStatistical Computing, Vienna, Austria.ISBN 3-900051-07-0.
