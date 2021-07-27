@@ -23,3 +23,11 @@
 #'   \item{capacity}{capacity of the centers}
 #' }
 "centers_epp"
+
+#' pop
+#' @name pop
+pop <- NULL
+
+#' centers
+#' @name centers
+centers <- NULL

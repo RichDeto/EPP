@@ -18,6 +18,9 @@
 #' @keywords spatial cluster
 
 assign_voro <- function(pop, centers, crs) {
+        if (sum(duplicated(paste(centers$x, centers$y))) > 1) {
+                stop("Your centers dataset have ovelapings, please use group_over() function.")
+        }
         pob_s <- SpatialPoints(pop[ ,1:2], proj4string = crs)## transform pop to spatial object
         centers_s <- SpatialPoints(centers[ ,1:2], crs)## transform centers to spatial object
         suppressWarnings(VP_centers1 <- voro_polygon(centers_s))#, crs)## generate voronoipoligons of centers

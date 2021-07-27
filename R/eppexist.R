@@ -36,7 +36,7 @@ eppexist <- function(pop, centers, n = 3, m = 0, d1 = 1000, d2 = d1 * 2, crs, ro
   dist <- c(rep.int(d1, n), rep.int(d2, m)) ## compiles a vector of distances
   for (i in 1:length(dist)) {
     if (nrow(pop) > 0 & nrow(centers) > 0) {
-      iteration <- assignation_exist(pop, centers, dist[i], crs, route) ## assigns the population to the centers
+      iteration <- assignation_exist(pop = pop, centers = centers, d = dist[i], crs = crs, route = route) ## assigns the population to the centers
       pop <- iteration[[1]]
       cov <- iteration[[2]]
       if (nrow(cov) > 0) {
@@ -58,6 +58,6 @@ eppexist <- function(pop, centers, n = 3, m = 0, d1 = 1000, d2 = d1 * 2, crs, ro
     }
   }
   names(used_capacity) <- 1:length(used_capacity)
-  eppexist.output <- list("pop_uncover" = pop, "pop_assigned" = do.call("rbind", assigned)[ ,1:6], "remaining_capacity" = centers, 
-                                "used_capacity" = used_capacity[!sapply(used_capacity, is.null)])
+  list("pop_uncover" = pop, "pop_assigned" = do.call("rbind", assigned)[ ,1:6], "remaining_capacity" = centers, 
+       "used_capacity" = used_capacity[!sapply(used_capacity, is.null)])
 }

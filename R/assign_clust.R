@@ -3,16 +3,17 @@
 #'
 #' @param clustered List of the population assigned to each centre by EPP::clust_it
 #'
-#' @return list with Centres of the clusters with the number of individuals covered for each service distance and mean distances and Population with the center assigned to
+#' @return list with Centres of the clusters with the number of individuals covered for each service distance 
+#' and mean distances and Population with the center assigned to
 #' @export
 #' @examples 
 #' a <- clust_it(pop_epp)
-#' a <- assign_clust
+#' a <- assign_clust(clustered = a)
 
 assign_clust <- function(clustered){
   asigned_clusters <- as.data.frame(NULL)
   for (i in 1:length(clustered)) {
-    asigned_clusters <- rbind(asigned_clusters, as.data.frame(clustered[[i]]))
+    asigned_clusters <- rbind(asigned_clusters, as.data.frame(clustered[[1]][[i]]))
   }
   asigned_clusters$id <- paste(asigned_clusters$round, asigned_clusters$medianx, asigned_clusters$mediany, sep = "_")
   asigned_clusters$p_weight <- 0
@@ -27,7 +28,7 @@ assign_clust <- function(clustered){
     asigned_clusters[asigned_clusters$id == i, ]$p_dist <-
       mean(asigned_clusters[asigned_clusters$id == i, ]$dist)
   }
-  assign_clust.output <- list(centres_clusters = subset(asigned_clusters, duplicated(asigned_clusters$id) == F,
-                                                     select = c(id, x, y, weight, medianx, mediany, p_dist, cubre, round)), 
-                           assigned_clusters = subset(asigned_clusters, select = c(id, x, y, weight, medianx, mediany, dist, round)))
+  list(centres_clusters = subset(asigned_clusters, duplicated(asigned_clusters$id) == F,
+                                 select = c(id, x, y, weight, medianx, mediany, p_dist, cubre, round)), 
+       assigned_clusters = subset(asigned_clusters, select = c(id, x, y, weight, medianx, mediany, dist, round)))
 }

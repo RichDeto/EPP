@@ -3,14 +3,7 @@
 \docType{package}
 \name{epp}
 \alias{epp}
-\alias{pop}
 \title{\code{epp} package}
-\format{
-An object of class \code{NULL} of length 0.
-}
-\usage{
-pop
-}
 \description{
 Evaluation of Proximity Programs
 }
@@ -18,4 +11,3 @@ Evaluation of Proximity Programs
 See the README on
 \href{https://gitlab.mides.gub.uy/rdetomasi/epp/blob/master/README.md}{Gitlab}
 }
-\keyword{datasets}

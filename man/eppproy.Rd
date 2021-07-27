@@ -22,7 +22,7 @@ eppproy(
 
 \item{l}{Number of iteration rounds with the first group size (g1). Default 4}
 
-\item{g1}{Size of the groups for the first l iterations. Default 50}
+\item{g1}{Size of the groups for the first l iterations. Default 5}
 
 \item{g2}{Size of the groups for the last m-l iterations. Default g1 * 0.5}
 
@@ -34,14 +34,15 @@ eppproy(
 }
 \value{
 Return a LIST with:
-\item{centros_clusters_s}{SpatialPointsDataFrame of the new centres created}
-\item{asigned_clusters_s}{SpatialPointsDataFrame of the population covered by the new centres created}
+\item{centros_clusters_s}{SpatialPointsDataFrame of the new centers created}
+\item{asigned_clusters_s}{SpatialPointsDataFrame of the population covered by the new centers created}
+\item{unasigned_s}{SpatialPointsDataFrame of the population uncovered by the new centers created}
 }
 \description{
 Creates centres of service based on the spatial clusterization of population.
 }
 \examples{
-proy <- eppproy(pop_epp)
+proy <- eppproy(pop = pop_epp)
 }
 \references{
 Botto, G. y Detomasi, R. (2015), Bases metodológicas para la planificación espacial de servicios de educación inicial en Uruguay. Jornadas Argentinas de Geo-tecnologías: Trabajos completos. Universidad Nacional de Luján - Sociedad de Especialistas Latinoamericanos en Percepción Remota - Universidad Nacional de San Luis, pp. 121- 128. http://dinem.mides.gub.uy/innovaportal/file/61794/1/tecnologias-de-la-informacion-para-nuevas-formas-de-gestion-del-territorio.-2015.pdf

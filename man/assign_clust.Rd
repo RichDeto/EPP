@@ -10,12 +10,13 @@ assign_clust(clustered)
 \item{clustered}{List of the population assigned to each centre by EPP::clust_it}
 }
 \value{
-list with Centres of the clusters with the number of individuals covered for each service distance and mean distances and Population with the center assigned to
+list with Centres of the clusters with the number of individuals covered for each service distance 
+and mean distances and Population with the center assigned to
 }
 \description{
 Function to process the results from EPP::clust_it
 }
 \examples{
 a <- clust_it(pop_epp)
-a <- assign_clust
+a <- assign_clust(clustered = a)
 }
