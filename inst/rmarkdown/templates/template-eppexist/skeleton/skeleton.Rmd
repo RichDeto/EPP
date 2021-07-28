@@ -2,14 +2,17 @@
 title: "Template Title"
 author: "Your Name"
 date: "`r format(Sys.time(), '%d de %B, %Y')`"
-output: output_format
-bibliography: skeleton.bib
+output: pdf_document
+bibliography: reference.bib
 link-citations: yes
+nocite: |
+        @R-EPP
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 require(EPP)
+library(ggplot2)
 centers <- centers_epp # Inlcude here your centers data
 pop <- pop_epp # Inlcude here your population data
 var_of_weight <- "ICC" # Name of the variable used as weight.
@@ -36,20 +39,20 @@ The population how may be out of coverage are `r nrow(exist$pop_uncover)` with a
 The population assigned to the corresponding center are `r nrow(exist$pop_assigned)` with a `r mean(exist$pop_assigned$weight)` mean of `r var_of_weight`.
 
 ```{r}
-ggplot(exist$pop_assigned, aes(x = id, y = weight, color = iteration)) + 
-    geom_point(size=6)
+ggplot(exist$pop_assigned, aes(x = id, y = weight, color = it)) + 
+    geom_point(size = 6)
 ```
 
 From the point of the centers, let's look at the unused capacity after processing, to evaluate which centers need to be analyzed for excess supply of quotas.
 
 ```{r}
 ggplot(exist$remaining_capacity, aes(x = id, y = capacity)) + 
-    geom_point(size=6)
+    geom_bar(stat = "identity")
 ```
 
 # Bibliography
 
 ```{r bib, include=FALSE}
 # create a bib file for the R packages used in this document
-knitr::write_bib(c('base', 'rmarkdown', 'EPP'), file = 'skeleton.bib')
+knitr::write_bib(c('base', 'rmarkdown', 'EPP'), file = 'reference.bib')
 ```

@@ -16,7 +16,7 @@ Maintainer: Richard Detomasi <richard.detomasi@gmail.com>
 Description: A toolbox for coverage evaluation of proximity programs.
 BugReports: https://github.com/RichDeto/EPP/issues
 Depends: R (>= 3.5.0)
-Imports: sp, rgeos, maptools, flexclust, plyr, osrm, deldir, methods, dplyr
+Imports: sp, rgeos, maptools, flexclust, plyr, osrm, deldir, methods, dplyr, rgdal
 Suggests: knitr, devtools, roxygen2, markdown, rstudioapi (>= 0.11),
     testthat (>= 2.3.2)
 License: MIT + file LICENSE

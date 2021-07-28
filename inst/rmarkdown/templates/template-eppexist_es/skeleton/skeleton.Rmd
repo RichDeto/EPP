@@ -2,9 +2,11 @@
 title: "Titulo del reporte"
 author: "Tu nombre"
 date: "`r format(Sys.time(), '%d de %B, %Y')`"
-output: output_format
-bibliography: skeleton.bib
+output: pdf_document
+bibliography:reference.bib
 link-citations: yes
+nocite: |
+        @R-EPP
 header-includes:
 - \usepackage[utf8]{inputenc}
 - \usepackage[spanish]{babel}
@@ -40,15 +42,15 @@ Por su parte la población asignada a sus correspondientes centros fue de `r nro
 `r var_of_weight` equivalente a `r mean(exist$pop_assigned$weight)`.
 
 ```{r}
-ggplot(exist$pop_assigned, aes(x = id, y = weight, color = iteration)) + 
-    geom_point(size=6)
+ggplot(exist$pop_assigned, aes(x = id, y = weight, color = it)) + 
+    geom_point(size = 6)
 ```
 
 Desde el punto de los centros, veamos la capacidad no utilizada después del procesamiento, para evaluar que centros hay que analizar por exceso de oferta de cupos.
 
 ```{r}
 ggplot(exist$remaining_capacity, aes(x = id, y = capacity)) + 
-    geom_point(size=6)
+    geom_bar(stat = "identity")
 ```
 
 # Bibliography
