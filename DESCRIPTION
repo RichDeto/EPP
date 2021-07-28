@@ -14,9 +14,11 @@ Authors@R: c( person(given = "Richard",
 	      comment = c(ORCID = "0000-0002-4055-9277")))
 Maintainer: Richard Detomasi <richard.detomasi@gmail.com>
 Description: A toolbox for coverage evaluation of proximity programs.
+BugReports: https://github.com/RichDeto/EPP/issues
 Depends: R (>= 3.5.0)
 Imports: sp, rgeos, maptools, flexclust, plyr, osrm, deldir, methods, dplyr
-Suggests: knitr, testthat, devtools, roxygen2, markdown
+Suggests: knitr, devtools, roxygen2, markdown, rstudioapi (>= 0.11),
+    testthat (>= 2.3.2)
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: TRUE

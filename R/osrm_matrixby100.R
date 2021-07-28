@@ -14,7 +14,7 @@
 #' @references Timothée Giraud, Robin Cura and Matthieu Viry 2017 osrm: Interface Between R and the OpenStreetMap-Based Routing Service OSRM. https://CRAN.R-project.org/package=osrm
 #' @keywords spatial osrm
 
-osrm_matrixby100 <- function(src, dst, crs, wid = T){ 
+osrm_matrixby100 <- function(src, dst, crs, wid = TRUE){ 
   src_s <- SpatialPoints(if (wid == TRUE) {as.data.frame(src[, 2:3])} else {as.data.frame(src[, 1:2])}, proj4string = crs)
   dst_s <- SpatialPoints(if (wid == TRUE) {as.data.frame(dst[, 2:3])} else {as.data.frame(dst[, 1:2])}, proj4string = crs)
   src_s <- spTransform(src_s, CRS("+init=epsg:4326"))
@@ -46,7 +46,7 @@ osrm_matrixby100 <- function(src, dst, crs, wid = T){
         if (k <= l & g <= m) {matriz[lk[k]:lk[k + 1], lg[g]:lg[g + 1]] <- osrmTable(src = src[lk[k]:lk[k + 1],], dst = dst[(lg[g]):(lg[g + 1]),])$durations}
         if (k != g & k > l) {matriz[lk[k - 1]:lk[k], lg[g]:lg[g + 1]] <- osrmTable(src = src[lk[k - 1]:lk[k],], dst = dst[(lg[g]):(lg[g + 1]),])$durations}
         if (k != g & g > m) {matriz[lk[k]:lk[k + 1], lg[g - 1]:lg[g]] <- osrmTable(src = src[lk[k]:lk[k + 1],], dst = dst[(lg[g - 1]):(lg[g]),])$durations}
-        if (k > l & g > m) {matriz[lk[k - 1]:lk[k], lg[g - 1]:lg[g]] <- osrmTable(src = src[lk[k - 1]:lk[k]], dst = dst[(lg[g - 1]):(lg[g]),])$durations}
+        if (k > l & g > m) {matriz[lk[k - 1]:lk[k], lg[g - 1]:lg[g]] <- osrmTable(src = src[lk[k - 1]:lk[k]], dst = dst[(lg[g - 1]):(lg[g]),])$duration}
       }
     }, error = function(e) {cat("ERROR :",conditionMessage(e), "\n")})
   }

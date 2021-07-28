@@ -3,6 +3,7 @@
 <!-- badges: start -->
   [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5138170.svg)](https://doi.org/10.5281/zenodo.5138170)
   [![R build status](https://github.com/RichDeto/EPP/workflows/R-CMD-check/badge.svg)](https://github.com/RichDeto/EPP/actions)
+  [![codecov](https://codecov.io/gh/RichDeto/EPP/branch/master/graph/badge.svg){target='_blank'}](https://codecov.io/gh/RichDeto/EPP)
   [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 <!-- badges: end -->
 
