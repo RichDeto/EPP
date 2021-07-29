@@ -1,4 +1,4 @@
-# EPP
+# EPP <img align="right" src="man/figures/epp_logo_b.png" alt="logo" width="160"> <img align="right" src="man/figures/epp_logo.png" alt="logo" width="160">
 
 <!-- badges: start -->
   [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5138170.svg)](https://doi.org/10.5281/zenodo.5138170)
