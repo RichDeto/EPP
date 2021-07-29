@@ -31,6 +31,7 @@ This report present the coverage evaluation of `r nrow(centers)` centers, and th
 ## Outputs
 
 ```{r}
+set.seed(1)
 exist <- eppexist(pop = pop, centers = centers, crs = crs)
 ```
 

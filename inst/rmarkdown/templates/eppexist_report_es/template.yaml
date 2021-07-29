@@ -1,4 +1,4 @@
-name: Template eppexist_es
+name: eppexist_report_es
 description: >
     Este template ayuda con la descripción de los resultados que se obtienen con la función eppexist del paquete EPP en español.
 create_dir: TRUE

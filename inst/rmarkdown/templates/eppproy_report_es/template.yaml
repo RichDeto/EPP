@@ -1,0 +1,4 @@
+name: eppproy_report_es
+description: >
+   Este template ayuda con la descripción de los resultados que se obtienen con la función eppproy del paquete EPP en español.
+create_dir: TRUE

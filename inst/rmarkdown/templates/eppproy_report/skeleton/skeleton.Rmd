@@ -1,0 +1,61 @@
+---
+title: "Template Title"
+author: "Your Name"
+date: "`r format(Sys.time(), '%d de %B, %Y')`"
+output: pdf_document
+bibliography: reference.bib
+link-citations: yes
+nocite: |
+        @R-EPP
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+require(EPP); library(ggplot2)
+pop <- pop_epp # Inlcuye aqui tu data.frame con información de la población a cubrir.
+var_of_weight <- "ICC" # Nombre de la variable usada como "weight".
+## Incluye aquí otros parametros que ajusten a tu caso
+# m = 5 # Number of iteration rounds.
+# l = 4 # Number of iteration rounds with the first group size (g1).
+# g1 = 5 # Size of the groups for the first l iterations.
+# g2 = g1 * 0.5 # Size of the groups for the last m-l iterations.
+# d1 = 1000 # Distance range of service for the first iterations.
+# d2 = d1 * 2 # Second distance range of service.
+crs <- sp::CRS("+init=epsg:32721") # Coordinate Reference Systems (CRS).
+```
+
+
+## Inputs
+
+This report present the coverage evaluation of `r nrow(centers)` centers, and the coverage of `r nrow(pop)` individuals with a `r mean(pop$weight)` mean of `r var_of_weight`.
+
+## Outputs
+
+```{r}
+set.seed(1)
+proy <- eppproy(pop = pop, crs = crs)
+```
+
+The population how may be out of coverage are `r nrow(proy$unassigned)` with a `r mean(proy$unassigned$weight)` mean of `r var_of_weight`.
+
+The population assigned to the corresponding center are `r nrow(proy$assigned_clusters)` with a `r meanproy$assigned_clusters$weight)` mean of `r var_of_weight`.
+
+```{r}
+ggplot(proy$assigned_clusters, aes(x = id, y = weight, color = round)) + 
+    geom_point(size = 6)
+```
+
+From the point of view of the new centers, this processing suggests locations for `r nrow(proy$centros_clusters)`. 
+
+```{r}
+ggplot(proy$assigned_clusters, aes(x = id, y = cubre)) + 
+    geom_bar(stat = "identity")
+```
+
+# Bibliography
+
+```{r bib, include=FALSE}
+# create a bib file for the R packages used in this document
+knitr::write_bib(c('base', 'rmarkdown', 'EPP'), file = 'reference.bib')
+```

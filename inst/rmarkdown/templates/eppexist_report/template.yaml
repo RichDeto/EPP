@@ -1,4 +1,4 @@
-name: Template eppexist
+name: eppexist_report
 description: >
    This template may help with the description of the results of the return of eppexist function of EPP library.
 create_dir: TRUE

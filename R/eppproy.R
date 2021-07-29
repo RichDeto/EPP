@@ -27,10 +27,10 @@ eppproy <- function(pop, m = 5, l = 4, g1 = 5, g2 = g1 * 0.5, d1 = 1000, d2 = d1
         clustered <- clust_it(pop = pop, m = m, l = l, g1 = g1, g2 = g2, d1 = d1, d2 = d2)
         assigned <- assign_clust(clustered)
         unassigned <- clustered[[2]]
-        list(centros_clusters_s <- SpatialPointsDataFrame(SpatialPoints(assigned[[1]][ ,2:3], crs), 
-                                                          assigned[[1]], match.ID = TRUE), 
-             assigned_clusters_s <- SpatialPointsDataFrame(SpatialPoints(assigned[[2]][ ,2:3], crs),
-                                                          assigned[[2]], match.ID = TRUE),
-             unassigned_s <- SpatialPointsDataFrame(SpatialPoints(unassigned[ ,1:2], crs), 
-                                                  unassigned, match.ID = TRUE))
+        list(centros_clusters = SpatialPointsDataFrame(SpatialPoints(assigned[[1]][ ,2:3], crs), 
+                                                       assigned[[1]], match.ID = TRUE), 
+             assigned_clusters = SpatialPointsDataFrame(SpatialPoints(assigned[[2]][ ,2:3], crs),
+                                                        assigned[[2]], match.ID = TRUE),
+             unassigned = SpatialPointsDataFrame(SpatialPoints(unassigned[ ,1:2], crs), 
+                                                 unassigned, match.ID = TRUE))
 } 

@@ -1,0 +1,62 @@
+---
+title: "Titulo del reporte"
+author: "Tu nombre"
+date: "`r format(Sys.time(), '%d de %B, %Y')`"
+output: pdf_document
+bibliography:reference.bib
+link-citations: yes
+nocite: |
+        @R-EPP
+header-includes:
+- \usepackage[utf8]{inputenc}
+- \usepackage[spanish]{babel}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+require(EPP); library(ggplot2)
+pop <- pop_epp # Inlcuye aqui tu data.frame con información de la población a cubrir.
+var_of_weight <- "ICC" # Nombre de la variable usada como "weight".
+## Incluye aquí otros parametros que ajusten a tu caso
+# m = 5 # Numero total de iteraciones.
+# l = 4 # Numero total de iteraciones con el tamaño de grupo de g1.
+# g1 = 5 # Tamaño de los grupos para las primeras l iteraciones.
+# g2 = g1 * 0.5 # Tamaño de los grupos para las últimas m-l iteraciones.
+# d1 = 1000 # Rango de distancia de los servicios para las primeras iteraciones.
+# d2 = d1 * 2 # Segundo rango de distancias de atención de los servicios.
+crs <- sp::CRS("+init=epsg:32721") # Sistema de Coordenadas de Referencia (CRS).
+```
+
+## Inputs
+
+Este reporte presenta la evaluación de cobertura por proximidad de `r nrow(pop)` individuos que presentan una media de `r var_of_weight` equivalente a `r mean(pop$weight)`.
+
+## Outputs
+
+```{r}
+set.seed(1)
+proy <- eppproy(pop = pop, crs = crs)
+```
+
+La población que no pudo ser cubierta corresponde a `r nrow(proy$unassigned)` casos, con una media de `r var_of_weight` equivalente a `r mean(proy$unassigned$weight)`.
+
+Por su parte la población asignada a los nuevos centros fue de `r nrow(proy$assigned_clusters)` casos, con una media de `r var_of_weight` equivalente a `r mean(proy$assigned_clusters$weight)`.
+
+```{r}
+ggplot(proy$assigned_clusters, aes(x = id, y = weight, color = round)) + 
+    geom_point(size = 6)
+```
+
+Desde el punto de los nuevos centros, este procesamiento sugiere ubicaciones para  `r nrow(proy$centros_clusters)`. 
+
+```{r}
+ggplot(proy$assigned_clusters, aes(x = id, y = cubre)) + 
+    geom_bar(stat = "identity")
+```
+
+# Bibliography
+
+```{r bib, include=FALSE}
+# crea un archivo bib con todos los paquetes usados en este documento
+knitr::write_bib(c('base', 'rmarkdown', 'EPP'), file = 'skeleton.bib')
+```
