@@ -3,7 +3,7 @@ title: "Titulo del reporte"
 author: "Tu nombre"
 date: "`r format(Sys.time(), '%d de %B, %Y')`"
 output: pdf_document
-bibliography:reference.bib
+bibliography: reference.bib
 link-citations: yes
 nocite: |
         @R-EPP
@@ -58,5 +58,5 @@ ggplot(exist$remaining_capacity, aes(x = id, y = capacity)) +
 
 ```{r bib, include=FALSE}
 # crea un archivo bib con todos los paquetes usados en este documento
-knitr::write_bib(c('base', 'rmarkdown', 'EPP'), file = 'skeleton.bib')
+knitr::write_bib(c('base', 'rmarkdown', 'EPP'), file = 'reference.bib')
 ```
