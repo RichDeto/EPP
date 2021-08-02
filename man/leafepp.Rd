@@ -4,12 +4,12 @@
 \alias{leafepp}
 \title{leafepp}
 \usage{
-leafepp(x, type, crs, ...)
+leafepp(x, t, crs, ...)
 }
 \arguments{
 \item{x}{List obtained from eppexist or eppproy}
 
-\item{type}{Character "exist" or "proy" depending of input structure}
+\item{t}{Character "exist" or "proy" depending of input structure}
 
 \item{crs}{Coordinate Reference Systems (CRS).}
 
@@ -27,10 +27,10 @@ leafepp
 exist <- eppexist(pop = pop_epp, 
                   centers = centers_epp, 
                   crs = sp::CRS("+init=epsg:32721"))
-leafepp(exist, type = "exist", crs = sp::CRS("+init=epsg:32721"))
+l_epp_exist <- leafepp(exist, t = "exist", crs = sp::CRS("+init=epsg:32721"))
 
 ## In case of eppproy
 
 proy <- eppproy(pop = exist$pop_uncover)
-leafepp(proy, type = "proy", crs = sp::CRS("+init=epsg:32721"))
+l_epp_proy <- leafepp(proy, t = "proy", crs = sp::CRS("+init=epsg:32721"))
 }

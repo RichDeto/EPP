@@ -1,12 +1,13 @@
 #' leafepp
 #'
 #' @param x List obtained from eppexist or eppproy
-#' @param type Character "exist" or "proy" depending of input structure
+#' @param t Character "exist" or "proy" depending of input structure
 #' @param crs Coordinate Reference Systems (CRS).
 #' @param ... leaflet options and parameters
 #'
 #' @return leaflet
 #' @export
+#' @import sf
 #' @import leaflet
 #' @import leaflet.extras
 #' @importFrom dplyr '%>%'
@@ -16,38 +17,35 @@
 #' exist <- eppexist(pop = pop_epp, 
 #'                   centers = centers_epp, 
 #'                   crs = sp::CRS("+init=epsg:32721"))
-#' l_epp_exist <- leafepp(exist, type = "exist", crs = sp::CRS("+init=epsg:32721"))
+#' l_epp_exist <- leafepp(exist, t = "exist", crs = sp::CRS("+init=epsg:32721"))
 #' 
 #' ## In case of eppproy
 #' 
 #' proy <- eppproy(pop = exist$pop_uncover)
-#' l_epp_proy <- leafepp(proy, type = "proy", crs = sp::CRS("+init=epsg:32721"))
+#' l_epp_proy <- leafepp(proy, t = "proy", crs = sp::CRS("+init=epsg:32721"))
 
-leafepp <- function(x, type, crs, ...) {
-        if (type == "exist") {
+leafepp <- function(x, t, crs, ...) {
+        if (t == "exist") {
                 #### bases ####
-                centers <- SpatialPointsDataFrame(SpatialPoints(x$remaining_capacity[ ,1:2], crs), 
-                                                  x$remaining_capacity, match.ID = TRUE) %>% 
-                        spTransform(CRS = CRS("+init=epsg:4326"))
-                assigned <- SpatialPointsDataFrame(SpatialPoints(x$pop_assigned[ ,1:2], crs), 
-                                                   x$pop_assigned, match.ID = TRUE) %>% 
-                        spTransform(CRS = CRS("+init=epsg:4326"))
-                uncover <- SpatialPointsDataFrame(SpatialPoints(x$pop_uncover[ ,1:2], crs), 
-                                                  x$pop_uncover, match.ID = TRUE) %>% 
-                        spTransform(CRS = CRS("+init=epsg:4326"))
+                centers <- sf::st_as_sf(x$remaining_capacity, coords = c("x", "y"), crs = crs) %>% 
+                        sf::st_transform(4326)
+                assigned <- sf::st_as_sf(x$pop_assigned, coords = c("x", "y"), crs = crs) %>% 
+                        sf::st_transform(4326)
+                uncover <- sf::st_as_sf(x$pop_uncover, coords = c("x", "y"), crs = crs) %>% 
+                        sf::st_transform(4326)
                 #### Labels ####
                 etiq_center <- paste( sep = "<br/>",
-                                    paste0("<b> Id center: ", as.character(centers$id),"</b>"),
-                                    paste0("<b> Used capacity: </b>", as.character(centers$used_cap)))
+                                      paste0("<b> Id center: ", as.character(centers$id),"</b>"),
+                                      paste0("<b> Used capacity: </b>", as.character(centers$used_cap)))
                 etiq_assigned <- paste( sep = "<br/>",
-                                    paste0("<b> Weight: ", as.character(assigned$weight),"</b>"),
-                                    paste0("<b> Id center assigned: </b>", as.character(assigned$id)),
-                                    paste0("<b> Iteration: </b>", as.character(assigned$it)),
-                                    paste0("<b> Dist: </b>", as.character(assigned$dist)))
+                                        paste0("<b> Weight: ", as.character(assigned$weight),"</b>"),
+                                        paste0("<b> Id center assigned: </b>", as.character(assigned$id)),
+                                        paste0("<b> Iteration: </b>", as.character(assigned$it)),
+                                        paste0("<b> Dist: </b>", as.character(assigned$dist)))
                 etiq_uncover <- paste( sep = "<br/>",
-                                    paste0("<b> Weight: ", as.character(uncover$weight),"</b>"))
+                                       paste0("<b> Weight: ", as.character(uncover$weight),"</b>"))
                 #### Leaflet ####
-                leaflet(width = "100%", height = "500", padding = 0) %>%
+                l <- leaflet(width = "100%", height = "500", padding = 0) %>%
                         # Ahora generamos un groupo de base
                         addTiles(group = "OSM (default)") %>%
                         addProviderTiles("Esri.WorldImagery", group = "Satelital") %>%
@@ -73,11 +71,14 @@ leafepp <- function(x, type, crs, ...) {
                         addDrawToolbar() %>% hideGroup(c("Centers", "Assigned population", 
                                                          "Uncover population", "Uncover heatmap"))
         }
-        if (type == "proy") {
+        if (t != "exist" & t == "proy") {
                 #### bases ####
-                centers <- x$centros_clusters %>% spTransform(CRS = CRS("+init=epsg:4326"))
-                assigned <- x$assigned_clusters %>% spTransform(CRS = CRS("+init=epsg:4326"))
-                uncover <- x$unassigned %>% spTransform(CRS = CRS("+init=epsg:4326"))
+                centers <- sf::st_as_sf(x$centros_clusters, coords = c("x", "y"), crs = crs) %>% 
+                        sf::st_transform(4326)
+                assigned <- sf::st_as_sf(x$assigned_clusters, coords = c("x", "y"), crs = crs) %>% 
+                        sf::st_transform(4326)
+                uncover <- sf::st_as_sf(x$unassigned, coords = c("x", "y"), crs = crs) %>% 
+                        sf::st_transform(4326)
                 #### Labels ####
                 etiq_center <- paste( sep = "<br/>",
                                       paste0("<b> Id center: ", as.character(centers$id),"</b>"),
@@ -92,7 +93,7 @@ leafepp <- function(x, type, crs, ...) {
                 etiq_uncover <- paste( sep = "<br/>",
                                        paste0("<b> Weight: ", as.character(uncover$weight),"</b>"))
                 #### Leaflet ####
-                leaflet(width = "100%", height = "500", padding = 0) %>%
+                l <- leaflet(width = "100%", height = "500", padding = 0) %>%
                         # Ahora generamos un groupo de base
                         addTiles(group = "OSM (default)") %>%
                         addProviderTiles("Esri.WorldImagery", group = "Satelital") %>%
@@ -117,8 +118,10 @@ leafepp <- function(x, type, crs, ...) {
                         addFullscreenControl(position = "topleft", pseudoFullscreen = FALSE) %>%
                         addDrawToolbar() %>% hideGroup(c("Centers", "Assigned population", 
                                                          "Uncover population", "Uncover heatmap"))
-        } else {
-                stop("The type has to match some of the valid values: exist or proy")
+        } 
+        if (!t %in% c("exist", "proy")) {
+                stop("The {t} has to match some of the valid values: exist or proy")
         }
+        l
 }
         
