@@ -2,7 +2,7 @@
 title: "Template Title"
 author: "Your Name"
 date: "`r format(Sys.time(), '%d de %B, %Y')`"
-output: pdf_document
+output: html_document
 bibliography: reference.bib
 link-citations: yes
 nocite: |
@@ -11,7 +11,7 @@ nocite: |
 
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE)
 require(EPP); library(ggplot2)
 pop <- pop_epp # Inlcuye aqui tu data.frame con información de la población a cubrir.
 var_of_weight <- "ICC" # Nombre de la variable usada como "weight".
@@ -52,6 +52,13 @@ From the point of view of the new centers, this processing suggests locations fo
 ggplot(proy$assigned_clusters, aes(x = id, y = cubre)) + 
     geom_bar(stat = "identity")
 ```
+
+Visualizing the results, here is the map.
+
+```{r}
+leafepp(proy, t = "proy", crs = sp::CRS("+init=epsg:32721"))
+```
+
 
 # Bibliography
 

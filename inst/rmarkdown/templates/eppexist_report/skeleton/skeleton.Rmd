@@ -2,7 +2,7 @@
 title: "Template Title"
 author: "Your Name"
 date: "`r format(Sys.time(), '%d de %B, %Y')`"
-output: pdf_document
+output: html_document
 bibliography: reference.bib
 link-citations: yes
 nocite: |
@@ -10,7 +10,7 @@ nocite: |
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE)
 require(EPP)
 library(ggplot2)
 centers <- centers_epp # Inlcude here your centers data
@@ -50,6 +50,13 @@ From the point of the centers, let's look at the unused capacity after processin
 ggplot(exist$remaining_capacity, aes(x = id, y = capacity)) + 
     geom_bar(stat = "identity")
 ```
+
+Visualizing the results, here is the map.
+
+```{r}
+leafepp(exist, t = "exist", crs = sp::CRS("+init=epsg:32721"))
+```
+
 
 # Bibliography
 

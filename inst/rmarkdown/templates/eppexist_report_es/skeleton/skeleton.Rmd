@@ -2,7 +2,7 @@
 title: "Titulo del reporte"
 author: "Tu nombre"
 date: "`r format(Sys.time(), '%d de %B, %Y')`"
-output: pdf_document
+output: html_document
 bibliography: reference.bib
 link-citations: yes
 nocite: |
@@ -13,7 +13,7 @@ header-includes:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE)
 require(EPP); library(ggplot2)
 centers <- centers_epp # Inlcuye aqui tu data.frame con información de los centros de atención.
 pop <- pop_epp # Inlcuye aqui tu data.frame con información de la población a cubrir.
@@ -53,6 +53,13 @@ Desde el punto de los centros, veamos la capacidad no utilizada después del pro
 ggplot(exist$remaining_capacity, aes(x = id, y = capacity)) + 
     geom_bar(stat = "identity")
 ```
+
+Para Visualizar los resultados, aquí está el mapa.
+
+```{r}
+leafepp(exist, t = "exist", crs = sp::CRS("+init=epsg:32721"))
+```
+
 
 # Bibliography
 

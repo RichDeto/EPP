@@ -2,7 +2,7 @@
 title: "Titulo del reporte"
 author: "Tu nombre"
 date: "`r format(Sys.time(), '%d de %B, %Y')`"
-output: pdf_document
+output: html_document
 bibliography: reference.bib
 link-citations: yes
 nocite: |
@@ -13,7 +13,7 @@ header-includes:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE)
 require(EPP); library(ggplot2)
 pop <- pop_epp # Inlcuye aqui tu data.frame con información de la población a cubrir.
 var_of_weight <- "ICC" # Nombre de la variable usada como "weight".
@@ -52,6 +52,12 @@ Desde el punto de los nuevos centros, este procesamiento sugiere ubicaciones par
 ```{r}
 ggplot(proy$assigned_clusters, aes(x = id, y = cubre)) + 
     geom_bar(stat = "identity")
+```
+
+Para Visualizar los resultados, aquí está el mapa.
+
+```{r}
+leafepp(proy, t = "proy", crs = sp::CRS("+init=epsg:32721"))
 ```
 
 # Bibliography
