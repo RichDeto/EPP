@@ -1,5 +1,5 @@
-#' Function for iterative clusterization
-#' @description The function clusterizes population to create service's centers. Iterates EPP::clust_pop for the remaining population in each step. It allows to define two distances of service and two group sizes for several rounds of iteration.
+#' Function for iterative clustering
+#' @description The function clusters population to create service's centers. Iterates EPP::clust_pop for the remaining population in each step. It allows to define two distances of service and two group sizes for several rounds of iteration.
 #'
 #' @param pop Population to attend (dataframe with three variables: x, y, and weight). x and y are plain coordinates in the defined CRS
 #' @param m Number of iteration rounds. Default 5

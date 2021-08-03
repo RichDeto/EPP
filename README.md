@@ -35,7 +35,7 @@ centers_epp <- group_over(rbind(centers_epp, centers_epp[ 1:3,]))
 exist <- eppexist(pop = pop_epp, centers = centers_epp, crs = sp::CRS("+init=epsg:32721"))
 ```
 
-Normally the population is not completely covered by exisiting infrastructure, and that's when `eppproy()` appears, a function to find optimal locations to create new centers to cover the remaining population.  
+Normally the population is not completely covered by existing infrastructure, and that's when `eppproy()` appears, a function to find optimal locations to create new centers to cover the remaining population.  
 
 Continuing with the example:
 
@@ -48,13 +48,13 @@ This was just an example using the default values of all the parameters. Please 
 ### Report template
 
 The library also has templates in English and Spanish to quickly produce report of the results of the processing.
-In RStudio when you create a new RMarkdown document you can select the template like image show and start to personalizate it. 
+In RStudio when you create a new RMarkdown document you can select the template like image show and start to personalize it. 
 
 <img src="man/figures/template_epp.PNG" width="50%" style="display: block; margin: auto;" />
 
 ### General functions
 
-The syntax of all `{EPP}` functions are focused on executing two main processes,`eppexist()` and `eppproy()`, both aimed at evaluating the distribution of a certain population and the centers planned to cover it. Under the hood, there are some other tools that can be useful for other processes. Among them, we can mention those that allow making voronoy polygons (`voro_polygon()`), buffer-voronoy (`buff_voronoi()`) and iterative clusters (`clust_it()`).
+The syntax of all `{EPP}` functions are focused on executing two main processes,`eppexist()` and `eppproy()`, both aimed at evaluating the distribution of a certain population and the centers planned to cover it. Under the hood, there are some other tools that can be useful for other processes. Among them, we can mention those that allow making voronoi polygons (`voro_polygon()`), buffer-voronoi (`buff_voronoi()`) and iterative clusters (`clust_it()`).
 
 ## References
 
@@ -68,4 +68,4 @@ Botto, G. y Detomasi, R. 2015. ["Bases metodológicas para la planificación esp
 
 Detomasi, R., Botto, G. y Hahn, M. 2015. ["CAIF: Análisis de demanda"](http://dinem.mides.gub.uy/innovaportal/file/61792/1/caif.-analisis-de-demanda.-2015.pdf) Documento de trabajo, Mayo 2015. Departamento de Geografía. Dirección Nacional de Evaluación y Monitoreo. Ministerio de Desarrollo Social.  
 
-R Development Core Team 2015. ["R: A language and environment for statistical computing"](http://www.R-project.org/) R Foundation forStatistical Computing, Vienna, Austria.ISBN 3-900051-07-0.
+R Development Core Team 2015. ["R: A language and environment for statistical computing"](http://www.R-project.org/) R Foundation for Statistical Computing, Vienna, Austria.ISBN 3-900051-07-0.

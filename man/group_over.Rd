@@ -10,7 +10,7 @@ group_over(x)
 \item{x}{A data.frame with unless four variables: x, y, id, capacity}
 }
 \value{
-A data.frame without geographic duplcates, aggregating ids and capacity
+A data.frame without geographic duplicates, aggregating ids and capacity
 }
 \description{
 grouping of id and capacity of centers who overlapping geometries

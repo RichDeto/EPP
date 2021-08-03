@@ -11,11 +11,11 @@ assignation_exist(pop, centers, d, crs, route = FALSE)
 
 \item{centers}{Centers of services (dataframe with four variables: x, y, id, and capacity) x and y are plain coordinates in the defined CRS}
 
-\item{d}{Maximum distance at wich the center may provide service in meters}
+\item{d}{Maximum distance at which the center may provide service in meters}
 
 \item{crs}{Coordinates reference system of pop and centers}
 
-\item{route}{logical if FALSE the distance is calculated by pithagorean formula, if TRUE the distance is calculated by "osrmRoute" function of "osrm" Package. Default = FALSE}
+\item{route}{logical if FALSE the distance is calculated by Pythagorean formula, if TRUE the distance is calculated by "osrmRoute" function of "osrm" Package. Default = FALSE}
 }
 \value{
 Return a LIST with:
@@ -23,7 +23,7 @@ Return a LIST with:
     \item{new_assign }{Population with the center assigned}
 }
 \description{
-Function to assign population to centers of services, based in proximity, maximum radius and nominal capactiy of the centers. The capacity and maximum radius are defined a priori based on policies' objectives
+Function to assign population to centers of services, based in proximity, maximum radius and nominal capacity of the centers. The capacity and maximum radius are defined a priori based on policies' objectives
 }
 \examples{
 assignation_exist(pop_epp, centers_epp, d = 1000, crs = sp::CRS("+init=epsg:32721"), route = FALSE)

@@ -2,7 +2,7 @@
 % Please edit documentation in R/clust_it.R
 \name{clust_it}
 \alias{clust_it}
-\title{Function for iterative clusterization}
+\title{Function for iterative clustering}
 \usage{
 clust_it(pop, m = 5, l = 4, g1 = 5, g2 = g1 * 0.5, d1 = 1000, d2 = d1 * 2)
 }
@@ -27,7 +27,7 @@ Return a LIST with:
 \item{pop}{Remaining non-assigned population}
 }
 \description{
-The function clusterizes population to create service's centers. Iterates EPP::clust_pop for the remaining population in each step. It allows to define two distances of service and two group sizes for several rounds of iteration.
+The function clusters population to create service's centers. Iterates EPP::clust_pop for the remaining population in each step. It allows to define two distances of service and two group sizes for several rounds of iteration.
 }
 \examples{
 clu <- clust_it(pop = pop_epp)

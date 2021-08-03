@@ -11,17 +11,24 @@ osrm_matrixby100(src, dst, crs, wid = TRUE)
 
 \item{dst}{Dataframe with three variables: and a pair of coordinates, or only the pair of coordinates with the "wid" parameter setted FALSE}
 
-\item{crs}{Specific coordinates sistem to transform to the CRS("+init=epsg:4326") needed by osrm library.}
+\item{crs}{Specific coordinates system to transform to the CRS("+init=epsg:4326") needed by osrm library.}
 
 \item{wid}{If TRUE keeping the "id" of the first column, if FALSE generate an "id" using the nrow function.}
 }
 \value{
 Return a DataFrame with:
-\item{matriz}{The distance matrix of all the rows of tha dataframe}
+\item{matriz}{The distance matrix of all the rows of the dataframe}
 }
 \description{
 Generate a distance matrix for dataframes of more than 100 rows, using osrm functions by nrow(dataframe)/100 of rows. Its use the osrmRoute and osrmTable functions of osrm library, that build and send an OSRM API query to get the travel geometry between two points. 
 This function interfaces the route OSRM service. The principal contribution to this function it´s to consider avoiding the record limit of the original osrm function.
+}
+\examples{
+\dontrun{
+a <- osrm_matrixby100(src = cbind(id = 1:80, pop_epp[1:80, 1:2]),
+                      dst = cbind(id = 103:135, pop_epp[103:135, 1:2]), 
+                      crs = sp::CRS("+init=epsg:32721"), wid = TRUE)
+}
 }
 \references{
 Timothée Giraud, Robin Cura and Matthieu Viry 2017 osrm: Interface Between R and the OpenStreetMap-Based Routing Service OSRM. https://CRAN.R-project.org/package=osrm

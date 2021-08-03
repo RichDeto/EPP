@@ -7,10 +7,10 @@
 assign_clust(clustered)
 }
 \arguments{
-\item{clustered}{List of the population assigned to each centre by EPP::clust_it}
+\item{clustered}{List of the population assigned to each center by EPP::clust_it}
 }
 \value{
-list with Centres of the clusters with the number of individuals covered for each service distance 
+list with Centers of the clusters with the number of individuals covered for each service distance 
 and mean distances and Population with the center assigned to
 }
 \description{
