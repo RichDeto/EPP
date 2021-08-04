@@ -2,6 +2,9 @@
 
 <!-- badges: start -->
   [![CRAN status](https://www.r-pkg.org/badges/version/EPP)](https://CRAN.R-project.org/package=EPP)
+  [![CRAN/METACRAN Version](https://www.r-pkg.org/badges/version/EPP)](https://CRAN.R-project.org/package=EPP)
+  [![CRAN/METACRAN Total downloads](http://cranlogs.r-pkg.org/badges/grand-total/EPP?color=blue)](https://CRAN.R-project.org/package=EPP) 
+  [![CRAN/METACRAN downloads per month](http://cranlogs.r-pkg.org/badges/EPP?color=orange)](https://CRAN.R-project.org/package=EPP)
   [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5138170.svg)](https://doi.org/10.5281/zenodo.5138170)
   [![R build status](https://github.com/RichDeto/EPP/workflows/R-CMD-check/badge.svg)](https://github.com/RichDeto/EPP/actions)
   [![codecov](https://codecov.io/gh/RichDeto/EPP/branch/master/graph/badge.svg)](https://codecov.io/gh/RichDeto/EPP)
@@ -62,12 +65,12 @@ The syntax of all `{EPP}` functions are focused on executing two main processes,
 
 Detomasi, R. 2018. "Abordaje espacial de políticas públicas: cuidados y primera infancia”. En: [Las políticas públicas dirigidas a la infancia en Uruguay](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=2&cad=rja&uact=8&ved=2ahUKEwiu_uH64vHjAhXsJ7kGHRHOCo4QFjABegQIABAC&url=https%3A%2F%2Frepositorio.cepal.org%2Fbitstream%2Fhandle%2F11362%2F44155%2F1%2FS1800463_es.pdf&usg=AOvVaw3EPJkSZSWIDsQ-dpwcHuUO). Coords. Verónica Amarante  y Juan Pablo Labat. Ed. CEPAL - UNICEF, Santiago de Chile.
 
-Detomasi, R., G. Mathieu y G. Botto 2018. ["EPP v.0.2: Evaluation of Proximity Programs with OSRM routing"](http://47jaiio.sadio.org.ar/sites/default/files/LatinR_10.pdf). LatinR - Conferencia Latinoamericana sobre Uso de R en Investigación + Desarrollo. 3 al 7 de Setiembre. 
+Detomasi, R., G. Mathieu y G. Botto 2018. ["EPP v.0.2: Evaluation of Proximity Programs with OSRM routing"](https://47jaiio.sadio.org.ar/sites/default/files/LatinR_10.pdf). LatinR - Conferencia Latinoamericana sobre Uso de R en Investigación + Desarrollo. 3 al 7 de Setiembre. 
 
 Detomasi, R. y G. Botto. 2017. ["Evaluación espacial de servicios de educación inicial: la densificación de la oferta para tres años en la Administración Nacional de Educación Pública (ANEP)"](http://www.geofocus.org/index.php/geofocus/article/view/508). GeoFocus (ISSN 1578-5157).
 
-Botto, G. y Detomasi, R. 2015. ["Bases metodológicas para la planificación espacial de servicios de educación inicial en Uruguay"](http://dinem.mides.gub.uy/innovaportal/file/61794/1/tecnologias-de-la-informacion-para-nuevas-formas-de-gestion-del-territorio.-2015.pdf) Jornadas Argentinas de Geo-tecnologías: Trabajos completos. Universidad Nacional de Luján - Sociedad de Especialistas Latinoamericanos en Percepción Remota - Universidad Nacional de San Luis, pp. 121-128.
+Botto, G. y Detomasi, R. 2015. ["Bases metodológicas para la planificación espacial de servicios de educación inicial en Uruguay"](https://dinem.mides.gub.uy/innovaportal/file/61794/1/tecnologias-de-la-informacion-para-nuevas-formas-de-gestion-del-territorio.-2015.pdf) Jornadas Argentinas de Geo-tecnologías: Trabajos completos. Universidad Nacional de Luján - Sociedad de Especialistas Latinoamericanos en Percepción Remota - Universidad Nacional de San Luis, pp. 121-128.
 
-Detomasi, R., Botto, G. y Hahn, M. 2015. ["CAIF: Análisis de demanda"](http://dinem.mides.gub.uy/innovaportal/file/61792/1/caif.-analisis-de-demanda.-2015.pdf) Documento de trabajo, Mayo 2015. Departamento de Geografía. Dirección Nacional de Evaluación y Monitoreo. Ministerio de Desarrollo Social.  
+Detomasi, R., Botto, G. y Hahn, M. 2015. ["CAIF: Análisis de demanda"](https://dinem.mides.gub.uy/innovaportal/file/61792/1/caif.-analisis-de-demanda.-2015.pdf) Documento de trabajo, Mayo 2015. Departamento de Geografía. Dirección Nacional de Evaluación y Monitoreo. Ministerio de Desarrollo Social.  
 
-R Development Core Team 2015. ["R: A language and environment for statistical computing"](http://www.R-project.org/) R Foundation for Statistical Computing, Vienna, Austria.ISBN 3-900051-07-0.
+R Development Core Team 2015. ["R: A language and environment for statistical computing"](https://www.R-project.org/) R Foundation for Statistical Computing, Vienna, Austria.ISBN 3-900051-07-0.

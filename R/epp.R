@@ -3,7 +3,7 @@
 #' Evaluation of Proximity Programs
 #'
 #' See the README on
-#' \href{https://gitlab.mides.gub.uy/rdetomasi/epp/blob/master/README.md}{Gitlab}
+#' \href{https://github.com/RichDeto/EPP/blob/master/README.md}{Github}
 #'
 #' @docType package
 #' @name epp
