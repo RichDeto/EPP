@@ -7,51 +7,41 @@
 voro_polygon(x, bounding.polygon = NULL, range.expand = 0.1)
 }
 \arguments{
-\item{x}{A \code{SpatialPoints} or \code{SpatialPointsDataFrame} object}
+\item{x}{A SpatialPoints or SpatialPointsDataFrame object}
 
-\item{bounding.polygon}{If present, this is a \code{SpatialPolygons*} object specifying the 
-bounding polygon(s) for the Voronoi polygons.  If present, the 
-Voronoi polygons are clipped to the outside 
-bounding polygon of \code{bounding.polygon}.  The outside bounding polygon
-is the union of all polygons 
-in \code{bounding.polygon}.  If this is not present, the Voronoi polygons
-extend to a rectangle that is \code{range.expand} beyond the 
-bounding box of input points in all directions.}
+\item{bounding.polygon}{If present, this is a SpatialPolygons object specifying the 
+bounding polygon(s) for the Voronoi polygons, and make the Voronoi polygons to be 
+clipped to the outside bounding polygon. The outside bounding polygon
+is the union of all polygons in bounding.polygon. If this is not present, the 
+Voronoi polygons extend to a rectangle that is range.expand beyond the bounding box
+of input points in all directions.}
 
 \item{range.expand}{A length-one or length-two vector of expansion 
-factors for the bounding box 
-of points in \code{x} in the horizontal and vertical directions. If length 
-one, it is replicated to length two.  Element one is the fraction of the 
+factors for the bounding box of points in x in the horizontal and vertical directions. 
+If length = 1, it is replicated to length two. Element one is the fraction of the 
 bounding box's horizontal width that is added and subtracted to the 
-horizontal extent 
-of the output polygons. Element two is the fraction of the 
+horizontal extent of the output polygons. Element two is the fraction of the 
 bounding box's vertical height that is added and subtracted to the vertical extent 
-of the output polygons.  Only this parameter's 
-absolute value is used (i.e., all values are made positive). If
-\code{bounding.polygon} is present, this parameter is ignored.}
+of the output polygons.  Only this parameter's absolute value is used. If bounding.polygon
+is present, this parameter is ignored.}
 }
 \value{
-A \code{SpatialPolygonsDataFrame} containing the Voronoi polygons
- (or tessellations) surrounding the points in \code{x}. Attributes of the 
- output polygons are: 
- \itemize{
-   \item x : the horizontal coordinate of the tessellation's defining point
-   \item y : the vertical coordinate of the tessellation's defining point
-   \item area : area of tessellation, in units of \code{x}'s projection.
- }
+A SpatialPolygonsDataFrame containing the Voronoi polygons surrounding the points in x. Attributes of the output polygons are: 
+\item{x}{The horizontal coordinate of the tessellation's defining point} 
+\item{y}{The vertical coordinate of the tessellation's defining point}
+\item{area}{Area of tessellation, in units of x's projection.}
 }
 \description{
-Calculate Voronoi polygons (or tessellations) from a 
- \code{SpatialPoints*} object
+Calculate Voronoi polygons from a SpatialPoints object
 }
 \details{
-This is a convenience routine for the 
-\code{deldir::deldir} function.  The hard work, computing the Voronoi polygons,
-is done by the \code{deldir::deldir} and \code{deldir::tile.list} functions. 
-See documentation for those functions for details of computations.
+This is a convenience routine for the deldir::deldir function. 
+The hard work, computing the Voronoi polygons, is done by the deldir::deldir
+and deldir::tile.list functions. See documentation for those functions for 
+details of computations.
 
-This function is convenient because it takes a \code{SpatialPoints*} 
-object and returns a \code{SpatialPolygonsDataFrame} object.
+This function is convenient because it takes a SpatialPoints object and returns 
+a SpatialPolygonsDataFrame object.
 }
 \examples{
 x <- sp::SpatialPoints(centers_epp[ ,1:2])

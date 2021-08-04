@@ -1,10 +1,12 @@
 # EPP <img align="right" src="man/figures/epp_logo_b.png" alt="logo" width="160"> <img align="right" src="man/figures/epp_logo.png" alt="logo" width="160">
 
 <!-- badges: start -->
+  [![CRAN status](https://www.r-pkg.org/badges/version/EPP)](https://CRAN.R-project.org/package=EPP)
   [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5138170.svg)](https://doi.org/10.5281/zenodo.5138170)
   [![R build status](https://github.com/RichDeto/EPP/workflows/R-CMD-check/badge.svg)](https://github.com/RichDeto/EPP/actions)
   [![codecov](https://codecov.io/gh/RichDeto/EPP/branch/master/graph/badge.svg)](https://codecov.io/gh/RichDeto/EPP)
   [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+
 <!-- badges: end -->
 
 ## Evaluation of Proximity Programs
