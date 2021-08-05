@@ -36,7 +36,7 @@ leafepp <- function(x, t, crs, ...) {
                 #### Labels ####
                 etiq_center <- paste( sep = "<br/>",
                                       paste0("<b> Id center: ", as.character(centers$id),"</b>"),
-                                      paste0("<b> Used capacity: </b>", as.character(centers$used_cap)))
+                                      paste0("<b> Unused capacity: </b>", as.character(centers$capacity)))
                 etiq_assigned <- paste( sep = "<br/>",
                                         paste0("<b> Weight: ", as.character(assigned$weight),"</b>"),
                                         paste0("<b> Id center assigned: </b>", as.character(assigned$id)),
@@ -46,11 +46,9 @@ leafepp <- function(x, t, crs, ...) {
                                        paste0("<b> Weight: ", as.character(uncover$weight),"</b>"))
                 #### Leaflet ####
                 l <- leaflet(width = "100%", height = "500", padding = 0) %>%
-                        # Ahora generamos un groupo de base
                         addTiles(group = "OSM (default)") %>%
                         addProviderTiles("Esri.WorldImagery", group = "Satelital") %>%
                         addProviderTiles(providers$CartoDB.Positron, group = "Positron") %>%
-                        # Generamos el grupo de capas
                         addCircles(data = centers, color = "Black", opacity = 1, fillColor = "red",
                                    weight = 7, group = "Centers", popup = etiq_center) %>%
                         addCircles(data = assigned, color = "#762a83", opacity = 1, 

@@ -2,6 +2,10 @@
 
 -------------------------------------------------------
 
+## EPP v0.3.3 (In progress)
+
+  * leafepp bug in t = "exist" about center$capacity popup
+
 ## EPP v0.3.2 (2021-08-03)
 
 Launch of **EPP** v0.3.2 on [GitHUb](https://github.com/RichDeto/EPP) with the following functions:  
