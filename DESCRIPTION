@@ -19,7 +19,7 @@ SystemRequirements: GDAL (>= 3.0.2), GEOS (>= 3.8.0), PROJ (>= 6.2.1)
 Depends: R (>= 3.5.0)
 Language: en
 Imports: sp, rgeos, maptools, flexclust, plyr, osrm, deldir, methods, 
-        dplyr, rgdal, leaflet, leaflet.extras, sf
+        dplyr, rgdal, leaflet, leaflet.extras, sf, nngeo
 Suggests: knitr, devtools, roxygen2, markdown, rstudioapi (>= 0.11),
         testthat (>= 2.3.2), rsvg, gdtools
 License: GPL (>= 3)

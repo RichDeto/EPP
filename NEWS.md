@@ -5,6 +5,7 @@
 ## EPP v0.3.3 (In progress)
 
   * leafepp bug in t = "exist" about center$capacity popup
+  * add assign_nn() function
 
 ## EPP v0.3.2 (2021-08-03)
 

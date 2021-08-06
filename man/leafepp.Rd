@@ -19,7 +19,7 @@ leafepp(x, t, crs, ...)
 leaflet
 }
 \description{
-leafepp
+template of leaflet map for {eppexist} or {eppproy} outputs
 }
 \examples{
 ## In case of eppexist

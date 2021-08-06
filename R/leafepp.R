@@ -1,5 +1,5 @@
 #' leafepp
-#'
+#' @description template of leaflet map for {eppexist} or {eppproy} outputs
 #' @param x List obtained from eppexist or eppproy
 #' @param t Character "exist" or "proy" depending of input structure
 #' @param crs Coordinate Reference Systems (CRS).
