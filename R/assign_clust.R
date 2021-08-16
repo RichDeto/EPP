@@ -12,7 +12,7 @@
 
 assign_clust <- function(clustered){
   asigned_clusters <- as.data.frame(NULL)
-  for (i in 1:length(clustered)) {
+  for (i in 1:length(clustered[[1]])) {
     asigned_clusters <- rbind(asigned_clusters, as.data.frame(clustered[[1]][[i]]))
   }
   asigned_clusters$id <- paste(asigned_clusters$round, asigned_clusters$medianx, asigned_clusters$mediany, sep = "_")

@@ -4,8 +4,11 @@
 
 ## EPP v0.3.3 (In progress)
 
-  * leafepp bug in t = "exist" about center$capacity popup
+  * leafepp debug in t = "exist" about center$capacity popup
+  * debug assign_clust line 15
+  * categorization of centers by coverage in leafepp(t = "proy")
   * add assign_nn() function
+  * add addSearchOSM() in leafepp
 
 ## EPP v0.3.2 (2021-08-03)
 

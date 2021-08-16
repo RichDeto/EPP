@@ -19,7 +19,7 @@
 clust_it <- function(pop, m = 5, l = 4, g1 = 5, g2 = g1 * 0.5, d1 = 1000, d2 = d1 * 2){
         clusterizados <- as.list(NA)
         j <- 1 #iteration index
-        n <- 1 #pob remainder
+        n <- nrow(pop) #pob remainder
         while (j <= m & n >=  1 & ceiling(nrow(pop) / (ifelse(j <= l, g1, g2) * 0.75)) >= 2) { 
                 pop <- clust_pop(pop, ceiling(nrow(pop) / (ifelse(j <= l, g1, g2) * 0.75))) 
                 list_1 <- vector("list")

@@ -65,6 +65,7 @@ leafepp <- function(x, t, crs, ...) {
                         # Agragamos la leyenda
                         addLegend("bottomleft", colors = c("black", "#762a83", "#4575b4"), opacity = 1,
                                   labels = c("Centers", "Assigned population", "Uncover population"))  %>%
+                        addSearchOSM() %>% 
                         addFullscreenControl(position = "topleft", pseudoFullscreen = FALSE) %>%
                         addDrawToolbar() %>% hideGroup(c("Centers", "Assigned population", 
                                                          "Uncover population", "Uncover heatmap"))
@@ -73,6 +74,9 @@ leafepp <- function(x, t, crs, ...) {
                 #### bases ####
                 centers <- sf::st_as_sf(x$centros_clusters, coords = c("x", "y"), crs = crs) %>% 
                         sf::st_transform(4326)
+                if(length(unique(centers$cubre)) > 1){
+                        pal <- colorFactor(palette = c('#A4A9AA', 'Black'), domain = centers$cubre)
+                }
                 assigned <- sf::st_as_sf(x$assigned_clusters, coords = c("x", "y"), crs = crs) %>% 
                         sf::st_transform(4326)
                 uncover <- sf::st_as_sf(x$unassigned, coords = c("x", "y"), crs = crs) %>% 
@@ -97,8 +101,6 @@ leafepp <- function(x, t, crs, ...) {
                         addProviderTiles("Esri.WorldImagery", group = "Satelital") %>%
                         addProviderTiles(providers$CartoDB.Positron, group = "Positron") %>%
                         # Generamos el grupo de capas
-                        addCircles(data = centers, color = "black", opacity = 1, weight = 5,
-                                   group = "Centers", popup = etiq_center) %>%
                         addCircles(data = assigned, color = "#762a83", opacity = 1, 
                                    group = "Assigned population", popup = etiq_assigned) %>%
                         addCircles(data = uncover, color = "#4575b4", opacity = 1, 
@@ -109,13 +111,26 @@ leafepp <- function(x, t, crs, ...) {
                         addLayersControl(baseGroups = c("OSM (default)", "Satelital", "Positron"),
                                          overlayGroups = c("Centers", "Assigned population", 
                                                            "Uncover population", "Uncover heatmap"),
-                                         options = layersControlOptions(collapsed = T)) %>%
-                        # Agragamos la leyenda
-                        addLegend("bottomleft", colors = c("bLack", "#762a83", "#4575b4"), opacity = 1,
-                                  labels = c("Centers", "Assigned population", "Uncover population"))  %>%
+                                         options = layersControlOptions(collapsed = T)) %>% addSearchOSM() %>% 
                         addFullscreenControl(position = "topleft", pseudoFullscreen = FALSE) %>%
                         addDrawToolbar() %>% hideGroup(c("Centers", "Assigned population", 
                                                          "Uncover population", "Uncover heatmap"))
+                        # Agragamos la leyenda
+                        
+                if (length(unique(centers$cubre)) == 1){
+                        l <- l %>% addCircles(data = centers, color = "black", opacity = 1, 
+                                              weight = 5, group = "Centers", popup = etiq_center) %>% 
+                                addLegend("bottomleft", colors = c("Black", "#762a83", "#4575b4"), opacity = 1,
+                                          labels = c("Centers", "Assigned population", "Uncover population"))
+                        } else {
+                                l <- l %>% addCircles(data = centers, color = ~pal(cubre), opacity = 1, 
+                                                      weight = 5, group = "Centers", popup = etiq_center) %>%
+                                        addLegend("bottomleft", colors = c("Black", "#A4A9AA", "#762a83", "#4575b4"), 
+                                                  opacity = 1,
+                                                  labels = c(paste0("Centers of ",unique(centers$cubre)[1]),
+                                                             paste0("Centers of ",unique(centers$cubre)[2]),
+                                                             "Assigned population", "Uncover population"))   
+                        } 
         } 
         if (!t %in% c("exist", "proy")) {
                 stop("The {t} has to match some of the valid values: exist or proy")
