@@ -31,3 +31,15 @@ pop <- NULL
 #' centers
 #' @name centers
 centers <- NULL
+
+
+#' Labels to translate leafepp maps.
+#'
+#' A dataset containing the labels to translate leafepp maps.
+#'
+#' @format A data frame with 15 rows and 2 variables:
+#' \describe{
+#'   \item{en}{English labels}
+#'   \item{es}{Spanish labels}
+#' }
+"labels_es"

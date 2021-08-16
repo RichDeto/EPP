@@ -1,0 +1,13 @@
+labels_es <- data.frame(
+        en = c("Id center", "Unused capacity", "Capacity", "Weight", "Id center assigned",
+               "Iteration", "Distance", "Remaining capacity", "Centers full", 
+               "Assigned population", "Uncover population", "Mean weight",
+               "Mean distance", "Proposed centers", "Total capacity"),
+        es = c("Id centro", "Capacidad remanente", "Capacidad", "Pondera", "Id centro asignado",
+               "Iteración", "Distancia", "Capacidad disponible", "Centros llenos",
+               "Población asignada", "Población no cubierta", "ponderación media",
+               "Distancia media", "Centros propuestos", "Capacidad total"),
+        stringsAsFactors = FALSE
+)
+
+usethis::use_data(labels_es, overwrite = TRUE)

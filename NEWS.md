@@ -8,7 +8,8 @@
   * debug assign_clust line 15
   * categorization of centers by coverage in leafepp(t = "proy")
   * add assign_nn() function
-  * add addSearchOSM() in leafepp
+  * add addSearchOSM() in 
+  * add labels_es dataset to translate leafepp maps 
 
 ## EPP v0.3.2 (2021-08-03)
 

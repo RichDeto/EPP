@@ -4,7 +4,7 @@
 \alias{leafepp}
 \title{leafepp}
 \usage{
-leafepp(x, t, crs, ...)
+leafepp(x, t, crs, leng = "es", ...)
 }
 \arguments{
 \item{x}{List obtained from eppexist or eppproy}
@@ -12,6 +12,8 @@ leafepp(x, t, crs, ...)
 \item{t}{Character "exist" or "proy" depending of input structure}
 
 \item{crs}{Coordinate Reference Systems (CRS).}
+
+\item{leng}{Lenguage of labels. Available english ("en" ) and spanish ("es"). Default "es"}
 
 \item{...}{leaflet options and parameters}
 }
