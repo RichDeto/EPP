@@ -64,29 +64,25 @@ leafepp <- function(x, t, crs, leng = "es", ...) {
                         addProviderTiles("Esri.WorldImagery", group = "Satelital") %>%
                         addProviderTiles(providers$CartoDB.Positron, group = "Positron") %>%
                         addCircles(data = centers, opacity = 1, color = "red",
-                                   weight = 7, group = "Remaining capacity", popup = etiq_center) %>%
+                                   weight = 7, group = lb[8, leng], popup = etiq_center) %>%
                         addCircles(data = centers_full, opacity = 1, color = "yellow",
-                                   weight = 7, group = "Centers_full", popup = etiq_center_full) %>%
+                                   weight = 7, group = lb[9, leng], popup = etiq_center_full) %>%
                         addCircles(data = assigned, color = "#762a83", opacity = 1, 
-                                   group = "Assigned population", popup = etiq_assigned) %>%
+                                   group = lb[10, leng], popup = etiq_assigned) %>%
                         addCircles(data = uncover, color = "#4575b4", opacity = 1, 
-                                   group = "Uncover population", popup = etiq_uncover) %>%
+                                   group = lb[11, leng], popup = etiq_uncover) %>%
                         addHeatmap(data = uncover, blur = 10, max = 0.05, radius = 5, 
-                                   group = "Uncover heatmap") %>%
+                                   group = lb[16, leng]) %>%
                         # Agregamos controles para las capas
                         addLayersControl(baseGroups = c("OSM (default)", "Satelital", "Positron"),
-                                         overlayGroups = c("Remaining capacity", "Centers_full",
-                                                           "Assigned population", "Uncover population", 
-                                                           "Uncover heatmap"),
+                                         overlayGroups = c(lb[c(8:11, 16), leng]),
                                          options = layersControlOptions(collapsed = T)) %>%
                         # Agragamos la leyenda
                         addLegend("bottomleft", colors = c("red", "yellow", "#762a83", "#4575b4"), opacity = 1,
                                   labels = c(lb[8:11, leng]))  %>%
                         addSearchOSM() %>% 
                         addFullscreenControl(position = "topleft", pseudoFullscreen = FALSE) %>%
-                        addDrawToolbar() %>% hideGroup(c("Remaining capacity", "Centers_full", 
-                                                         "Assigned population", "Uncover population", 
-                                                         "Uncover heatmap"))
+                        addDrawToolbar() %>% hideGroup(c(lb[c(8:11, 16), leng]))
         }
         if (t != "exist" & t == "proy") {
                 #### bases ####
@@ -120,29 +116,27 @@ leafepp <- function(x, t, crs, leng = "es", ...) {
                         addProviderTiles(providers$CartoDB.Positron, group = "Positron") %>%
                         # Generamos el grupo de capas
                         addCircles(data = assigned, color = "#762a83", opacity = 1, 
-                                   group = "Assigned population", popup = etiq_assigned) %>%
+                                   group = lb[10, leng], popup = etiq_assigned) %>%
                         addCircles(data = uncover, color = "#4575b4", opacity = 1, 
-                                   group = "Uncover population", popup = etiq_uncover) %>%
+                                   group = lb[11, leng], popup = etiq_uncover) %>%
                         addHeatmap(data = uncover, blur = 10, max = 0.05, radius = 5, 
-                                   group = "Uncover heatmap") %>%
+                                   group = lb[16, leng]) %>%
                         # Agregamos controles para las capas
                         addLayersControl(baseGroups = c("OSM (default)", "Satelital", "Positron"),
-                                         overlayGroups = c("Centers", "Assigned population", 
-                                                           "Uncover population", "Uncover heatmap"),
+                                         overlayGroups = c(lb[c(14,10:11, 16), leng]),
                                          options = layersControlOptions(collapsed = T)) %>% addSearchOSM() %>% 
                         addFullscreenControl(position = "topleft", pseudoFullscreen = FALSE) %>%
-                        addDrawToolbar() %>% hideGroup(c("Centers", "Assigned population", 
-                                                         "Uncover population", "Uncover heatmap"))
+                        addDrawToolbar() %>% hideGroup(c(lb[c(14,10:11, 16), leng]))
                         # Agragamos la leyenda
                         
                 if (length(unique(centers$cubre)) == 1){
                         l <- l %>% addCircles(data = centers, color = "black", opacity = 1, 
-                                              weight = 5, group = "Centers", popup = etiq_center) %>% 
+                                              weight = 5, group = lb[14, leng], popup = etiq_center) %>% 
                                 addLegend("bottomleft", colors = c("Black", "#762a83", "#4575b4"), opacity = 1,
                                           labels = c(lb[c(14,10:11), leng]))
                         } else {
                                 l <- l %>% addCircles(data = centers, color = ~pal(cubre), opacity = 1, 
-                                                      weight = 5, group = "Centers", popup = etiq_center) %>%
+                                                      weight = 5, group = lb[14, leng], popup = etiq_center) %>%
                                         addLegend("bottomleft", colors = c("Black", "#A4A9AA", "#762a83", "#4575b4"), 
                                                   opacity = 1,
                                                   labels = c(paste0(lb[14, leng], " (n=", unique(centers$cubre)[1], ")"),

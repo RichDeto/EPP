@@ -37,7 +37,7 @@ centers <- NULL
 #'
 #' A dataset containing the labels to translate leafepp maps.
 #'
-#' @format A data frame with 15 rows and 2 variables:
+#' @format A data frame with 16 rows and 2 variables:
 #' \describe{
 #'   \item{en}{English labels}
 #'   \item{es}{Spanish labels}
