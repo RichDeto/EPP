@@ -9,5 +9,8 @@ test_that("leafepp works", {
         ## In case of eppproy
         proy <- eppproy(pop = exist$pop_uncover)
         bb <- leafepp(proy, t = "proy", crs = sp::CRS("+init=epsg:32721"))
-        expect_equal(length(bb), 8)  
+        expect_equal(length(bb), 8)
+        proy <- eppproy(pop = exist$pop_uncover, g2 = 5)
+        cc <- leafepp(proy, t = "proy", crs = sp::CRS("+init=epsg:32721"))
+        expect_equal(length(cc), 8)
 })
