@@ -17,7 +17,10 @@
 #' @importFrom nngeo st_nn
 #' @importFrom osrm osrmTable osrmRoute
 #' @examples
+#' \donttest{
 #' pop_epp_nn <- assign_nn(x = pop_epp[1:20,], y = centers_epp)
+#' }
+
 assign_nn <- function(x, y, y.id = "id", k = 10, crs = 32721){
         if(!"sf" %in% class(x)){
                 x <- sf::st_as_sf(x, coords = c("x", "y"), remove = FALSE) %>% st_set_crs(crs)

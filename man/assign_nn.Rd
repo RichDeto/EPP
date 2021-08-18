@@ -28,5 +28,7 @@ x object with three new variables
 Add nearest neighbor information by osrm route service
 }
 \examples{
+\donttest{
 pop_epp_nn <- assign_nn(x = pop_epp[1:20,], y = centers_epp)
+}
 }
