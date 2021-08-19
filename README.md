@@ -30,7 +30,7 @@ All contributions are welcome, even though we are still in the process of improv
 
 ### Main functions
 
-A first task is to estimate the population covered with the existing infrastructure, and therefore we refer to the `eppexist()` function. An important detail to take into account is that our centers cannot overlap, since this prevents the correct computation of the Voronoi polygons. For this particular case, the `group_over()` function was implemented that combines the records for this specific application case. 
+A first task is to estimate the population covered with the existing infrastructure, and therefore we refer to the `eppexist()` function. An important detail to take into account is that our centers cannot overlap, since this prevents the correct computation of the Voronoi polygons. For this particular case, the `group_over()` function was implemented that combines the records for this specific application case.
 
 Using the datasets `pop_epp` and `centers_epp` of the own library, this is it use. 
 
