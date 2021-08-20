@@ -20,11 +20,21 @@ All contributions are welcome, even though we are still in the process of improv
 ## Installation
 
 ```R
+# From CRAN
+
+  install.packages("EPP")
+  library(EPP)
+```
+
+```R
 # Use the development version with latest features
+
   utils::remove.packages('EPP')
   devtools::install_github("RichDeto/EPP")
   library(EPP)
 ```
+
+If you use **Linux**, you need to install a couple dependencies before installing the libraries `{sf}` and `{EPP}`. [More info here](https://github.com/r-spatial/sf#linux). 
 
 ## Basic Usage
 
@@ -38,6 +48,8 @@ Using the datasets `pop_epp` and `centers_epp` of the own library, this is it us
 centers_epp <- group_over(rbind(centers_epp, centers_epp[ 1:3,]))
 exist <- eppexist(pop = pop_epp, centers = centers_epp, crs = sp::CRS("+init=epsg:32721"))
 ```
+
+:warning: If you need to process a large number of cases with the parameter "route" = TRUE, it is recommended to install OSRM on a local server. For more information take a look [here](https://github.com/riatelab/osrm/issues/4) and [here](https://github.com/Project-OSRM/osrm-backend/issues/5463).
 
 Normally the population is not completely covered by existing infrastructure, and that's when `eppproy()` appears, a function to find optimal locations to create new centers to cover the remaining population.  
 
@@ -56,9 +68,27 @@ In RStudio when you create a new RMarkdown document you can select the template 
 
 <img src="man/figures/template_epp.PNG" width="50%" style="display: block; margin: auto;" />
 
+### Visualizations
+
+For a quick visualization of the results of the `eppexist` or `eppproy` functions, the `leafepp` function was provided, which generates a `{leaflet}` viewer, with all the sublayers of the process. It also has a version in English and Spanish.
+
+Continuing with the example:
+
+```R
+## In case of eppexist (In English)
+l_epp_exist <- leafepp(exist, t = "exist", crs = sp::CRS("+init=epsg:32721"), leng = "en")
+l_epp_exist
+```
+
+```R
+## In case of eppproy (and in Spanish)
+l_epp_proy <- leafepp(proy, t = "proy", crs = sp::CRS("+init=epsg:32721"), leng = "es")
+l_epp_proy
+```
+
 ### General functions
 
-The syntax of all `{EPP}` functions are focused on executing two main processes,`eppexist()` and `eppproy()`, both aimed at evaluating the distribution of a certain population and the centers planned to cover it. Under the hood, there are some other tools that can be useful for other processes. Among them, we can mention those that allow making voronoi polygons (`voro_polygon()`), buffer-voronoi (`buff_voronoi()`) and iterative clusters (`clust_it()`).
+The syntax of all `{EPP}` functions are focused on executing two main processes, `eppexist()` and `eppproy()`, both aimed at evaluating the distribution of a certain population and the centers planned to cover it. Under the hood, there are some other tools that can be useful for other processes. Among them, we can mention those that allow making voronoi polygons (`voro_polygon()`), buffer-voronoi (`buff_voronoi()`) and iterative clusters (`clust_it()`).
 
 ## References
 

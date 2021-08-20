@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">EPP</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.3</span>
       </span>
     </div>
 
@@ -85,10 +85,17 @@
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># From CRAN</span>
+
+  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"EPP"</span><span class="op">)</span>
+  <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">EPP</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Use the development version with latest features</span>
+
   <span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/remove.packages.html">remove.packages</a></span><span class="op">(</span><span class="st">'EPP'</span><span class="op">)</span>
   <span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"RichDeto/EPP"</span><span class="op">)</span>
   <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">EPP</span><span class="op">)</span></code></pre></div>
+<p>If you use <strong>Linux</strong>, you need to install a couple dependencies before installing the libraries <a href="https://r-spatial.github.io/sf/">sf</a> and <code>{EPP}</code>. <a href="https://github.com/r-spatial/sf#linux">More info here</a>.</p>
 </div>
 <div id="basic-usage" class="section level2">
 <h2 class="hasAnchor">
@@ -98,12 +105,13 @@
 <a href="#main-functions" class="anchor"></a>Main functions</h3>
 <p>A first task is to estimate the population covered with the existing infrastructure, and therefore we refer to the <code><a href="reference/eppexist.html">eppexist()</a></code> function. An important detail to take into account is that our centers cannot overlap, since this prevents the correct computation of the Voronoi polygons. For this particular case, the <code><a href="reference/group_over.html">group_over()</a></code> function was implemented that combines the records for this specific application case.</p>
 <p>Using the datasets <code>pop_epp</code> and <code>centers_epp</code> of the own library, this is it use.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">centers_epp</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/group_over.html">group_over</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="va">centers_epp</span>, <span class="va">centers_epp</span><span class="op">[</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>,<span class="op">]</span><span class="op">)</span><span class="op">)</span>
 <span class="va">exist</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/eppexist.html">eppexist</a></span><span class="op">(</span>pop <span class="op">=</span> <span class="va">pop_epp</span>, centers <span class="op">=</span> <span class="va">centers_epp</span>, crs <span class="op">=</span> <span class="fu">sp</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/sp/man/CRS-class.html">CRS</a></span><span class="op">(</span><span class="st">"+init=epsg:32721"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p><span class="emoji" data-emoji="warning">⚠️</span> If you need to process a large number of cases with the parameter “route” = TRUE, it is recommended to install OSRM on a local server. For more information take a look <a href="https://github.com/riatelab/osrm/issues/4">here</a> and <a href="https://github.com/Project-OSRM/osrm-backend/issues/5463">here</a>.</p>
 <p>Normally the population is not completely covered by existing infrastructure, and that’s when <code><a href="reference/eppproy.html">eppproy()</a></code> appears, a function to find optimal locations to create new centers to cover the remaining population.</p>
 <p>Continuing with the example:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">proy</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/eppproy.html">eppproy</a></span><span class="op">(</span>pop <span class="op">=</span> <span class="va">exist</span><span class="op">$</span><span class="va">pop_uncover</span><span class="op">)</span></code></pre></div>
 <p>This was just an example using the default values of all the parameters. Please play around with them and report any bug <a href="https://github.com/RichDeto/EPP/issues/new/choose">here</a>.</p>
 </div>
@@ -113,10 +121,24 @@
 <p>The library also has templates in English and Spanish to quickly produce report of the results of the processing. In RStudio when you create a new RMarkdown document you can select the template like image show and start to personalize it.</p>
 <p><img src="reference/figures/template_epp.PNG" width="50%" style="display: block; margin: auto;"></p>
 </div>
+<div id="visualizations" class="section level3">
+<h3 class="hasAnchor">
+<a href="#visualizations" class="anchor"></a>Visualizations</h3>
+<p>For a quick visualization of the results of the <code>eppexist</code> or <code>eppproy</code> functions, the <code>leafepp</code> function was provided, which generates a <a href="https://rstudio.github.io/leaflet/">leaflet</a> viewer, with all the sublayers of the process. It also has a version in English and Spanish.</p>
+<p>Continuing with the example:</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## In case of eppexist (In English)</span>
+<span class="va">l_epp_exist</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/leafepp.html">leafepp</a></span><span class="op">(</span><span class="va">exist</span>, t <span class="op">=</span> <span class="st">"exist"</span>, crs <span class="op">=</span> <span class="fu">sp</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/sp/man/CRS-class.html">CRS</a></span><span class="op">(</span><span class="st">"+init=epsg:32721"</span><span class="op">)</span>, leng <span class="op">=</span> <span class="st">"en"</span><span class="op">)</span>
+<span class="va">l_epp_exist</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## In case of eppproy (and in Spanish)</span>
+<span class="va">l_epp_proy</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/leafepp.html">leafepp</a></span><span class="op">(</span><span class="va">proy</span>, t <span class="op">=</span> <span class="st">"proy"</span>, crs <span class="op">=</span> <span class="fu">sp</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/sp/man/CRS-class.html">CRS</a></span><span class="op">(</span><span class="st">"+init=epsg:32721"</span><span class="op">)</span>, leng <span class="op">=</span> <span class="st">"es"</span><span class="op">)</span>
+<span class="va">l_epp_proy</span></code></pre></div>
+</div>
 <div id="general-functions" class="section level3">
 <h3 class="hasAnchor">
 <a href="#general-functions" class="anchor"></a>General functions</h3>
-<p>The syntax of all <code>{EPP}</code> functions are focused on executing two main processes,<code><a href="reference/eppexist.html">eppexist()</a></code> and <code><a href="reference/eppproy.html">eppproy()</a></code>, both aimed at evaluating the distribution of a certain population and the centers planned to cover it. Under the hood, there are some other tools that can be useful for other processes. Among them, we can mention those that allow making voronoi polygons (<code><a href="reference/voro_polygon.html">voro_polygon()</a></code>), buffer-voronoi (<code><a href="reference/buff_voronoi.html">buff_voronoi()</a></code>) and iterative clusters (<code><a href="reference/clust_it.html">clust_it()</a></code>).</p>
+<p>The syntax of all <code>{EPP}</code> functions are focused on executing two main processes, <code><a href="reference/eppexist.html">eppexist()</a></code> and <code><a href="reference/eppproy.html">eppproy()</a></code>, both aimed at evaluating the distribution of a certain population and the centers planned to cover it. Under the hood, there are some other tools that can be useful for other processes. Among them, we can mention those that allow making voronoi polygons (<code><a href="reference/voro_polygon.html">voro_polygon()</a></code>), buffer-voronoi (<code><a href="reference/buff_voronoi.html">buff_voronoi()</a></code>) and iterative clusters (<code><a href="reference/clust_it.html">clust_it()</a></code>).</p>
 </div>
 </div>
 <div id="references" class="section level2">
