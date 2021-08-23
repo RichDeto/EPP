@@ -14,4 +14,4 @@ if (getRversion() >= "2.15.1") utils::globalVariables(c(".hasSlot", "x", "y", "w
                                                         "medianx", "mediany", "p_dist",
                                                         "cubre", "dist", "median", "crds", 
                                                         "capacity", "pop", "id", "centers", 
-                                                        "used_cap"))
+                                                        "used_cap", ".x"))

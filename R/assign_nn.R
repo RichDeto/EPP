@@ -16,12 +16,16 @@
 #' @importFrom dplyr '%>%'
 #' @importFrom nngeo st_nn
 #' @importFrom osrm osrmTable osrmRoute
+#' @importFrom curl has_internet
+#' @importFrom assertthat assert_that 
 #' @examples
 #' \donttest{
 #' pop_epp_nn <- assign_nn(x = pop_epp[1:20,], y = centers_epp)
 #' }
 
 assign_nn <- function(x, y, y.id = "id", k = 10, crs = 32721){
+        assertthat::assert_that(.x = curl::has_internet() & getOption("osrm.server") == "https://routing.openstreetmap.de/", 
+                                msg = "No internet access was detected. Please check your connection.")
         if(!"sf" %in% class(x)){
                 x <- sf::st_as_sf(x, coords = c("x", "y"), remove = FALSE) %>% st_set_crs(crs)
         }

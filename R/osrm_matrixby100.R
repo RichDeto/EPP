@@ -11,6 +11,8 @@
 #' \item{matriz}{The distance matrix of all the rows of the dataframe}
 #' @export
 #' @import osrm
+#' @importFrom curl has_internet
+#' @importFrom assertthat assert_that 
 #' @references Timothée Giraud, Robin Cura and Matthieu Viry 2017 osrm: Interface Between R and the OpenStreetMap-Based Routing Service OSRM. https://CRAN.R-project.org/package=osrm
 #' @keywords spatial osrm
 #' @examples 
@@ -20,7 +22,9 @@
 #'                       crs = sp::CRS("+init=epsg:32721"), wid = TRUE)
 #' }
 
-osrm_matrixby100 <- function(src, dst, crs, wid = TRUE){ 
+osrm_matrixby100 <- function(src, dst, crs, wid = TRUE){
+  assertthat::assert_that(.x = curl::has_internet() & getOption("osrm.server") == "https://routing.openstreetmap.de/", 
+                          msg = "No internet access was detected. Please check your connection.")
   src_s <- SpatialPoints(if (wid == TRUE) {as.data.frame(src[, 2:3])} else {as.data.frame(src[, 1:2])}, proj4string = crs)
   dst_s <- SpatialPoints(if (wid == TRUE) {as.data.frame(dst[, 2:3])} else {as.data.frame(dst[, 1:2])}, proj4string = crs)
   src_s <- spTransform(src_s, CRS("+init=epsg:4326"))
@@ -46,16 +50,22 @@ osrm_matrixby100 <- function(src, dst, crs, wid = TRUE){
     if (i != 1) lg[i] <- round((nrow(dst) / m) * (i - 1)) 
   }
   matriz <- matrix(nrow = nrow(src), ncol = nrow(dst))
-  for (k in 1:(l + 1)) {
-    tryCatch({
-      for (g in 1:(m + 1)) {
-        if (k <= l & g <= m) {matriz[lk[k]:lk[k + 1], lg[g]:lg[g + 1]] <- osrmTable(src = src[lk[k]:lk[k + 1],], dst = dst[(lg[g]):(lg[g + 1]),])$durations}
-        if (k != g & k > l) {matriz[lk[k - 1]:lk[k], lg[g]:lg[g + 1]] <- osrmTable(src = src[lk[k - 1]:lk[k],], dst = dst[(lg[g]):(lg[g + 1]),])$durations}
-        if (k != g & g > m) {matriz[lk[k]:lk[k + 1], lg[g - 1]:lg[g]] <- osrmTable(src = src[lk[k]:lk[k + 1],], dst = dst[(lg[g - 1]):(lg[g]),])$durations}
-        if (k > l & g > m) {matriz[lk[k - 1]:lk[k], lg[g - 1]:lg[g]] <- osrmTable(src = src[lk[k - 1]:lk[k]], dst = dst[(lg[g - 1]):(lg[g]),])$duration}
-      }
-    }, error = function(e) {cat("ERROR :",conditionMessage(e), "\n")})
+  
+  if (l > 1 & m > 1){
+    for (k in 1:(l + 1)) {
+      tryCatch({
+        for (g in 1:(m + 1)) {
+          if (k <= l & g <= m) {matriz[lk[k]:lk[k + 1], lg[g]:lg[g + 1]] <- osrmTable(src = src[lk[k]:lk[k + 1],], dst = dst[(lg[g]):(lg[g + 1]),])$durations}
+          if (k != g & k > l) {matriz[lk[k - 1]:lk[k], lg[g]:lg[g + 1]] <- osrmTable(src = src[lk[k - 1]:lk[k],], dst = dst[(lg[g]):(lg[g + 1]),])$durations}
+          if (k != g & g > m) {matriz[lk[k]:lk[k + 1], lg[g - 1]:lg[g]] <- osrmTable(src = src[lk[k]:lk[k + 1],], dst = dst[(lg[g - 1]):(lg[g]),])$durations}
+          if (k > l & g > m) {matriz[lk[k - 1]:lk[k], lg[g - 1]:lg[g]] <- osrmTable(src = src[lk[k - 1]:lk[k]], dst = dst[(lg[g - 1]):(lg[g]),])$duration}
+        }
+      }, error = function(e) {cat("ERROR :",conditionMessage(e), "\n")})
+    }
+  } else {
+    matriz <- osrmTable(src = src, dst = dst)$durations
   }
+  
   row.names(matriz) <- src[,1]
   colnames(matriz) <- dst[,1]
   matriz

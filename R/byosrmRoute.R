@@ -9,9 +9,13 @@
 #' @export
 #' @import osrm
 #' @import sp
+#' @importFrom curl has_internet
+#' @importFrom assertthat assert_that 
 #' @references Timothée Giraud, Robin Cura & Matthieu Viry 2017 osrm: Interface Between R and the OpenStreetMap-Based Routing Service OSRM. https://CRAN.R-project.org/package=osrm
 
 byosrmRoute <- function(src_dst, crs){
+        assertthat::assert_that(.x = curl::has_internet() & getOption("osrm.server") == "https://routing.openstreetmap.de/", 
+                                msg = "No internet access was detected. Please check your connection.")
         pop_s <- SpatialPoints(src_dst[ ,1:2], proj4string = crs)## transform pop to spatial object
         centers_s <- SpatialPoints(src_dst[ ,3:4], proj4string = crs)## transform centers to spatial object
         pop_s <- spTransform(pop_s, sp::CRS("+init=epsg:4326"))
