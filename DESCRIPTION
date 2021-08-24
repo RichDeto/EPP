@@ -20,7 +20,7 @@ Depends: R (>= 3.5.0)
 Language: en
 Imports: sp, rgeos, maptools, flexclust, plyr, osrm, deldir, methods, 
         dplyr, rgdal, leaflet, leaflet.extras, sf, nngeo, curl,
-        assertthat
+        assertthat, tibble
 Suggests: knitr, devtools, roxygen2, markdown, rstudioapi (>= 0.11),
         testthat (>= 2.3.2), rsvg, gdtools
 License: GPL (>= 3)

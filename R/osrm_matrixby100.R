@@ -66,7 +66,7 @@ osrm_matrixby100 <- function(src, dst, crs, wid = TRUE){
     matriz <- osrmTable(src = src, dst = dst)$durations
   }
   
-  row.names(matriz) <- src[,1]
+  rownames(matriz) <- src[,1]
   colnames(matriz) <- dst[,1]
   matriz
 }
