@@ -1,5 +1,5 @@
 #' \code{epp} package
-#'
+#' 
 #' Evaluation of Proximity Programs
 #'
 #' See the README on

@@ -4,7 +4,7 @@
 \alias{osrm_matrixby100}
 \title{Generate a distance matrix for dataframes of more than 100 rows, using osrm 
 functions by nrow(dataframe)/100 of rows, avoiding the record limit of the 
-original osrm function}
+original osrm function.}
 \usage{
 osrm_matrixby100(src, dst, crs, wid = TRUE)
 }

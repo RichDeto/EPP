@@ -6,7 +6,9 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Generate a distance matrix for dataframes of more than 100 rows, using osrm functions by nrow(dataframe)/100 of rows, avoiding the record limit of the original osrm function — osrm_matrixby100 • EPP</title>
+<title>Generate a distance matrix for dataframes of more than 100 rows, using osrm 
+functions by nrow(dataframe)/100 of rows, avoiding the record limit of the 
+original osrm function. — osrm_matrixby100 • EPP</title>
 
 
 <!-- jquery -->
@@ -39,9 +41,15 @@
 
 
 
-<meta property="og:title" content="Generate a distance matrix for dataframes of more than 100 rows, using osrm functions by nrow(dataframe)/100 of rows, avoiding the record limit of the original osrm function — osrm_matrixby100" />
-<meta property="og:description" content="Generate a distance matrix for dataframes of more than 100 rows, using osrm functions by nrow(dataframe)/100 of rows. Its use the osrmRoute and osrmTable functions of osrm library, that build and send an OSRM API query to get the travel geometry between two points. 
-This function interfaces the route OSRM service. The principal contribution to this function it´s to consider avoiding the record limit of the original osrm function." />
+<meta property="og:title" content="Generate a distance matrix for dataframes of more than 100 rows, using osrm 
+functions by nrow(dataframe)/100 of rows, avoiding the record limit of the 
+original osrm function. — osrm_matrixby100" />
+<meta property="og:description" content="Generate a distance matrix for dataframes of more than 100 rows,
+using osrm functions by nrow(dataframe)/100 of rows. Its use the osrmRoute 
+and osrmTable functions of osrm library, that build and send an OSRM API query 
+to get the travel geometry between two points. This function interfaces the 
+route OSRM service. The principal contribution to this function it´s to consider 
+avoiding the record limit of the original osrm function." />
 
 
 
@@ -73,7 +81,7 @@ This function interfaces the route OSRM service. The principal contribution to t
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">EPP</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.3</span>
       </span>
     </div>
 
@@ -112,14 +120,20 @@ This function interfaces the route OSRM service. The principal contribution to t
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Generate a distance matrix for dataframes of more than 100 rows, using osrm functions by nrow(dataframe)/100 of rows, avoiding the record limit of the original osrm function</h1>
+    <h1>Generate a distance matrix for dataframes of more than 100 rows, using osrm 
+functions by nrow(dataframe)/100 of rows, avoiding the record limit of the 
+original osrm function.</h1>
     <small class="dont-index">Source: <a href='https://github.com/RichDeto/EPP/blob/master/R/osrm_matrixby100.R'><code>R/osrm_matrixby100.R</code></a></small>
     <div class="hidden name"><code>osrm_matrixby100.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Generate a distance matrix for dataframes of more than 100 rows, using osrm functions by nrow(dataframe)/100 of rows. Its use the osrmRoute and osrmTable functions of osrm library, that build and send an OSRM API query to get the travel geometry between two points. 
-This function interfaces the route OSRM service. The principal contribution to this function it´s to consider avoiding the record limit of the original osrm function.</p>
+    <p>Generate a distance matrix for dataframes of more than 100 rows,
+using osrm functions by nrow(dataframe)/100 of rows. Its use the osrmRoute 
+and osrmTable functions of osrm library, that build and send an OSRM API query 
+to get the travel geometry between two points. This function interfaces the 
+route OSRM service. The principal contribution to this function it´s to consider 
+avoiding the record limit of the original osrm function.</p>
     </div>
 
     <pre class="usage"><span class='fu'>osrm_matrixby100</span><span class='op'>(</span><span class='va'>src</span>, <span class='va'>dst</span>, <span class='va'>crs</span>, wid <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
@@ -129,19 +143,23 @@ This function interfaces the route OSRM service. The principal contribution to t
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>src</th>
-      <td><p>Dataframe with three variables: id, and a pair of coordinates, or only the pair of coordinates with the "wid" parameter setted FALSE</p></td>
+      <td><p>Dataframe with three variables: id, and a pair of coordinates, or 
+only the pair of coordinates with the "wid" parameter setted FALSE</p></td>
     </tr>
     <tr>
       <th>dst</th>
-      <td><p>Dataframe with three variables: and a pair of coordinates, or only the pair of coordinates with the "wid" parameter setted FALSE</p></td>
+      <td><p>Dataframe with three variables: and a pair of coordinates, or only 
+the pair of coordinates with the "wid" parameter setted FALSE</p></td>
     </tr>
     <tr>
       <th>crs</th>
-      <td><p>Specific coordinates system to transform to the CRS("+init=epsg:4326") needed by osrm library.</p></td>
+      <td><p>Specific coordinates system to transform to the CRS("+init=epsg:4326") 
+needed by osrm library.</p></td>
     </tr>
     <tr>
       <th>wid</th>
-      <td><p>If TRUE keeping the "id" of the first column, if FALSE generate an "id" using the nrow function.</p></td>
+      <td><p>If TRUE keeping the "id" of the first column, if FALSE generate an 
+"id" using the nrow function.</p></td>
     </tr>
     </table>
 
@@ -152,7 +170,8 @@ This function interfaces the route OSRM service. The principal contribution to t
 
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>Timothée Giraud, Robin Cura and Matthieu Viry 2017 osrm: Interface Between R and the OpenStreetMap-Based Routing Service OSRM. https://CRAN.R-project.org/package=osrm</p>
+    <p>Timothée Giraud, Robin Cura and Matthieu Viry 2017 osrm: Interface 
+Between R and the OpenStreetMap-Based Routing Service OSRM. https://CRAN.R-project.org/package=osrm</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>

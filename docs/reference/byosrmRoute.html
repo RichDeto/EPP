@@ -40,8 +40,12 @@
 
 
 <meta property="og:title" content="Add the Shortest Path Between Two Points — byosrmRoute" />
-<meta property="og:description" content="This function add de distance and duration of the Shortest Path Between Two Points. Its use the osrmRoute function of osrm library, that build and send an OSRM API query to get the travel geometry between two points. 
-This function interfaces the route OSRM service. The principal contribution to this function it´s yo consider the CRS of the input coordinates, and only output the distance and time variables of the procedure." />
+<meta property="og:description" content="This function add de distance and duration of the Shortest Path 
+Between Two Points. Its use the osrmRoute function of osrm library, that build 
+and send an OSRM API query to get the travel geometry between two points. 
+This function interfaces the route OSRM service. The principal contribution to 
+this function it´s yo consider the CRS of the input coordinates, and only output 
+the distance and time variables of the procedure." />
 
 
 
@@ -73,7 +77,7 @@ This function interfaces the route OSRM service. The principal contribution to t
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">EPP</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.3</span>
       </span>
     </div>
 
@@ -118,8 +122,12 @@ This function interfaces the route OSRM service. The principal contribution to t
     </div>
 
     <div class="ref-description">
-    <p>This function add de distance and duration of the Shortest Path Between Two Points. Its use the osrmRoute function of osrm library, that build and send an OSRM API query to get the travel geometry between two points. 
-This function interfaces the route OSRM service. The principal contribution to this function it´s yo consider the CRS of the input coordinates, and only output the distance and time variables of the procedure.</p>
+    <p>This function add de distance and duration of the Shortest Path 
+Between Two Points. Its use the osrmRoute function of osrm library, that build 
+and send an OSRM API query to get the travel geometry between two points. 
+This function interfaces the route OSRM service. The principal contribution to 
+this function it´s yo consider the CRS of the input coordinates, and only output 
+the distance and time variables of the procedure.</p>
     </div>
 
     <pre class="usage"><span class='fu'>byosrmRoute</span><span class='op'>(</span><span class='va'>src_dst</span>, <span class='va'>crs</span><span class='op'>)</span></pre>
@@ -129,7 +137,8 @@ This function interfaces the route OSRM service. The principal contribution to t
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>src_dst</th>
-      <td><p>Dataframe with four variables: x of source, y of source, x of destination, y of destination. x and y are plain coordinates in the defined CRS</p></td>
+      <td><p>Dataframe with four variables: x of source, y of source, x of 
+destination, y of destination. x and y are plain coordinates in the defined CRS</p></td>
     </tr>
     <tr>
       <th>crs</th>
@@ -140,12 +149,21 @@ This function interfaces the route OSRM service. The principal contribution to t
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>Return a DataFrame with:</p>
-<dt>src_dst</dt><dd><p>The input DataFrame with 2 new variables "distance" in meters and "duration" in minutes</p></dd>
+<dt>src_dst</dt><dd><p>The input DataFrame with 2 new variables "distance" in meters 
+and "duration" in minutes</p></dd>
 
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>Timothée Giraud, Robin Cura &amp; Matthieu Viry 2017 osrm: Interface Between R and the OpenStreetMap-Based Routing Service OSRM. https://CRAN.R-project.org/package=osrm</p>
+    <p>Timothée Giraud, Robin Cura &amp; Matthieu Viry 2017 osrm: Interface 
+Between R and the OpenStreetMap-Based Routing Service OSRM. 
+https://CRAN.R-project.org/package=osrm</p>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='va'>src_dst</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>cbind</a></span><span class='op'>(</span><span class='fl'>576626</span>, <span class='fl'>6143649</span>, <span class='fl'>562248</span>, <span class='fl'>6142596</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>a</span> <span class='op'>&lt;-</span> <span class='fu'>byosrmRoute</span><span class='op'>(</span><span class='va'>src_dst</span>, crs <span class='op'>=</span> <span class='fu'>sp</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/sp/man/CRS-class.html'>CRS</a></span><span class='op'>(</span><span class='st'>"+init=epsg:32721"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='op'>}</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
