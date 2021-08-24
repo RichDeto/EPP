@@ -1,11 +1,22 @@
-#' Generate a distance matrix for dataframes of more than 100 rows, using osrm functions by nrow(dataframe)/100 of rows, avoiding the record limit of the original osrm function
-#' @description Generate a distance matrix for dataframes of more than 100 rows, using osrm functions by nrow(dataframe)/100 of rows. Its use the osrmRoute and osrmTable functions of osrm library, that build and send an OSRM API query to get the travel geometry between two points. 
-#' This function interfaces the route OSRM service. The principal contribution to this function it´s to consider avoiding the record limit of the original osrm function.
+#' Generate a distance matrix for dataframes of more than 100 rows, using osrm 
+#' functions by nrow(dataframe)/100 of rows, avoiding the record limit of the 
+#' original osrm function
 #' 
-#' @param src Dataframe with three variables: id, and a pair of coordinates, or only the pair of coordinates with the "wid" parameter setted FALSE
-#' @param dst Dataframe with three variables: and a pair of coordinates, or only the pair of coordinates with the "wid" parameter setted FALSE
-#' @param crs Specific coordinates system to transform to the CRS("+init=epsg:4326") needed by osrm library.
-#' @param wid If TRUE keeping the "id" of the first column, if FALSE generate an "id" using the nrow function.
+#' @description Generate a distance matrix for dataframes of more than 100 rows,
+#' using osrm functions by nrow(dataframe)/100 of rows. Its use the osrmRoute 
+#' and osrmTable functions of osrm library, that build and send an OSRM API query 
+#' to get the travel geometry between two points. This function interfaces the 
+#' route OSRM service. The principal contribution to this function it´s to consider 
+#' avoiding the record limit of the original osrm function.
+#' 
+#' @param src Dataframe with three variables: id, and a pair of coordinates, or 
+#' only the pair of coordinates with the "wid" parameter setted FALSE
+#' @param dst Dataframe with three variables: and a pair of coordinates, or only 
+#' the pair of coordinates with the "wid" parameter setted FALSE
+#' @param crs Specific coordinates system to transform to the CRS("+init=epsg:4326") 
+#' needed by osrm library.
+#' @param wid If TRUE keeping the "id" of the first column, if FALSE generate an 
+#' "id" using the nrow function.
 #'
 #' @return Return a DataFrame with:
 #' \item{matriz}{The distance matrix of all the rows of the dataframe}
@@ -13,7 +24,8 @@
 #' @import osrm
 #' @importFrom curl has_internet
 #' @importFrom assertthat assert_that 
-#' @references Timothée Giraud, Robin Cura and Matthieu Viry 2017 osrm: Interface Between R and the OpenStreetMap-Based Routing Service OSRM. https://CRAN.R-project.org/package=osrm
+#' @references Timothée Giraud, Robin Cura and Matthieu Viry 2017 osrm: Interface 
+#' Between R and the OpenStreetMap-Based Routing Service OSRM. https://CRAN.R-project.org/package=osrm
 #' @keywords spatial osrm
 #' @examples 
 #' \dontrun{
@@ -52,13 +64,21 @@ osrm_matrixby100 <- function(src, dst, crs, wid = TRUE){
   matriz <- matrix(nrow = nrow(src), ncol = nrow(dst))
   
   if (l > 1 & m > 1){
-    for (k in 1:(l + 1)) {
+    for (k in 1:(l)) {
       tryCatch({
-        for (g in 1:(m + 1)) {
-          if (k <= l & g <= m) {matriz[lk[k]:lk[k + 1], lg[g]:lg[g + 1]] <- osrmTable(src = src[lk[k]:lk[k + 1],], dst = dst[(lg[g]):(lg[g + 1]),])$durations}
-          if (k != g & k > l) {matriz[lk[k - 1]:lk[k], lg[g]:lg[g + 1]] <- osrmTable(src = src[lk[k - 1]:lk[k],], dst = dst[(lg[g]):(lg[g + 1]),])$durations}
-          if (k != g & g > m) {matriz[lk[k]:lk[k + 1], lg[g - 1]:lg[g]] <- osrmTable(src = src[lk[k]:lk[k + 1],], dst = dst[(lg[g - 1]):(lg[g]),])$durations}
-          if (k > l & g > m) {matriz[lk[k - 1]:lk[k], lg[g - 1]:lg[g]] <- osrmTable(src = src[lk[k - 1]:lk[k]], dst = dst[(lg[g - 1]):(lg[g]),])$duration}
+        for (g in 1:(m)) {
+          if (k <= l & g <= m) {
+            matriz[lk[k]:lk[k + 1], lg[g]:lg[g + 1]] <- osrmTable(src = src[lk[k]:lk[k + 1],], 
+                                                                  dst = dst[(lg[g]):(lg[g + 1]),])$durations}
+          if (k != g & k > l) {
+            matriz[lk[k - 1]:lk[k], lg[g]:lg[g + 1]] <- osrmTable(src = src[lk[k - 1]:lk[k],], 
+                                                                  dst = dst[(lg[g]):(lg[g + 1]),])$durations}
+          if (k != g & g > m) {
+            matriz[lk[k]:lk[k + 1], lg[g - 1]:lg[g]] <- osrmTable(src = src[lk[k]:lk[k + 1],], 
+                                                                  dst = dst[(lg[g - 1]):(lg[g]),])$durations}
+          if (k > l & g > m) {
+            matriz[lk[k - 1]:lk[k], lg[g - 1]:lg[g]] <- osrmTable(src = src[lk[k - 1]:lk[k]], 
+                                                                  dst = dst[(lg[g - 1]):(lg[g]),])$duration}
         }
       }, error = function(e) {cat("ERROR :",conditionMessage(e), "\n")})
     }

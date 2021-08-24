@@ -4,8 +4,8 @@ test_that("osrmby100 works", {
                          dst = cbind(id = 103:135, pop_epp[103:135,1:2]), 
                          crs = sp::CRS("+init=epsg:32721"), wid = TRUE)
         expect_type(a, "double")
-        b <- osrm_matrixby100(src = cbind(id = 1:95, pop_epp[1:95,1:2]),
-                              dst = cbind(id = 103:135, pop_epp[103:135,1:2]), 
+        b <- osrm_matrixby100(src = pop_epp[1:95,1:2],
+                              dst = pop_epp[100:205,1:2], 
                               crs = sp::CRS("+init=epsg:32721"), wid = FALSE)
         expect_type(b, "double")
 })

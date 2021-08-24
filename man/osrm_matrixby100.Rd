@@ -2,26 +2,36 @@
 % Please edit documentation in R/osrm_matrixby100.R
 \name{osrm_matrixby100}
 \alias{osrm_matrixby100}
-\title{Generate a distance matrix for dataframes of more than 100 rows, using osrm functions by nrow(dataframe)/100 of rows, avoiding the record limit of the original osrm function}
+\title{Generate a distance matrix for dataframes of more than 100 rows, using osrm 
+functions by nrow(dataframe)/100 of rows, avoiding the record limit of the 
+original osrm function}
 \usage{
 osrm_matrixby100(src, dst, crs, wid = TRUE)
 }
 \arguments{
-\item{src}{Dataframe with three variables: id, and a pair of coordinates, or only the pair of coordinates with the "wid" parameter setted FALSE}
+\item{src}{Dataframe with three variables: id, and a pair of coordinates, or 
+only the pair of coordinates with the "wid" parameter setted FALSE}
 
-\item{dst}{Dataframe with three variables: and a pair of coordinates, or only the pair of coordinates with the "wid" parameter setted FALSE}
+\item{dst}{Dataframe with three variables: and a pair of coordinates, or only 
+the pair of coordinates with the "wid" parameter setted FALSE}
 
-\item{crs}{Specific coordinates system to transform to the CRS("+init=epsg:4326") needed by osrm library.}
+\item{crs}{Specific coordinates system to transform to the CRS("+init=epsg:4326") 
+needed by osrm library.}
 
-\item{wid}{If TRUE keeping the "id" of the first column, if FALSE generate an "id" using the nrow function.}
+\item{wid}{If TRUE keeping the "id" of the first column, if FALSE generate an 
+"id" using the nrow function.}
 }
 \value{
 Return a DataFrame with:
 \item{matriz}{The distance matrix of all the rows of the dataframe}
 }
 \description{
-Generate a distance matrix for dataframes of more than 100 rows, using osrm functions by nrow(dataframe)/100 of rows. Its use the osrmRoute and osrmTable functions of osrm library, that build and send an OSRM API query to get the travel geometry between two points. 
-This function interfaces the route OSRM service. The principal contribution to this function it´s to consider avoiding the record limit of the original osrm function.
+Generate a distance matrix for dataframes of more than 100 rows,
+using osrm functions by nrow(dataframe)/100 of rows. Its use the osrmRoute 
+and osrmTable functions of osrm library, that build and send an OSRM API query 
+to get the travel geometry between two points. This function interfaces the 
+route OSRM service. The principal contribution to this function it´s to consider 
+avoiding the record limit of the original osrm function.
 }
 \examples{
 \dontrun{
@@ -31,7 +41,8 @@ a <- osrm_matrixby100(src = cbind(id = 1:80, pop_epp[1:80, 1:2]),
 }
 }
 \references{
-Timothée Giraud, Robin Cura and Matthieu Viry 2017 osrm: Interface Between R and the OpenStreetMap-Based Routing Service OSRM. https://CRAN.R-project.org/package=osrm
+Timothée Giraud, Robin Cura and Matthieu Viry 2017 osrm: Interface 
+Between R and the OpenStreetMap-Based Routing Service OSRM. https://CRAN.R-project.org/package=osrm
 }
 \keyword{osrm}
 \keyword{spatial}
