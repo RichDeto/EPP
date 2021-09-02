@@ -2,7 +2,7 @@
 
 -------------------------------------------------------
 
-## EPP v0.3.3 (In progress)
+## EPP v0.3.3 (2021-09-02)
 
   * leafepp debug in t = "exist" about center$capacity popup
   * debug assign_clust line 15
