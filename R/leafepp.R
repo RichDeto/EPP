@@ -99,7 +99,7 @@ leafepp <- function(x, t, crs, leng = "es", ...) {
                 etiq_center <- paste( sep = "<br/>",
                                       paste0("<b> ", lb[1, leng], ": ", as.character(centers$id),"</b>"),
                                       paste0("<b> ", lb[3, leng], ": </b>", as.character(centers$cubre)),
-                                      paste0("<b> ", lb[12, leng], ": </b>", as.character(centers$weight)),
+                                      paste0("<b> ", lb[12, leng], ": </b>", as.character(centers$p_weight)),
                                       paste0("<b> ", lb[13, leng], ": </b>", as.character(centers$p_dist)))
                 etiq_assigned <- paste( sep = "<br/>",
                                         paste0("<b> ", lb[4, leng], ": ", as.character(assigned$weight),"</b>"),

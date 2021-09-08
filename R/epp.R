@@ -11,7 +11,7 @@ NULL
 
 ## quiets concerns of R CMD check re: the .'s that appear in pipelines
 if (getRversion() >= "2.15.1") utils::globalVariables(c(".hasSlot", "x", "y", "weight",
-                                                        "medianx", "mediany", "p_dist",
-                                                        "cubre", "dist", "median", "crds", 
+                                                        "medianx", "mediany", "p_weight",
+                                                        "p_dist", "cubre", "dist", "median", "crds", 
                                                         "capacity", "pop", "id", "centers", 
                                                         "used_cap", ".x"))

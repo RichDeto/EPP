@@ -13,6 +13,7 @@
   * adaptation to osrm update
   * add site by pkgdown
   * add assertthat to check internet availability
+  * debug typo in assign_clust of p_weight
 
 ## EPP v0.3.2 (2021-08-03)
 
