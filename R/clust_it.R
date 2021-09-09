@@ -45,6 +45,9 @@ clust_it <- function(pop, m = 5, l = 4, g1 = 5, g2 = g1 * 0.5, d1 = 1000, d2 = d
                 if (nrow(pop) == sum(pop$a_reasig) & j == 1) {
                         stop("Your g1 value is too high for your population dispersion")    
                 }
+                if (nrow(pop) == sum(pop$a_reasig) & j == m + 1) {
+                        stop("Your g2 value is too high for your population dispersion")   
+                }
                 clusterizados[[j]] <- subset(pop, pop$a_reasig == 0)
                 clusterizados[[j]]$round <- as.factor(j)
                 pop <- subset(pop, pop$a_reasig == 1, select = c(x, y, weight))
