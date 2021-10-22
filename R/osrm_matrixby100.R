@@ -35,8 +35,9 @@
 #' }
 
 osrm_matrixby100 <- function(src, dst, crs, wid = TRUE){
-  assertthat::assert_that(.x = curl::has_internet() & getOption("osrm.server") == "https://routing.openstreetmap.de/", 
+  assertthat::assert_that(.x = curl::has_internet(), 
                           msg = "No internet access was detected. Please check your connection.")
+  getOption("osrm.server") == "https://routing.openstreetmap.de/"
   src_s <- SpatialPoints(if (wid == TRUE) {as.data.frame(src[, 2:3])} else {as.data.frame(src[, 1:2])}, proj4string = crs)
   dst_s <- SpatialPoints(if (wid == TRUE) {as.data.frame(dst[, 2:3])} else {as.data.frame(dst[, 1:2])}, proj4string = crs)
   src_s <- spTransform(src_s, CRS("+init=epsg:4326"))
