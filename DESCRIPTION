@@ -15,11 +15,11 @@ Authors@R: c( person(given = "Richard",
 Maintainer: Richard Detomasi <richard.detomasi@gmail.com>
 Description: A toolbox for coverage evaluation of proximity programs.
 BugReports: https://github.com/RichDeto/EPP/issues
-SystemRequirements: GDAL (>= 3.0.2), GEOS (>= 3.8.0), PROJ (>= 6.2.1)
-Depends: R (>= 4.0.0), sf (>= 0.6)
+SystemRequirements: C++11, GDAL (>= 3.0.2), GEOS (>= 3.8.0), PROJ (>= 6.2.1), sqlite3
+Depends: R (>= 3.6.0), sf (>= 0.6)
 Language: en
 Imports: sp, rgeos, maptools, flexclust, plyr, osrm, deldir, methods, 
-        dplyr, rgdal, leaflet, leaflet.extras, sf, nngeo, curl,
+        dplyr, rgdal, leaflet, leaflet.extras, nngeo, curl,
         assertthat, tibble, clipr
 Suggests: knitr, devtools, roxygen2, markdown, rstudioapi (>= 0.11),
         testthat (>= 2.3.2)
