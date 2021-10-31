@@ -2,7 +2,7 @@
 
 -------------------------------------------------------
 
-## EPP v0.3.3 (2021-09-22) 
+## EPP v0.3.3 (2021-10-31) 
 
   * leafepp debug in t = "exist" about center$capacity popup
   * debug assign_clust line 15
@@ -14,6 +14,7 @@
   * add site by pkgdown
   * add assertthat to check internet availability
   * debug typo in assign_clust of p_weight
+  * add a osrm_ok function to fail gratefully if osrm server is down
 
 ## EPP v0.3.2 (2021-08-03)
 
