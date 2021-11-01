@@ -22,6 +22,7 @@
 #' \item{matriz}{The distance matrix of all the rows of the dataframe}
 #' @export
 #' @import osrm
+#' @import rgdal
 #' @importFrom curl has_internet
 #' @importFrom assertthat assert_that 
 #' @references Timothée Giraud, Robin Cura and Matthieu Viry 2017 osrm: Interface 
@@ -36,6 +37,7 @@
 
 osrm_matrixby100 <- function(src, dst, crs, wid = TRUE){
   EPP::osrm_ok()
+  rgdal::set_thin_PROJ6_warnings(TRUE)
   getOption("osrm.server") == "https://routing.openstreetmap.de/"
   src_s <- SpatialPoints(if (wid == TRUE) {as.data.frame(src[, 2:3])} else {as.data.frame(src[, 1:2])}, proj4string = crs)
   dst_s <- SpatialPoints(if (wid == TRUE) {as.data.frame(dst[, 2:3])} else {as.data.frame(dst[, 1:2])}, proj4string = crs)

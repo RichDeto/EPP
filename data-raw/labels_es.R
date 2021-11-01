@@ -4,10 +4,8 @@ labels_es <- data.frame(
                "Assigned population", "Uncover population", "Mean weight",
                "Mean distance", "Proposed centers", "Total capacity", "Uncover heatmap"),
         es = c("Id centro", "Capacidad remanente", "Capacidad", "Pondera", "Id centro asignado",
-               "Iteración", "Distancia", "Capacidad disponible", "Centros llenos",
-               "Población asignada", "Población no cubierta", "ponderación media",
-               "Distancia media", "Centros propuestos", "Capacidad total", "Heatmap no cubiertos"),
-        stringsAsFactors = FALSE
-)
-
+               "Corrida", "Distancia", "Capacidad disponible", "Centros llenos",
+               "Pob. asignada", "Pob. no cubierta", "Media variable peso", "Distancia media", 
+               "Centros propuestos", "Capacidad total", "Heatmap no cubiertos"),
+        stringsAsFactors = FALSE)
 usethis::use_data(labels_es, overwrite = TRUE)
