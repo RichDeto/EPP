@@ -9,6 +9,7 @@
   [![codecov](https://codecov.io/gh/RichDeto/EPP/branch/master/graph/badge.svg)](https://app.codecov.io/gh/RichDeto/EPP)
   [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 
+[![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/RichDeto/EPP?branch=master&svg=true)](https://ci.appveyor.com/project/RichDeto/EPP)
 <!-- badges: end -->
 
 ## Evaluation of Proximity Programs
