@@ -2,7 +2,7 @@
 
 -------------------------------------------------------
 
-## EPP v0.3.3.1 (2021-11-02)
+## EPP v0.3.4 (2021-11-02)
 
   * add a osrm_ok function to fail gratefully if osrm server is down
 
