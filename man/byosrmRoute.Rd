@@ -26,7 +26,7 @@ this function it´s yo consider the CRS of the input coordinates, and only outpu
 the distance and time variables of the procedure.
 }
 \examples{
-\dontrun{
+\donttest{
 src_dst <- as.data.frame(cbind(576626, 6143649, 562248, 6142596))
 a <- byosrmRoute(src_dst, crs = sp::CRS("+init=epsg:32721"))
 }

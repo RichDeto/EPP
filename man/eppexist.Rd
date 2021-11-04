@@ -12,7 +12,7 @@ eppexist(
   d1 = 1000,
   d2 = d1 * 2,
   crs = sp::CRS("+init=epsg:32721"),
-  route = F
+  route = FALSE
 )
 }
 \arguments{

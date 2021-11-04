@@ -6,6 +6,9 @@
 \usage{
 osrm_ok()
 }
+\value{
+No return value, called for side effects
+}
 \description{
 This function helps to fail gratefully if OSRM service is down.
 }

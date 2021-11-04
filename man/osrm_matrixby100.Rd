@@ -34,7 +34,7 @@ route OSRM service. The principal contribution to this function it´s to conside
 avoiding the record limit of the original osrm function.
 }
 \examples{
-\dontrun{
+\donttest{
 a <- osrm_matrixby100(src = cbind(id = 1:80, pop_epp[1:80, 1:2]),
                       dst = cbind(id = 103:135, pop_epp[103:135, 1:2]), 
                       crs = sp::CRS("+init=epsg:32721"), wid = TRUE)

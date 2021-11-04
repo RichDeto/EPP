@@ -4,7 +4,7 @@
 #' @import osrm
 #' @importFrom curl has_internet
 #' @importFrom assertthat assert_that 
-#' 
+#' @return No return value, called for side effects
 
 osrm_ok <- function(){
         assertthat::assert_that(.x = curl::has_internet() , 

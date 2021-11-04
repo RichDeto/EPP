@@ -21,7 +21,7 @@
 #' Between R and the OpenStreetMap-Based Routing Service OSRM. 
 #' https://CRAN.R-project.org/package=osrm
 #' @examples 
-#' \dontrun{
+#' \donttest{
 #' src_dst <- as.data.frame(cbind(576626, 6143649, 562248, 6142596))
 #' a <- byosrmRoute(src_dst, crs = sp::CRS("+init=epsg:32721"))
 #' }

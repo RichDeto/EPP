@@ -29,7 +29,7 @@
 #' exist <- eppexist(pop = pop_epp, 
 #'                   centers = centers_epp)
  
-eppexist <- function(pop, centers, n = 3, m = 0, d1 = 1000, d2 = d1 * 2, crs = sp::CRS("+init=epsg:32721"), route = F) {
+eppexist <- function(pop, centers, n = 3, m = 0, d1 = 1000, d2 = d1 * 2, crs = sp::CRS("+init=epsg:32721"), route = FALSE) {
   assigned <- as.list(NA)
   used_capacity <- as.list(NA) 
   dist <- c(rep.int(d1, n), rep.int(d2, m)) ## compiles a vector of distances
