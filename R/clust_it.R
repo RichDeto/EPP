@@ -33,8 +33,8 @@ clust_it <- function(pop, m = 5, l = 4, g1 = 5, g2 = g1 * 0.5, d1 = 1000, d2 = d
                 colnames(orden_dist) <- "orden_dist"
                 pop <- cbind(pop[order(pop$cluster, pop$dist), ], orden_dist) # assigns the rank to the population
                 remove(i, list_1)
-                max_n_cl <- as.data.frame(as.vector(tapply(pop$orden_dist[pop$dist <= ifelse(j <= l, d1, d2)], 
-                                                           pop$cluster[pop$dist <= ifelse(j <= l, d1, d2)], max)))
+                max_n_cl <- as.data.frame(tapply(pop$orden_dist[pop$dist <= ifelse(j <= l, d1, d2)], 
+                                                           pop$cluster[pop$dist <= ifelse(j <= l, d1, d2)], max))
                 max_n_cl$cluster <- as.factor(row.names(max_n_cl))
                 names(max_n_cl) <- c("max_n_cl","cluster")
                 max_n_cl$max_n_cl <- ifelse(is.na(max_n_cl$max_n_cl), 1, max_n_cl$max_n_cl)
