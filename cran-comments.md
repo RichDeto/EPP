@@ -7,4 +7,4 @@
 
 0 errors | 0 warnings | 1 note
 
-* This is a resubmit, with the issue why this package was archived fixed, thanks to the osrm_ok function that help to fail gracefully, including the evaluation of the OSRM service state. Thanks Gregor Seyer for yours comments.
+* This is a new release, for stop failing checks with the latest development versions of R
