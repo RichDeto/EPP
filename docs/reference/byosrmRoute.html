@@ -22,7 +22,7 @@ the distance and time variables of the procedure."><!-- mathjax --><script src="
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">EPP</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.6</span>
       </span>
     </div>
 
@@ -62,9 +62,10 @@ this function it´s yo consider the CRS of the input coordinates, and only outpu
 the distance and time variables of the procedure.</p>
     </div>
 
-    <div class="ref-usage sourceCode"><pre class="sourceCode r"><code><span class="fu">byosrmRoute</span><span class="op">(</span><span class="va">src_dst</span>, <span class="va">crs</span><span class="op">)</span></code></pre></div>
+    <div id="ref-usage">
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">byosrmRoute</span><span class="op">(</span><span class="va">src_dst</span>, <span class="va">crs</span><span class="op">)</span></code></pre></div>
+    </div>
 
-    <div id="ref-sections">
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>src_dst</dt>
@@ -86,13 +87,13 @@ and "duration" in minutes</p></dd>
 Between R and the OpenStreetMap-Based Routing Service OSRM. 
 https://CRAN.R-project.org/package=osrm</p>
     </div>
-    </div>
 
-    <div id="examples">
+    <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="ref-examples sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># \donttest{</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># \donttest{</span></span>
 <span class="r-in"><span class="va">src_dst</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="fl">576626</span>, <span class="fl">6143649</span>, <span class="fl">562248</span>, <span class="fl">6142596</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-in"><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu">byosrmRoute</span><span class="op">(</span><span class="va">src_dst</span>, crs <span class="op">=</span> <span class="fu">sp</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/sp/man/CRS-class.html" class="external-link">CRS</a></span><span class="op">(</span><span class="st">"+init=epsg:32721"</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>sp support will be dropped in the next release, please use sf objects instead.</span>
 <span class="r-in"><span class="co"># }</span></span>
 </code></pre></div>
     </div>
@@ -108,7 +109,7 @@ https://CRAN.R-project.org/package=osrm</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.9000.9000.9000.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
       </footer></div>
