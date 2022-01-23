@@ -18,9 +18,9 @@ BugReports: https://github.com/RichDeto/EPP/issues
 SystemRequirements: C++11, OpenSSL (>= 1.0.1), GDAL (>= 3.0.2), GEOS (>= 3.8.0), PROJ (>= 6.2.1), sqlite3
 Depends: R (>= 3.6.0)
 Language: en
-Imports: sp, cpp11, s2, sf, rgeos, maptools, flexclust, plyr, osrm, deldir, methods, 
+Imports: sp, sf, rgeos, maptools, flexclust, plyr, osrm, deldir, methods, 
         dplyr, rgdal, leaflet, leaflet.extras, nngeo, curl, httr,
-        assertthat, tibble, clipr
+        assertthat 
 Suggests: knitr, devtools, roxygen2, markdown, rstudioapi (>= 0.11),
         testthat (>= 2.3.2)
 License: GPL (>= 3)
