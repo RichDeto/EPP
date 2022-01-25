@@ -13,9 +13,9 @@
 #' \item{dist}{distance by route to nearest neighbor in kilometers}
 #' @export
 #' @import sf
+#' @import osrm
 #' @importFrom dplyr '%>%'
 #' @importFrom nngeo st_nn
-#' @importFrom osrm osrmTable osrmRoute
 #' @importFrom curl has_internet
 #' @importFrom assertthat assert_that
 #' @importFrom methods is
@@ -42,9 +42,10 @@ assign_nn <- function(x, y, y.id = "id", k = 10, crs = 32721){
                 x[i, "nn_id"] <- y[y_nn, y.id] %>% 
                         sf::st_drop_geometry()
                 x[i, "time"] <- vec[, which.min(vec)] 
-                x[i, "dist"] <- osrm::osrmRoute(src = x[i,] %>% st_transform(4326),
-                                                dst = y[y_nn, ] %>% st_transform(4326),
-                                                overview = FALSE)[[2]]
+                ruta <- osrm::osrmRoute(src = x[i,] %>% st_transform(4326),
+                                        dst = y[y_nn, ] %>% st_transform(4326),
+                                        overview = FALSE)
+                x[i, "dist"] <- ruta[[2]]
         }
         return(x)
 }

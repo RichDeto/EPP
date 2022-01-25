@@ -9,3 +9,4 @@
 ^CRAN-RELEASE$
 ^docs$
 ^appveyor\.yml$
+^CRAN-SUBMISSION$

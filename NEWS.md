@@ -2,11 +2,15 @@
 
 -------------------------------------------------------
 
+## EPP v0.3.6.1 (2022-01-24)
+
+  * update dependencie to osrm (>= 3.5.1)
+
 ## EPP v0.3.6 (2022-01-23)
 
   * Add methods::is function in assign_nn function to stop failling in Fedora
   * Demove ‘clipr’ ‘cpp11’ ‘s2’ ‘tibble’ as dependencies
-
+  
 ## EPP v0.3.5 (2021-12-10)
 
   * Delete 'as.vector()' in three functions to stop failling in latest  R-devel
