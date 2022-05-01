@@ -2,6 +2,10 @@
 
 -------------------------------------------------------
 
+## EPP v0.3.6.2 (2022-05-01)
+
+  * Add osrm_ok() to others functions to fail gracefully with an informative message
+
 ## EPP v0.3.6.1 (2022-01-24)
 
   * update dependencie to osrm (>= 3.5.1)

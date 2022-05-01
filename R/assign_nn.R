@@ -33,7 +33,7 @@ assign_nn <- function(x, y, y.id = "id", k = 10, crs = 32721){
         if(!is(y, "sf")){
                 y <- sf::st_as_sf(y, coords = c("x", "y"), remove = FALSE) %>% st_set_crs(crs)
         }
-        
+        EPP::osrm_ok()
         if(!y.id %in% names(y)) stop(paste(y.id, "is not a variable name of second object"))
         nn <- nngeo::st_nn(x, y, k = k, progress = FALSE)
         for (i in 1:length(nn)){

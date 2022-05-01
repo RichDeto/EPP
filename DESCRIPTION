@@ -1,7 +1,7 @@
 Package: EPP
 Type: Package
 Title: Evaluation of Proximity Programs
-Version: 0.3.6.1
+Version: 0.3.6.2
 Date: 2022-01-24 
 Authors@R: c( person(given = "Richard", 
 	      family = "Detomasi", 

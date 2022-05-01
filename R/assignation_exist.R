@@ -22,9 +22,10 @@ assignation_exist <- function(pop, centers, d, crs, route = FALSE) {
             pop$dist_exist <- sqrt(((pop$x_pop - pop$x_center)^2) + ((pop$y_pop - pop$y_center)^2))    
         } 
         if (route == T) {
-            src_dst <- pop[, c("x_pop", "y_pop", "x_center", "y_center")]
-            src_dst <- byosrmRoute(src_dst, crs) 
-            pop$dist_exist <- src_dst$dist
+                EPP::osrm_ok()
+                src_dst <- pop[, c("x_pop", "y_pop", "x_center", "y_center")]
+                src_dst <- byosrmRoute(src_dst, crs) 
+                pop$dist_exist <- src_dst$dist
         }
         pop$en1000_exist <- ifelse(pop$dist_exist >= d, 0, 1)
         ninos_id <- list(tapply(X = pop$en1000_exist, INDEX = list(pop$id), FUN = sum))

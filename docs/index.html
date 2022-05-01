@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">EPP</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.6.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.6.2</span>
       </span>
     </div>
 
@@ -66,7 +66,8 @@
       </header><div class="row">
   <div class="contents col-md-9">
 <div class="section level1">
-<div class="page-header"><h1 id="epp--">EPP <img align="right" src="reference/figures/epp_logo_b.png" alt="logo" width="160"><img align="right" src="reference/figures/epp_logo.png" alt="logo" width="160"><a class="anchor" aria-label="anchor" href="#epp--"></a>
+<div class="page-header"><h1 id="epp--">EPP
+<img align="right" src="reference/figures/epp_logo_b.png" alt="logo" width="160"><img align="right" src="reference/figures/epp_logo.png" alt="logo" width="160"><a class="anchor" aria-label="anchor" href="#epp--"></a>
 </h1></div>
 <!-- badges: start -->
 
@@ -74,7 +75,12 @@
 <div class="section level2">
 <h2 id="evaluation-of-proximity-programs">Evaluation of Proximity Programs<a class="anchor" aria-label="anchor" href="#evaluation-of-proximity-programs"></a>
 </h2>
-<p><strong>EPP</strong> is a library oriented to the evaluation of population coverage of diverse programs. It was originally developed to assess the coverage of an initial education program in Uruguay, which gave us interesting results, and we wanted to share the methodology used, in a R package format. All contributions are welcome, even though we are still in the process of improvement.</p>
+<p><strong>EPP</strong> is a library oriented to the evaluation of
+population coverage of diverse programs. It was originally developed to
+assess the coverage of an initial education program in Uruguay, which
+gave us interesting results, and we wanted to share the methodology
+used, in a R package format. All contributions are welcome, even though
+we are still in the process of improvement.</p>
 </div>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
@@ -90,7 +96,10 @@
   <span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/remove.packages.html" class="external-link">remove.packages</a></span><span class="op">(</span><span class="st">'EPP'</span><span class="op">)</span>
   <span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/remote-reexports.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"RichDeto/EPP"</span><span class="op">)</span>
   <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">EPP</span><span class="op">)</span></code></pre></div>
-<p>If you use <strong>Linux</strong>, you need to install a couple dependencies before installing the libraries <a href="https://r-spatial.github.io/sf/" class="external-link">sf</a> and <code>{EPP}</code>. <a href="https://github.com/r-spatial/sf#linux" class="external-link">More info here</a>.</p>
+<p>If you use <strong>Linux</strong>, you need to install a couple
+dependencies before installing the libraries <a href="https://r-spatial.github.io/sf/" class="external-link">sf</a> and
+<code>{EPP}</code>. <a href="https://github.com/r-spatial/sf#linux" class="external-link">More
+info here</a>.</p>
 </div>
 <div class="section level2">
 <h2 id="basic-usage">Basic Usage<a class="anchor" aria-label="anchor" href="#basic-usage"></a>
@@ -98,28 +107,50 @@
 <div class="section level3">
 <h3 id="main-functions">Main functions<a class="anchor" aria-label="anchor" href="#main-functions"></a>
 </h3>
-<p>A first task is to estimate the population covered with the existing infrastructure, and therefore we refer to the <code><a href="reference/eppexist.html">eppexist()</a></code> function. An important detail to take into account is that our centers cannot overlap, since this prevents the correct computation of the Voronoi polygons. For this particular case, the <code><a href="reference/group_over.html">group_over()</a></code> function was implemented that combines the records for this specific application case.</p>
-<p>Using the datasets <code>pop_epp</code> and <code>centers_epp</code> of the own library, this is it use.</p>
+<p>A first task is to estimate the population covered with the existing
+infrastructure, and therefore we refer to the <code><a href="reference/eppexist.html">eppexist()</a></code>
+function. An important detail to take into account is that our centers
+cannot overlap, since this prevents the correct computation of the
+Voronoi polygons. For this particular case, the
+<code><a href="reference/group_over.html">group_over()</a></code> function was implemented that combines the
+records for this specific application case.</p>
+<p>Using the datasets <code>pop_epp</code> and <code>centers_epp</code>
+of the own library, this is it use.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">centers_epp</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/group_over.html">group_over</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">centers_epp</span>, <span class="va">centers_epp</span><span class="op">[</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>,<span class="op">]</span><span class="op">)</span><span class="op">)</span>
 <span class="va">exist</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/eppexist.html">eppexist</a></span><span class="op">(</span>pop <span class="op">=</span> <span class="va">pop_epp</span>, centers <span class="op">=</span> <span class="va">centers_epp</span>, crs <span class="op">=</span> <span class="fu">sp</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/sp/man/CRS-class.html" class="external-link">CRS</a></span><span class="op">(</span><span class="st">"+init=epsg:32721"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<p><span class="emoji" data-emoji="warning">⚠️</span> If you need to process a large number of cases with the parameter “route” = TRUE, it is recommended to install OSRM on a local server. For more information take a look <a href="https://github.com/riatelab/osrm/issues/4" class="external-link">here</a> and <a href="https://github.com/Project-OSRM/osrm-backend/issues/5463" class="external-link">here</a>.</p>
-<p>Normally the population is not completely covered by existing infrastructure, and that’s when <code><a href="reference/eppproy.html">eppproy()</a></code> appears, a function to find optimal locations to create new centers to cover the remaining population.</p>
+<p><span class="emoji" data-emoji="warning">⚠️</span> If you need to
+process a large number of cases with the parameter “route” = TRUE, it is
+recommended to install OSRM on a local server. For more information take
+a look <a href="https://github.com/riatelab/osrm/issues/4" class="external-link">here</a> and
+<a href="https://github.com/Project-OSRM/osrm-backend/issues/5463" class="external-link">here</a>.</p>
+<p>Normally the population is not completely covered by existing
+infrastructure, and that’s when <code><a href="reference/eppproy.html">eppproy()</a></code> appears, a
+function to find optimal locations to create new centers to cover the
+remaining population.</p>
 <p>Continuing with the example:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">proy</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/eppproy.html">eppproy</a></span><span class="op">(</span>pop <span class="op">=</span> <span class="va">exist</span><span class="op">$</span><span class="va">pop_uncover</span><span class="op">)</span></code></pre></div>
-<p>This was just an example using the default values of all the parameters. Please play around with them and report any bug <a href="https://github.com/RichDeto/EPP/issues/new/choose" class="external-link">here</a>.</p>
+<p>This was just an example using the default values of all the
+parameters. Please play around with them and report any bug <a href="https://github.com/RichDeto/EPP/issues/new/choose" class="external-link">here</a>.</p>
 </div>
 <div class="section level3">
 <h3 id="report-template">Report template<a class="anchor" aria-label="anchor" href="#report-template"></a>
 </h3>
-<p>The library also has templates in English and Spanish to quickly produce report of the results of the processing. In RStudio when you create a new RMarkdown document you can select the template like image show and start to personalize it.</p>
+<p>The library also has templates in English and Spanish to quickly
+produce report of the results of the processing. In RStudio when you
+create a new RMarkdown document you can select the template like image
+show and start to personalize it.</p>
 <p><img src="reference/figures/template_epp.PNG" width="50%" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level3">
 <h3 id="visualizations">Visualizations<a class="anchor" aria-label="anchor" href="#visualizations"></a>
 </h3>
-<p>For a quick visualization of the results of the <code>eppexist</code> or <code>eppproy</code> functions, the <code>leafepp</code> function was provided, which generates a <a href="https://rstudio.github.io/leaflet/" class="external-link">leaflet</a> viewer, with all the sublayers of the process. It also has a version in English and Spanish.</p>
+<p>For a quick visualization of the results of the <code>eppexist</code>
+or <code>eppproy</code> functions, the <code>leafepp</code> function was
+provided, which generates a <a href="https://rstudio.github.io/leaflet/" class="external-link">leaflet</a> viewer, with all the
+sublayers of the process. It also has a version in English and
+Spanish.</p>
 <p>Continuing with the example:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## In case of eppexist (In English)</span>
@@ -133,18 +164,47 @@
 <div class="section level3">
 <h3 id="general-functions">General functions<a class="anchor" aria-label="anchor" href="#general-functions"></a>
 </h3>
-<p>The syntax of all <code>{EPP}</code> functions are focused on executing two main processes, <code><a href="reference/eppexist.html">eppexist()</a></code> and <code><a href="reference/eppproy.html">eppproy()</a></code>, both aimed at evaluating the distribution of a certain population and the centers planned to cover it. Under the hood, there are some other tools that can be useful for other processes. Among them, we can mention those that allow making voronoi polygons (<code><a href="reference/voro_polygon.html">voro_polygon()</a></code>), buffer-voronoi (<code><a href="reference/buff_voronoi.html">buff_voronoi()</a></code>) and iterative clusters (<code><a href="reference/clust_it.html">clust_it()</a></code>).</p>
+<p>The syntax of all <code>{EPP}</code> functions are focused on
+executing two main processes, <code><a href="reference/eppexist.html">eppexist()</a></code> and
+<code><a href="reference/eppproy.html">eppproy()</a></code>, both aimed at evaluating the distribution of a
+certain population and the centers planned to cover it. Under the hood,
+there are some other tools that can be useful for other processes. Among
+them, we can mention those that allow making voronoi polygons
+(<code><a href="reference/voro_polygon.html">voro_polygon()</a></code>), buffer-voronoi
+(<code><a href="reference/buff_voronoi.html">buff_voronoi()</a></code>) and iterative clusters
+(<code><a href="reference/clust_it.html">clust_it()</a></code>).</p>
 </div>
 </div>
 <div class="section level2">
 <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
 </h2>
-<p>Detomasi, R. 2018. “Abordaje espacial de políticas públicas: cuidados y primera infancia”. En: <a href="https://www.google.com/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=2&amp;cad=rja&amp;uact=8&amp;ved=2ahUKEwiu_uH64vHjAhXsJ7kGHRHOCo4QFjABegQIABAC&amp;url=https%3A%2F%2Frepositorio.cepal.org%2Fbitstream%2Fhandle%2F11362%2F44155%2F1%2FS1800463_es.pdf&amp;usg=AOvVaw3EPJkSZSWIDsQ-dpwcHuUO" class="external-link">Las políticas públicas dirigidas a la infancia en Uruguay</a>. Coords. Verónica Amarante y Juan Pablo Labat. Ed. CEPAL - UNICEF, Santiago de Chile.</p>
-<p>Detomasi, R., G. Mathieu y G. Botto 2018. <a href="https://47jaiio.sadio.org.ar/sites/default/files/LatinR_10.pdf" class="external-link">“EPP v.0.2: Evaluation of Proximity Programs with OSRM routing”</a>. LatinR - Conferencia Latinoamericana sobre Uso de R en Investigación + Desarrollo. 3 al 7 de Setiembre.</p>
-<p>Detomasi, R. y G. Botto. 2017. <a href="https://www.researchgate.net/publication/322149061_EVALUACION_ESPACIAL_DE_SERVICIOS_DE_EDUCACION_INICIAL_LA_DENSIFICACION_DE_LA_OFERTA_PARA_NINOS_DE_TRES_ANOS_EN_LA_ADMINISTRACION_NACIONAL_DE_EDUCACION_PUBLICA_ANEP" class="external-link">“Evaluación espacial de servicios de educación inicial: la densificación de la oferta para tres años en la Administración Nacional de Educación Pública (ANEP)”</a>. GeoFocus (ISSN 1578-5157). <!-- https://www.geofocus.org/index.php/geofocus/article/view/508). --></p>
-<p>Botto, G. y Detomasi, R. 2015. <a href="https://dinem.mides.gub.uy/innovaportal/file/61794/1/tecnologias-de-la-informacion-para-nuevas-formas-de-gestion-del-territorio.-2015.pdf" class="external-link">“Bases metodológicas para la planificación espacial de servicios de educación inicial en Uruguay”</a> Jornadas Argentinas de Geo-tecnologías: Trabajos completos. Universidad Nacional de Luján - Sociedad de Especialistas Latinoamericanos en Percepción Remota - Universidad Nacional de San Luis, pp. 121-128.</p>
-<p>Detomasi, R., Botto, G. y Hahn, M. 2015. <a href="https://dinem.mides.gub.uy/innovaportal/file/61792/1/caif.-analisis-de-demanda.-2015.pdf" class="external-link">“CAIF: Análisis de demanda”</a> Documento de trabajo, Mayo 2015. Departamento de Geografía. Dirección Nacional de Evaluación y Monitoreo. Ministerio de Desarrollo Social.</p>
-<p>R Development Core Team 2015. <a href="https://www.R-project.org/" class="external-link">“R: A language and environment for statistical computing”</a> R Foundation for Statistical Computing, Vienna, Austria.ISBN 3-900051-07-0.</p>
+<p>Detomasi, R. 2018. “Abordaje espacial de políticas públicas: cuidados
+y primera infancia”. En: <a href="https://www.google.com/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=2&amp;cad=rja&amp;uact=8&amp;ved=2ahUKEwiu_uH64vHjAhXsJ7kGHRHOCo4QFjABegQIABAC&amp;url=https%3A%2F%2Frepositorio.cepal.org%2Fbitstream%2Fhandle%2F11362%2F44155%2F1%2FS1800463_es.pdf&amp;usg=AOvVaw3EPJkSZSWIDsQ-dpwcHuUO" class="external-link">Las
+políticas públicas dirigidas a la infancia en Uruguay</a>. Coords.
+Verónica Amarante y Juan Pablo Labat. Ed. CEPAL - UNICEF, Santiago de
+Chile.</p>
+<p>Detomasi, R., G. Mathieu y G. Botto 2018. <a href="https://47jaiio.sadio.org.ar/sites/default/files/LatinR_10.pdf" class="external-link">“EPP
+v.0.2: Evaluation of Proximity Programs with OSRM routing”</a>. LatinR -
+Conferencia Latinoamericana sobre Uso de R en Investigación +
+Desarrollo. 3 al 7 de Setiembre.</p>
+<p>Detomasi, R. y G. Botto. 2017. <a href="https://www.researchgate.net/publication/322149061_EVALUACION_ESPACIAL_DE_SERVICIOS_DE_EDUCACION_INICIAL_LA_DENSIFICACION_DE_LA_OFERTA_PARA_NINOS_DE_TRES_ANOS_EN_LA_ADMINISTRACION_NACIONAL_DE_EDUCACION_PUBLICA_ANEP" class="external-link">“Evaluación
+espacial de servicios de educación inicial: la densificación de la
+oferta para tres años en la Administración Nacional de Educación Pública
+(ANEP)”</a>. GeoFocus (ISSN 1578-5157).
+<!-- https://www.geofocus.org/index.php/geofocus/article/view/508). --></p>
+<p>Botto, G. y Detomasi, R. 2015. <a href="https://dinem.mides.gub.uy/innovaportal/file/61794/1/tecnologias-de-la-informacion-para-nuevas-formas-de-gestion-del-territorio.-2015.pdf" class="external-link">“Bases
+metodológicas para la planificación espacial de servicios de educación
+inicial en Uruguay”</a> Jornadas Argentinas de Geo-tecnologías: Trabajos
+completos. Universidad Nacional de Luján - Sociedad de Especialistas
+Latinoamericanos en Percepción Remota - Universidad Nacional de San
+Luis, pp. 121-128.</p>
+<p>Detomasi, R., Botto, G. y Hahn, M. 2015. <a href="https://dinem.mides.gub.uy/innovaportal/file/61792/1/caif.-analisis-de-demanda.-2015.pdf" class="external-link">“CAIF:
+Análisis de demanda”</a> Documento de trabajo, Mayo 2015. Departamento
+de Geografía. Dirección Nacional de Evaluación y Monitoreo. Ministerio
+de Desarrollo Social.</p>
+<p>R Development Core Team 2015. <a href="https://www.R-project.org/" class="external-link">“R: A language and environment for
+statistical computing”</a> R Foundation for Statistical Computing,
+Vienna, Austria.ISBN 3-900051-07-0.</p>
 </div>
 </div>
   </div>
@@ -213,7 +273,8 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
+2.0.2.</p>
 </div>
 
       </footer>
